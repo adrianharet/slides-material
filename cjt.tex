@@ -1,0 +1,89 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+    %% Model
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         voters & \(N = \{1, \dots , n\}\) \\
+    %         alternatives & \(A = \{a,b\}\) \\
+    %         correct alternative & \(a\) \\
+    %         voter \(i\)'s vote & \(v_i \in A\) \\
+    %         profile of votes & \(\bm{v} = (v_1, \dots , v_n)\) \\
+    %         voter \(i\)'s competence & \(\Pr[v_i = a] = p_i\), with \(p_i \in [0,1]\) \\
+    %         majority vote & \(F_{\maj}(\bm{v}) = x\), such that \(v_i = x\) for a (strict) majority of voters
+    %     \end{tabular}
+    % \end{table}
+    
+    %% Assumptions
+    % \begin{description}
+    %     \item[(Competence)] Agents are better than random at being correct:
+    %     \[
+    %         p_i > \frac{1}{2},~\text{for any voter}~i \in N.
+    %     \]
+    %     \item[(Equal Competence)] All agents have the same competence:
+    %     \[
+    %         p_i = p_j = p,~\text{for all voters}~i,j \in N.
+    %     \]
+    %     \item[(Independence)] Voters vote independently of each other:
+    %     \[
+    %         \Pr[v_i = x, v_j=y] = \Pr[v_i=x] \cdot \Pr[v_j=y],~\text{for all voters}~i,j \in N.
+    %     \]
+    % \end{description}
+    % \vspace{0.1em}
+
+    % \({\Pr}{\left[F_\maj(v_1, \dots , v_n) = a\right]}\)
+    % The profile is \(\bm{v} = (v_1)\).
+    % The probability of a correct decision is:
+    % \begin{align*}
+    %     \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] \\
+    %                                     & = p \\
+    %                                     & > \nicefrac{1}{2}.
+    % \end{align*}
+    % Note that as \(p\) grows, so does group accuracy.
+
+    % Generalizing the previous identity we get the following recurrence:
+    % {
+    %     \footnotesize
+    %     \[
+    %         \textcolor{GameTheory}{{\Pr}{\left[ S_{n+2} > \left\lfloor\frac{n+2}{2} \right\rfloor \right]}} = 
+    %         (1-p)^2 \cdot \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2}\right\rfloor + 1 \right]}} + 
+    %         2p(1-p)^2 \cdot \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor \right]}} + 
+    %         p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2} \right\rfloor - 1 \right]}}        
+    %     \]
+    % }
+    % The events on the right-hand-side can be rewritten as:
+    % {
+    % \footnotesize
+    % \begin{align*}
+    %     \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor-1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} + 
+    %     \binom{n}{\lfloor\nicefrac{n}{2}\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}\\
+    %     \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor+1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} -
+    %     \binom{n}{\lfloor\nicefrac{n}{2}+1\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor}
+    % \end{align*}
+    % }
+    % Plug the second and third identities into the first, 
+    % and denote \(\binom{n}{\lfloor\nicefrac{n}{2}\rfloor} = \binom{n}{\lfloor\nicefrac{n}{2}\rfloor+1}=c\):
+    % {
+    %     \footnotesize
+    %     \[
+    %         \textcolor{GameTheory}{{\Pr}{\left[ S_{n+2} > \left\lfloor\frac{n+2}{2} \right\rfloor \right]}} = 
+    %         \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor \right]}} + 
+    %         c \cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}(2p-1).
+    %     \]
+    % }
+    % Since \(\nicefrac{1}{2}<p<1\), the second term on the right-hand side is positive.
+
+    %% Weak Law of Large Numbers
+    If \(X_1\), \dots, \(X_n\) are independent and identically distributed (i.i.d.) random variables
+    such that \(\EXP[X_i] = \mu\), then, for any \(\epsilon > 0\), it holds that:
+    \[
+        \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
+    \]
+\end{document}

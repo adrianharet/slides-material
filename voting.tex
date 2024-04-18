@@ -1,0 +1,25 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+   %% VOTING
+    % Winners are those alternatives that beat every other alternative in a \emph{head-to-head contest}.
+
+    % We write \(n(x, y)\) for the number of agents who prefer alternative \(x\)
+    % to alternative \(y\).
+    % \vspace{1em}
+
+    % A \emph{Condorcet winner} is an alternative \(x^*\) such that \(n(x^*, y) > n(x^*, y)\),
+    % for any (other) alternative \(y\). 
+
+    % Every voter \(i\) gives to alternative \(x\) a score of \(m - \textit{pos}_i(x)\), 
+    % called \emph{the Borda score}, where \(\textit{pos}_i(x) \in \{1, \dots, m\}\)
+    % is the position of \(x\) in \(i\)'s preference order \(\succ_i\).
+
+    % The \emph{Borda winners} are the alternatives with the highest overall score, i.e., 
+    % that maximize the sum of the Borda scores over all voters.
+\end{document}

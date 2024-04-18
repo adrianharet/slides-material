@@ -1,0 +1,191 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+    %% GAME THEORY
+    % Player \(i\)'s \emph{best response} to the other players' strategies 
+    % \(\bm{s}_{-i} = (s_1, \dots, s_{i-1}, s_{i+1}, \dots, s_n)\)
+    % is a strategy \(s^{*}_i\) such that \(u_i(s^{*}_i, \bm{s}_{-i}) \geq u_i(s^*_i, \bm{s}_{-i})\), 
+    % for any strategy \(s_i\) of player \(i\).
+    % 
+    % A strategy profile \(\bm{s}^{*} = (s_1^{*}, \dots, s_n^{*})\) is a 
+    % \emph{pure Nash equilibrium} if \(s_i^{*}\) is a best response to \(\bm{s}^*_{-i}\),
+    % for every player \(i\).
+    % \vspace{1em}
+    % 
+    % In other words, given strategy profile \(\bm{s}^*\), there is no player \(i\) and strategy \(s'_i\)
+    % such that \(u_i(s'_i, \bm{s}^*_{-i}) > u_i(s^*_i, \bm{s}^*_{-i})\).
+    % 
+    % A strategy profile \(\bm{s}\) \emph{Pareto dominates} strategy profile \(\bm{s}'\) if:
+    % \begin{itemize}
+    %     \item[(i)] \(u_i(\bm{s}) \geq u_i(\bm{s}')\), for every agent \(i\), and 
+    %     \item[(ii)] there exists an agent \(j\) such that \(u_j(\bm{s}) > u_j(\bm{s}')\). 
+    % \end{itemize}
+    % 
+    % A strategy profile \(\bm{s}\) is \emph{Pareto optimal} if 
+    % there is no (other) strategy profile \(\bm{s}'\) that Pareto dominates \(\bm{s}\).
+    % 
+    % 
+    % 
+    %% VOTING
+    % Winners are those alternatives that beat every other alternative in a \emph{head-to-head contest}.
+
+    % We write \(n(x, y)\) for the number of agents who prefer alternative \(x\)
+    % to alternative \(y\).
+    % \vspace{1em}
+
+    % A \emph{Condorcet winner} is an alternative \(x^*\) such that \(n(x^*, y) > n(x^*, y)\),
+    % for any (other) alternative \(y\). 
+
+    % Every voter \(i\) gives to alternative \(x\) a score of \(m - \textit{pos}_i(x)\), 
+    % called \emph{the Borda score}, where \(\textit{pos}_i(x) \in \{1, \dots, m\}\)
+    % is the position of \(x\) in \(i\)'s preference order \(\succ_i\).
+
+    % The \emph{Borda winners} are the alternatives with the highest overall score, i.e., 
+    % that maximize the sum of the Borda scores over all voters.
+
+
+
+    %% APPORTIONMENT
+    %% model
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         states                                  & \(N = \{1, \dots, n\}\)   \\
+    %         population of state \(i\)               & \(p_i\)                   \\ 
+    %         total population                        & \(p = p_1 + \dots + p_n\) \\
+    %         number of seats to be allocated         & \(k\)                     \\
+    %         seats allocated to state \(i\)          & \(k_i\)                   \\ 
+    %         divisor                                 & \(d\)                      \\
+    %         quota of state \(i\), for divisor \(d\) & \(\hat{q}_i = \nicefrac{p_i}{d}\) \\
+    %         standard (true) quota of state \(i\)    & \(q_i = \nicefrac{p_i}{p}\cdot k\)\\ 
+    %         upper quota of state \(i\)              & \(\lceil q_i \rceil\), i.e., \(q_i\) rounded up to the nearest integer \\
+    %         lower quota of state \(i\)              & \(\lfloor q_i \rfloor\), i.e., \(q_i\) rounded down to the nearest integer
+    %     \end{tabular}
+    % \end{table}
+    % 
+    % \(\left\lfloor\frac{p_1}{d}\right\rfloor + \dots + \left\lfloor\frac{p_n}{d}\right\rfloor = k\)
+    % \(
+    %     \left[\frac{p_1}{d}\right] + \dots + \left[\frac{p_n}{d}\right] = k
+    % \)
+    % 
+    % \(\left[\nicefrac{p_i}{d}\right]\)
+    % 
+    % \(s_1 = \left(\nicefrac{1}{10}, \nicefrac{9}{10}\right)\)
+    % \(s_2 = \left(\nicefrac{1}{5}, \nicefrac{4}{5}\right)\)
+    % \(\bm{s} = \left(s_1, s_2\right)\)
+    % 
+    % \begin{align*}
+    %     u_1(\bm{s}) & = u_1(\text{Stag}, s_2)\cdot \Pr\left[\text{1 plays Stag}\right] + 
+    %                     u_1(\text{Hare}, s_2)\cdot \Pr\left[\text{1 plays Hare}\right] \\
+    %                 & = \bigg(u_1(\text{Stag}, \text{Stag})\cdot \Pr[\text{2 plays Stag}] + 
+    %                      u_1(\text{Stag}, \text{Hare})\cdot \Pr[\text{2 plays Hare}]\bigg) \cdot \Pr\left[\text{1 plays Stag}\right] + \\ 
+    %                 & ~~~~~~~~ \bigg(u_1(\text{Hare}, \text{Stag})\cdot \Pr[\text{2 plays Stag}] +
+    %                      u_1(\text{Hare}, \text{Hare})\cdot \Pr[\text{2 plays Hare}]\bigg) \cdot \Pr\left[\text{1 plays Hare}\right] \\ 
+    %                 & = (10 \cdot \nicefrac{1}{5} + 0 \cdot \nicefrac{4}{5}) \cdot \nicefrac{1}{10} +
+    %                     (6 \cdot \nicefrac{1}{5} + 3 \cdot \nicefrac{4}{5}) \cdot \nicefrac{9}{10} \\ 
+    %                 & = 3.44.
+    % \end{align*}
+    % 
+    % \(\bm{s}^*= \big(\left(\nicefrac{1}{2}, \nicefrac{1}{2}\right), \left(\nicefrac{1}{2}, \nicefrac{1}{2}\right)\big)\)
+
+    % \(
+    %     f(x) = 
+    %     \begin{cases}
+    %         \lfloor x \rfloor, ~\text{if}~x < \sqrt{\lfloor x \rfloor \cdot \lceil x \rceil}, \\
+    %         \lceil x \rceil, ~\text{if}~x \geq \sqrt{\lfloor x \rfloor \cdot \lceil x \rceil}.
+    %     \end{cases}
+    % \)
+
+    % \(f{\left(\frac{p_1}{d}\right)} + \dots +f{\left(\frac{p_n}{d}\right)} = k.\)
+    % \(f{\left(\nicefrac{p_i}{d} \right)}\)
+
+    % A divisor method is the Huntington-Hill method if and only if
+    % for all states \(i, j \in N\) such that \(\nicefrac{p_i}{k_i} \geq \nicefrac{p_j}{k_j}\),
+    % it holds that:
+    % \[
+    %     \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
+    % \]
+
+    %% Condorcet Jury Theorem
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         voters & \(N = \{1, \dots , n\}\) \\
+    %         alternatives & \(A = \{a,b\}\) \\
+    %         correct alternative & \(a\) \\
+    %         voter \(i\)'s vote & \(v_i \in A\) \\
+    %         profile of votes & \(\bm{v} = (v_1, \dots , v_n)\) \\
+    %         voter \(i\)'s competence & \(\Pr[v_i = a] = p_i\), with \(p_i \in [0,1]\) \\
+    %         majority vote & \(F_{\maj}(\bm{v}) = x\), such that \(v_i = x\) for a (strict) majority of voters
+    %     \end{tabular}
+    % \end{table}
+
+    % \begin{description}
+    %     \item[(Competence)] Agents are better than random at being correct:
+    %     \[
+    %         p_i > \frac{1}{2},~\text{for any voter}~i \in N.
+    %     \]
+    %     \item[(Equal Competence)] All agents have the same competence:
+    %     \[
+    %         p_i = p_j = p,~\text{for all voters}~i,j \in N.
+    %     \]
+    %     \item[(Independence)] Voters vote independently of each other:
+    %     \[
+    %         \Pr[v_i = x, v_j=y] = \Pr[v_i=x] \cdot \Pr[v_j=y],~\text{for all voters}~i,j \in N.
+    %     \]
+    % \end{description}
+    % \vspace{0.1em}
+
+    % \({\Pr}{\left[F_\maj(v_1, \dots , v_n) = a\right]}\)
+    % The profile is \(\bm{v} = (v_1)\).
+    % The probability of a correct decision is:
+    % \begin{align*}
+    %     \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] \\
+    %                                     & = p \\
+    %                                     & > \nicefrac{1}{2}.
+    % \end{align*}
+    % Note that as \(p\) grows, so does group accuracy.
+
+    % Generalizing the previous identity we get the following recurrence:
+    % {
+    %     \footnotesize
+    %     \[
+    %         \textcolor{GameTheory}{{\Pr}{\left[ S_{n+2} > \left\lfloor\frac{n+2}{2} \right\rfloor \right]}} = 
+    %         (1-p)^2 \cdot \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2}\right\rfloor + 1 \right]}} + 
+    %         2p(1-p)^2 \cdot \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor \right]}} + 
+    %         p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2} \right\rfloor - 1 \right]}}        
+    %     \]
+    % }
+    % The events on the right-hand-side can be rewritten as:
+    % {
+    % \footnotesize
+    % \begin{align*}
+    %     \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor-1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} + 
+    %     \binom{n}{\lfloor\nicefrac{n}{2}\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}\\
+    %     \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor+1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} -
+    %     \binom{n}{\lfloor\nicefrac{n}{2}+1\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor}
+    % \end{align*}
+    % }
+    % Plug the second and third identities into the first, 
+    % and denote \(\binom{n}{\lfloor\nicefrac{n}{2}\rfloor} = \binom{n}{\lfloor\nicefrac{n}{2}\rfloor+1}=c\):
+    % {
+    %     \footnotesize
+    %     \[
+    %         \textcolor{GameTheory}{{\Pr}{\left[ S_{n+2} > \left\lfloor\frac{n+2}{2} \right\rfloor \right]}} = 
+    %         \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor \right]}} + 
+    %         c \cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}(2p-1).
+    %     \]
+    % }
+    % Since \(\nicefrac{1}{2}<p<1\), the second term on the right-hand side is positive.
+
+    If \(X_1\), \dots, \(X_n\) are independent and identically distributed (i.i.d.) random variables
+    such that \(\EXP[X_i] = \mu\), then, for any \(\epsilon > 0\), it holds that:
+    \[
+        \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
+    \]
+\end{document}
