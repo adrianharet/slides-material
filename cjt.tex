@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -36,15 +36,16 @@
     % \end{description}
     % \vspace{0.1em}
 
-    % \({\Pr}{\left[F_\maj(v_1, \dots , v_n) = a\right]}\)
-    % The profile is \(\bm{v} = (v_1)\).
-    % The probability of a correct decision is:
-    % \begin{align*}
-    %     \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] \\
-    %                                     & = p \\
-    %                                     & > \nicefrac{1}{2}.
-    % \end{align*}
-    % Note that as \(p\) grows, so does group accuracy.
+    % \({\Pr}{\left[ F_\maj(v_1, \dots , v_n) = a\right]}\)
+
+    The profile is \(\bm{v} = (v_1)\).
+    The probability of a correct decision is:
+    \begin{align*}
+        \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] \\
+                                        & = p \\
+                                        & > \nicefrac{1}{2}.
+    \end{align*}
+    Note that as \(p\) grows, so does group accuracy.
 
     % Generalizing the previous identity we get the following recurrence:
     % {
@@ -81,9 +82,9 @@
     % Since \(\nicefrac{1}{2}<p<1\), the second term on the right-hand side is positive.
 
     %% Weak Law of Large Numbers
-    If \(X_1\), \dots, \(X_n\) are independent and identically distributed (i.i.d.) random variables
-    such that \(\EXP[X_i] = \mu\), then, for any \(\epsilon > 0\), it holds that:
-    \[
-        \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
-    \]
+    % If \(X_1\), \dots, \(X_n\) are independent and identically distributed (i.i.d.) random variables
+    % such that \(\EXP[X_i] = \mu\), then, for any \(\epsilon > 0\), it holds that:
+    % \[
+    %     \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
+    % \]
 \end{document}
