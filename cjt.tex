@@ -38,14 +38,19 @@
 
     % \({\Pr}{\left[ F_\maj(v_1, \dots , v_n) = a\right]}\)
 
-    The profile is \(\bm{v} = (v_1)\).
-    The probability of a correct decision is:
-    \begin{align*}
-        \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] \\
-                                        & = p \\
-                                        & > \nicefrac{1}{2}.
-    \end{align*}
-    Note that as \(p\) grows, so does group accuracy.
+    % The profile is \(\bm{v} = (v_1)\).\\
+
+    % The probability of a correct decision is:
+    % \begin{flalign*}
+    %     \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] &\\
+    %                                     & = p &\\
+    %                                     & > \nicefrac{1}{2}.&
+    % \end{flalign*}
+    % Note that as \(p\) grows, so does group accuracy.
+
+    % The profile is \(\bm{v} = (v_1, v_2) \).\\
+
+    % Oh wait, we're not looking at this case.
 
     % Generalizing the previous identity we get the following recurrence:
     % {
@@ -57,6 +62,8 @@
     %         p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2} \right\rfloor - 1 \right]}}        
     %     \]
     % }
+
+    % \noindent
     % The events on the right-hand-side can be rewritten as:
     % {
     % \footnotesize
@@ -69,8 +76,9 @@
     %     \binom{n}{\lfloor\nicefrac{n}{2}+1\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor}
     % \end{align*}
     % }
-    % Plug the second and third identities into the first, 
-    % and denote \(\binom{n}{\lfloor\nicefrac{n}{2}\rfloor} = \binom{n}{\lfloor\nicefrac{n}{2}\rfloor+1}=c\):
+
+    % \noindent
+    % Plug second and third identities into first, and write \(\binom{n}{\lfloor\nicefrac{n}{2}\rfloor} = \binom{n}{\lfloor\nicefrac{n}{2}\rfloor+1}=c\):
     % {
     %     \footnotesize
     %     \[
@@ -79,7 +87,18 @@
     %         c \cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}(2p-1).
     %     \]
     % }
+
+    % \noindent
     % Since \(\nicefrac{1}{2}<p<1\), the second term on the right-hand side is positive.
+
+    % This follows from Claim 1:
+    % \begin{flalign*}
+    %     p & = {\Pr}{\left[ S_1 > 0 \right]} \\ 
+    %       & < {\Pr}{\left[ S_3 > 1 \right]} \\
+    %       & \dots \\ 
+    %       & < \Pr{\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right]} \\ 
+    %       & \dots 
+    % \end{flalign*}
 
     %% Weak Law of Large Numbers
     % If \(X_1\), \dots, \(X_n\) are independent and identically distributed (i.i.d.) random variables
@@ -87,4 +106,22 @@
     % \[
     %     \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
     % \]
+
+
+    We need to show that:
+    \[
+        \lim_{n \rightarrow \infty} \Pr\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right] = 1.
+    \]
+
+    Now, the expected value (i.e., mean \(\mu\)) of the voter random variables \(X_i\) is:
+    \begin{align*}
+        \EXP[X_i] & = 1 \cdot p + 0 \cdot (1-p) \\ 
+                  & = p,
+    \end{align*}
+    and the Weak Law of Large Numbers gives us that, for any \(\epsilon > 0\):
+    \[
+        \lim_{n \rightarrow \infty} \Pr\left[ \left| \frac{S_n}{n} - p\right| > \epsilon  \right] = 0.
+    \]
+    Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
+
 \end{document}
