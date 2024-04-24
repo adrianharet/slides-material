@@ -1,22 +1,33 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, varwidth=14cm, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
 
 \begin{document}
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         players & \(N = \{1, \dots , n\}\) \\
+    %         strategy of player \(i\) & \(s_i\) \\
+    %         profile of strategies & \(\bm{s} = (s_1, \dots , s_n) \) \\
+    %         utility of player \(i\) with strategy profile \(\bm{s} \) & \(u_i(\bm{s}) \in \mathbb{R}\) \\
+    %         strategy profile \(\bm{s} \) without \(s_i\) & \(\bm{s}_{-i} = (s_1, \dots , s_{i-1}, s_{i+1}, \dots , s_n)\) \\
+    %         \(\bm{s} \), alternatively & \(\bm{s} = (s_i, \bm{s}_{-i} ) \)
+    %     \end{tabular}
+    % \end{table}
+
+    % \(u_1(\text{Keep}, \text{Keep}) = 1\), \(u_2(\text{Invest}, \text{Keep}) = 4\), \dots 
     % Player \(i\)'s \emph{best response} to the other players' strategies 
     % \(\bm{s}_{-i} = (s_1, \dots, s_{i-1}, s_{i+1}, \dots, s_n)\)
-    % is a strategy \(s^{*}_i\) such that \(u_i(s^{*}_i, \bm{s}_{-i}) \geq u_i(s^*_i, \bm{s}_{-i})\), 
+    % is a strategy \(s^{*}_i\) such that \(u_i(s^{*}_i, \bm{s}_{-i}) \geq u_i(s_i, \bm{s}_{-i})\), 
     % for any strategy \(s_i\) of player \(i\).
-    % 
+    
     % A strategy profile \(\bm{s}^{*} = (s_1^{*}, \dots, s_n^{*})\) is a 
     % \emph{pure Nash equilibrium} if \(s_i^{*}\) is a best response to \(\bm{s}^*_{-i}\),
-    % for every player \(i\).
-    % \vspace{1em}
-    % 
-    % In other words, given strategy profile \(\bm{s}^*\), there is no player \(i\) and strategy \(s'_i\)
+    % for every player \(i\).\\
+
+    % In other words, \(\bm{s}^*\) is a pure Nash equilibrium if there is no player \(i\) and strategy \(s'_i\)
     % such that \(u_i(s'_i, \bm{s}^*_{-i}) > u_i(s^*_i, \bm{s}^*_{-i})\).
     % 
     % A strategy profile \(\bm{s}\) \emph{Pareto dominates} strategy profile \(\bm{s}'\) if:
@@ -25,8 +36,8 @@
     %     \item[(ii)] there exists an agent \(j\) such that \(u_j(\bm{s}) > u_j(\bm{s}')\). 
     % \end{itemize}
     % 
-    % A strategy profile \(\bm{s}\) is \emph{Pareto optimal} if 
-    % there is no (other) strategy profile \(\bm{s}'\) that Pareto dominates \(\bm{s}\).
+    A strategy profile \(\bm{s}\) is \emph{Pareto optimal} if 
+    there is no (other) strategy profile \(\bm{s}'\) that Pareto dominates \(\bm{s}\).
 
     % \(u_1{\big(\text{1-1}, (\text{yes}, \text{no}, \text{yes})\big)} = 0\)
     % \(2+ 2 \delta + 2\delta^2 + \dots\)

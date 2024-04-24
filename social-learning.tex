@@ -1,0 +1,34 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=18cm]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+    %% Model
+    \begin{table}
+        \begin{tabular}{rl}
+            agents & \(1, 2, \dots , n\) \\
+            [0.4em]
+            time & \(t \in \{0, 1, 2, \dots \} \) \\
+            [0.4em]
+            true state & \(\mu \in (0, 1)\) \\
+            [0.4em]
+            belief of agent \(i\) at \(t\) & number between \(0\) and \(1\)\\
+                                           & drawn from a distribution with mean \(\mu\) \\
+                                           & and finite variance above a threshold \(\delta > 0\)\\
+            [0.4em]
+            social network & aperiodic, strongly connected directed graph with agents as vertices, \\ 
+                           & and who-pays-attention-to-who as edges \\
+            [0.4em]
+            agent \(i\)'s neighborhood & agents that \(i\) pays attention to \\
+            [0.4em]
+            weight on edge from \(i\) to \(j\) & number that indicates how much weight \(i\) places on \(j\)'s opinion;\\ 
+                                               & we assume \(i\) distributes a total weight of \(1\) across \(i\)'s neighborhood\\
+            [0.4em]
+            update rule & at time \(t+1\) every agent updates their belief \\ 
+                        & to a weighted average over the beliefs of neighbors
+        \end{tabular}
+    \end{table}
+\end{document}

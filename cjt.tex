@@ -108,20 +108,26 @@
     % \]
 
 
-    We need to show that:
-    \[
-        \lim_{n \rightarrow \infty} \Pr\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right] = 1.
-    \]
+    % \(\Pr\left[ X_i=1 \right] = p, \quad\Pr\left[ X_i =0\right] = 1-p\)
 
-    Now, the expected value (i.e., mean \(\mu\)) of the voter random variables \(X_i\) is:
-    \begin{align*}
-        \EXP[X_i] & = 1 \cdot p + 0 \cdot (1-p) \\ 
-                  & = p,
-    \end{align*}
-    and the Weak Law of Large Numbers gives us that, for any \(\epsilon > 0\):
-    \[
-        \lim_{n \rightarrow \infty} \Pr\left[ \left| \frac{S_n}{n} - p\right| > \epsilon  \right] = 0.
-    \]
-    Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
+    % \begin{flushright}
+    %     \(S_n = k\) is equivalent to 
+    % \end{flushright}
+
+    % We need to show that:
+    % \[
+    %     \lim_{n \rightarrow \infty} \Pr\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right] = 1.
+    % \]
+
+    % Now, the expected value (i.e., mean \(\mu\)) of the voter random variables \(X_i\) is:
+    % \begin{align*}
+    %     \EXP[X_i] & = 1 \cdot p + 0 \cdot (1-p) \\ 
+    %               & = p,
+    % \end{align*}
+    % and the Weak Law of Large Numbers gives us that, for any \(\epsilon > 0\):
+    % \[
+    %     \lim_{n \rightarrow \infty} \Pr\left[ \left| \frac{S_n}{n} - p\right| > \epsilon  \right] = 0.
+    % \]
+    % Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
 
 \end{document}
