@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=18cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -7,28 +7,48 @@
 
 \begin{document}
     %% Model
-    \begin{table}
-        \begin{tabular}{rl}
-            agents & \(1, 2, \dots , n\) \\
-            [0.4em]
-            time & \(t \in \{0, 1, 2, \dots \} \) \\
-            [0.4em]
-            true state & \(\mu \in (0, 1)\) \\
-            [0.4em]
-            belief of agent \(i\) at \(t\) & number between \(0\) and \(1\)\\
-                                           & drawn from a distribution with mean \(\mu\) \\
-                                           & and finite variance above a threshold \(\delta > 0\)\\
-            [0.4em]
-            social network & aperiodic, strongly connected directed graph with agents as vertices, \\ 
-                           & and who-pays-attention-to-who as edges \\
-            [0.4em]
-            agent \(i\)'s neighborhood & agents that \(i\) pays attention to \\
-            [0.4em]
-            weight on edge from \(i\) to \(j\) & number that indicates how much weight \(i\) places on \(j\)'s opinion;\\ 
-                                               & we assume \(i\) distributes a total weight of \(1\) across \(i\)'s neighborhood\\
-            [0.4em]
-            update rule & at time \(t+1\) every agent updates their belief \\ 
-                        & to a weighted average over the beliefs of neighbors
-        \end{tabular}
-    \end{table}
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         agents & \(1, 2, \dots , n\) \\
+    %         [0.4em]
+    %         time & \(t \in \{0, 1, 2, \dots \} \) \\
+    %         [0.4em]
+    %         true state & \(\mu \in (0, 1)\) \\
+    %         [0.4em]
+    %         belief of agent \(i\) at \(t\) & number between \(0\) and \(1\)\\
+    %                                        & drawn from a distribution with mean \(\mu\) \\
+    %                                        & and finite variance above a threshold \(\delta > 0\)\\
+    %         [0.4em]
+    %         social network & aperiodic, strongly connected directed graph with agents as vertices, \\ 
+    %                        & and who-pays-attention-to-who as edges \\
+    %         [0.4em]
+    %         agent \(i\)'s neighborhood & agents that \(i\) pays attention to \\
+    %         [0.4em]
+    %         weight on edge from \(i\) to \(j\) & number that indicates how much weight \(i\) places on \(j\)'s opinion;\\ 
+    %                                            & we assume \(i\) distributes a total weight of \(1\) across \(i\)'s neighborhood\\
+    %         [0.4em]
+    %         update rule & at time \(t+1\) every agent updates their belief \\ 
+    %                     & to a weighted average over the beliefs of neighbors
+    %     \end{tabular}
+    % \end{table}
+
+    % \( t = \infty\)
+
+    % We write \(G_n\) for a network with \(n\) vertices.\\
+
+    % A sequence \(G_1, G_2, \dots , G_n, \dots \) of (strongly connected and aperiodic) networks of increasing size 
+    % is \emph{wise} if the consensus belief {approaches} the true state \(\mu\) asymptotically, as \(n\) goes to infinity.
+
+    % A sequence \(G_1, G_2, \dots , G_n, \dots \) of (strongly connected and aperiodic) networks of increasing size 
+    % is \emph{wise} if and only if the eigenvector centrality of every agent \(i\) approaches \(0\) asymptotically, 
+    % as \(n\) goes to infinity.
+
+    The eigenvector centralities are \(\bm{c} = (\nicefrac{2}{3}, \nicefrac{1}{6}, \nicefrac{1}{6})\).\\
+
+    Centralities indicate the importance of the nodes for \\the limit consensus belief:
+    \begin{flalign*}
+        \left(\frac{2}{3}, \frac{1}{6}, \frac{1}{6}\right)\cdot \left(1, 0, 0\right) &= 
+            \frac{2}{3}\cdot 1 + \frac{1}{6}\cdot 0 + \frac{1}{6}\cdot 0 &&\\ 
+            & = \frac{2}{3}. &&
+    \end{flalign*}
 \end{document}
