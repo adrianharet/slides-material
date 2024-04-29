@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, varwidth=14cm, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, varwidth=18.5cm, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -36,8 +36,8 @@
     %     \item[(ii)] there exists an agent \(j\) such that \(u_j(\bm{s}) > u_j(\bm{s}')\). 
     % \end{itemize}
     % 
-    A strategy profile \(\bm{s}\) is \emph{Pareto optimal} if 
-    there is no (other) strategy profile \(\bm{s}'\) that Pareto dominates \(\bm{s}\).
+    % A strategy profile \(\bm{s}\) is \emph{Pareto optimal} if 
+    % there is no (other) strategy profile \(\bm{s}'\) that Pareto dominates \(\bm{s}\).
 
     % \(u_1{\big(\text{1-1}, (\text{yes}, \text{no}, \text{yes})\big)} = 0\)
     % \(2+ 2 \delta + 2\delta^2 + \dots\)
@@ -60,4 +60,49 @@
     %     3 + \delta + \delta^2 + ... &\leq 2 + 2\delta + 2\delta^2 + \dots & \text{iff} \\
     %     \delta & \geq \nicefrac{1}{2}. &
     % \end{align*}
+
+    % Assume that at some time \(t\) there are \(c\) cooperators and \(d\) defectors.\\
+
+    % The expected payoff of a cooperator is:
+    % \begin{flalign*}
+    % \quad\EXP\big[\text{Cooperate}\big] & = u\big(\text{Cooperate}, \text{Cooperate}\big) \cdot {\Pr}{\left[ \text{match w/ cooperator} \right]} + &\\
+    %                                    &~~~~~u\big(\text{Cooperate}, \text{Defect}\big) \cdot  {\Pr}{\left[ \text{match w/ defector} \right]}&\\ 
+    %                                    & = 2 \cdot \frac{c-1}{c+d} + 0 \cdot \frac{d}{c+d}.&
+    % \end{flalign*}
+
+    % The expected payoff of a defector is:
+    % \begin{flalign*}
+    %     \quad\EXP\big[\text{Defect}\big] & = u\big(\text{Defect}, \text{Cooperate}\big) \cdot {\Pr}{\left[ \text{match w/ cooperator} \right]} +& \\
+    %                                      & ~~~~~u\big(\text{Defect}, \text{Defect}\big) \cdot {\Pr}{\left[ \text{match w/ defector} \right]}&\\ 
+    %                            & = 3 \cdot \frac{c}{c+d} + 1 \cdot \frac{d-1}{c+d}.
+    % \end{flalign*}
+    % Note that \(\EXP[\text{Defect}] > \EXP[\text{Cooperate}]\).\\
+
+    % Defectors grow faster than cooperators.\\ 
+
+    % Eventually, cooperators die out.
+
+    % Assume the proportions of Bs is \(\epsilon \), and the proportion of As is \(1-\epsilon \).\\
+
+    % The expected payoff of A is greater than that of B if:
+    % \[
+    %     a(1- \epsilon ) + b \epsilon > c(1-\epsilon ) + d \epsilon,
+    % \]
+    % which, if we ignore the \(\epsilon \) terms, is equivalent to:
+    % \[
+    %     a > c.
+    % \]
+    % If, however, it happens that \(a=c\), then we need:
+    % \[
+    %     b > d.
+    % \]
+    % A strategy is evolutionarily stable if \(a>c\), or \(a=c\) and \(b>d\).
+
+    We write \(u(s_i, s_j)\) for the payoff of strategy \(s_i\) against \(s_j\).\\
+
+    Strategy \(s_i\) is an \emph{evolutionarily stable strategy (ESS)} if:
+    \begin{description}
+        \item[(i)] \(u(s_i, s_i) > u(s_j, s_i)\), for all strategies \(s_j \neq s_i\), or
+        \item[(ii)] \(u(s_i, s_i) = u(s_j, s_i)\) and \(u(s_i, s_j) > u(s_j, s_j)\), for all strategies \(s_j \neq s_i\).
+    \end{description}
 \end{document}
