@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=16cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -43,12 +43,43 @@
     % is \emph{wise} if and only if the eigenvector centrality of every agent \(i\) approaches \(0\) asymptotically, 
     % as \(n\) goes to infinity.
 
-    The eigenvector centralities are \(\bm{c} = (\nicefrac{2}{3}, \nicefrac{1}{6}, \nicefrac{1}{6})\).\\
+    % The eigenvector centralities are \(\bm{c} = (\nicefrac{2}{3}, \nicefrac{1}{6}, \nicefrac{1}{6})\).\\
 
-    Centralities indicate the importance of the nodes for \\the limit consensus belief:
+    % Centralities indicate the importance of the nodes for \\the limit consensus belief:
+    % \begin{flalign*}
+    %     \left(\frac{2}{3}, \frac{1}{6}, \frac{1}{6}\right)\cdot \left(1, 0, 0\right) &= 
+    %         \frac{2}{3}\cdot 1 + \frac{1}{6}\cdot 0 + \frac{1}{6}\cdot 0 &&\\ 
+    %         & = \frac{2}{3}. &&
+    % \end{flalign*}
+
+    %% Model for cascades
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         agents & \(N = \{1, \dots , n\}\) \\
+    %         alternatives & \(A = \{a,b\}\) \\
+    %         true alternative & \(\theta \in A\), we usually assume \(\theta = a\) \\
+    %         voter \(i\)'s signal & \(s_i \in A\)\\
+    %         probability of a correct signal \(i\)'s & \(\Pr[s_i = \theta ] = p\), with \(p > \nicefrac{1}{2}\) \\
+    %         agents' prior probabilities & \(\Pr\left[ \theta = a \right] = \Pr\left[ \theta = b \right] = \nicefrac{1}{2}\)\\
+    %         agent \(i\)'s verdict & \(v_i \in A\) \\
+    %                             & agents speak out in sequence, and see previous verdicts
+    %     \end{tabular}
+    % \end{table}
+
+    % \[
+    %     \Pr\left[ A | B \right] = \frac{\Pr\left[ B | A \right] \cdot \Pr\left[ A \right] }{\Pr\left[ B \right]}
+    % \]
+
+    % \begin{flalign*}
+    %     \Pr\left[ \theta = a \mid s_1 = a \right] & = \frac{ \Pr\left[ s_1 = a \mid \theta = a \right] \cdot \Pr\left[ \theta = a \right]}{\Pr\left[ s_1 = a \right]}& \\
+    %     \Pr\left[ \theta = b \mid s_1 = a \right] & = \frac{ \Pr\left[ s_1 = a \mid \theta = b \right] \cdot \Pr\left[ \theta = b \right]}{\Pr\left[ s_1 = a \right]}&
+    % \end{flalign*}
+
+    % With \(p > \nicefrac{1}{2}\), we have that \(\Pr\left[ \theta = a \mid s_1 = a \right] > \Pr\left[ \theta = b \mid s_1 = a \right]\).
+
+
     \begin{flalign*}
-        \left(\frac{2}{3}, \frac{1}{6}, \frac{1}{6}\right)\cdot \left(1, 0, 0\right) &= 
-            \frac{2}{3}\cdot 1 + \frac{1}{6}\cdot 0 + \frac{1}{6}\cdot 0 &&\\ 
-            & = \frac{2}{3}. &&
+        \Pr\left[ \theta = b \mid s_3 = b, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = b, v_2 = v_1 = b \right] &\\
+        \Pr\left[ \theta = b \mid s_3 = a, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = a, v_2 = v_1 = b \right] &
     \end{flalign*}
 \end{document}

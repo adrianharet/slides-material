@@ -61,6 +61,67 @@
     %     \delta & \geq \nicefrac{1}{2}. &
     % \end{align*}
 
+    
+    
+    
+    % A \emph{mixed strategy} for player \(i\) is a probability ditribution over actions,
+    % written \(s_i = (p_1, \dots , p_j, \dots )\), where \(p_i\) is the probability 
+    % with which player \(i\) plays action \(j\).\\
+
+    % Note that the pure strategies we've been dealing with so far are special cases of mixed 
+    % strategies, in which one action is played with probability \(1\).
+
+    % \(\text{state}~\ell~(p_\ell)\)
+    % \(u(\text{action }k, \text{state }\ell)\)
+
+    % Assume Player 1 has strategy \(s_1 = (0.9, 0.1)\). What should Player 2 do?
+    % \begin{flalign*}
+    %     \qquad\EXP[\text{Heads}] & = (-1) \cdot 0.9 + 1 \cdot 0.1 &\\ 
+    %                        & = -0.8.&\\
+    %     \EXP[\text{Tails}] & = 1 \cdot 0.9 + (-1) \cdot 0.1 &\\ 
+    %                        & = 0.8.&
+    % \end{flalign*}
+    % If Player 2 always plays Heads, they get an average payoff of \(-0.8\). 
+    % If they always play Tails, they get an average payoff of \(0.8\).\\ 
+
+    % Would it make sense for Player 2 to mix between Heads and Tails, say with \(s_2' = (0.3, 0.7)\)?
+    % \begin{flalign*}
+    %     \qquad\EXP[s'_2] & = (-0.8) \cdot 0.3 + 0.8 \cdot 0.7 &\\ 
+    %                        & = 0.32&\\
+    %                        & < 0.8. &
+    % \end{flalign*}    
+
+    % No mixing gives better results than always going for Tails, so Player 2 wants to play \(s_2 = (0, 1)\).\\
+
+    % Is \(\bm{s} = (s_1, s_2)\) a Nash equilibrium?\\
+
+    % No! If Player 2 plays \(s_2 = (0, 1)\), Player \(1\) wants to switch to \(s'_1 = (0, 1)\).
+
+
+
+    % In general, if Player 1 plays a mixed strategy that makes Player 2 prefer one action over another,
+    % Player 2 will just start playing that action all the time.\\
+
+    % Player 2 sees the opportunity and goes for it!\\
+
+    % But that makes Player 1 want to change \emph{their} strategy.\\
+
+    % So this cannot be a Nash equilibrium.\\
+
+    % The only way to avoid this is for Player 1 to play a strategy \(s^*_1 = (p, 1-p)\) that makes
+    % Player 2 indifferent between their actions, which means that:
+    % \begin{flalign*}
+    %     \qquad\EXP[\text{Heads}] = \EXP[\text{Tails}] & \text{ iff } (-1) \cdot p + 1 \cdot (1-p) = 1 \cdot p + (-1) \cdot (1-p)&\\ 
+    %                        & \text{ iff } p = \nicefrac{1}{2}.&
+    % \end{flalign*}
+    % So Player 1 wants to play \(s^*_1 = (\nicefrac{1}{2}, \nicefrac{1}{2})\).\\
+
+    % Similarly, Player 2 wants to play \(s^*_2 = (\nicefrac{1}{2}, \nicefrac{1}{2})\).\\
+
+    % This is the mixed Nash equilibrium.
+
+    % \(\bm{s}^* = \Big( (\nicefrac{1}{2}, \nicefrac{1}{2}), (\nicefrac{1}{2}, \nicefrac{1}{2})\Big)\)
+
     % Assume that at some time \(t\) there are \(c\) cooperators and \(d\) defectors.\\
 
     % The expected payoff of a cooperator is:

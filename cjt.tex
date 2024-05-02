@@ -130,4 +130,43 @@
     % \]
     % Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
 
+
+    % Take three voters with competences \(p_1\), \(p_2\), \(p_3\).\\ 
+
+    % The probability of a correct majority decision is:
+    % \begin{flalign*}
+    %     \quad\Pr\left[ F_\maj(v_1, v_2, v_3) = a \right] &={ \Pr}{\left[ \text{the profile is one of } aab, aba, baa, aaa \right]} &\\
+    %                                                 & = p_1p_2(1-p_3) + p_1(1-p_2)p_3 + (1-p_1)p_2p_3 + p_1p_2p_3 &\\
+    %                                                 & = p_1p_2 + p_2p_3 + p_1p_3 - 2p_1p_2p_3.&
+    % \end{flalign*}
+
+    % The group is no longer better than its members:
+    % \begin{flalign*}
+    %     \qquad\Pr\left[ F_\maj(0.9, 0.6, 0.55) = a\right] & = 0.77.&
+    % \end{flalign*}
+    % Enlarging the group does not necessarily make it better:
+    % \begin{flalign*}
+    %     \qquad\Pr\left[ F_\maj(0.9, 0.6, 0.55, 0.55, 0.55) = a\right] & = 0.76.&
+    % \end{flalign*}
+    % And if the \(p_i\)'s approach \(\nicefrac{1}{2}\) very fast then:
+    % \begin{flalign*}
+    %     \qquad\lim_{n\rightarrow\infty}\Pr\left[ F_\maj(v_1, \dots, v_n) = a\right] & \neq 1.&
+    % \end{flalign*}
+
+    % For \(n\) voters with competences \(p_1\), \dots , \(p_n\) that vote independently of each other,
+    % if \(p_n > \nicefrac{1}{2} + \epsilon \), for some \(\epsilon > 0\), then, for any odd \(n\), 
+    % it holds that \(\lim_{n\rightarrow\infty}\Pr\left[ F_\maj(v_1, \dots, v_n) = a\right]\).
+
+    %% Model for cascades
+    \begin{table}
+        \begin{tabular}{rl}
+            agents & \(N = \{1, \dots , n\}\) \\
+            alternatives & \(A = \{a,b\}\) \\
+            better alternative & \(\theta \in A\), we usually assume \(\theta = a\) \\
+            voter \(i\)'s signal & \(s_i \in A\)\\
+            probability of a correct signal \(i\)'s & \(\Pr[s_i = \theta ] = p\), with \(p > \nicefrac{1}{2}\) \\
+            agent \(i\)'s opinion & \(v_i \in A\) \\
+                               & agents speak out in sequence, and see previous opinions
+        \end{tabular}
+    \end{table}
 \end{document}
