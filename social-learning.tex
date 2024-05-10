@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=16cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=10cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -78,8 +78,24 @@
     % With \(p > \nicefrac{1}{2}\), we have that \(\Pr\left[ \theta = a \mid s_1 = a \right] > \Pr\left[ \theta = b \mid s_1 = a \right]\).
 
 
-    \begin{flalign*}
-        \Pr\left[ \theta = b \mid s_3 = b, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = b, v_2 = v_1 = b \right] &\\
-        \Pr\left[ \theta = b \mid s_3 = a, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = a, v_2 = v_1 = b \right] &
-    \end{flalign*}
+    % \begin{flalign*}
+    %     \Pr\left[ \theta = b \mid s_3 = b, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = b, v_2 = v_1 = b \right] &\\
+    %     \Pr\left[ \theta = b \mid s_3 = a, v_2 = v_1 = b \right] & > \Pr\left[ \theta = a \mid s_3 = a, v_2 = v_1 = b \right] &
+    % \end{flalign*}
+
+    % \(\nicefrac{1}{2(n{-}1)}\)
+
+    The network grows by adding agents that listen to the central agent 1.\\
+
+    The eigenvector centralities are:
+
+    \[
+        \bm{c} = \left(\frac{1}{2}, \frac{1}{2(n-1)}, \dots , \frac{1}{2(n-1)}\right)
+    \]
+
+    Agent 1 retains a constant share of (network) influence as \(n\) grows.\\
+
+    And thus decides the consensus belief.\\
+
+    No bueno.
 \end{document}
