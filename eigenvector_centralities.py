@@ -50,6 +50,7 @@ ax = plt.gca()
 ax.margins(0.08)
 plt.axis("off")
 plt.tight_layout()
+plt.show()
 
 
 c = np.array(list(nx.eigenvector_centrality_numpy(G).values()))
@@ -60,7 +61,6 @@ b = np.array([initial_beliefs]).T
 W = nx.to_numpy_array(G)
 L = matrix_power(W, 1000)
 
-plt.show()
 print("Centralities according to nx:", c)
 print("Initial beliefs:\n", b)
 print("Final beliefs:", np.dot(c, b))
