@@ -5,6 +5,9 @@
 \input{input/colors.tex}
 \input{input/macros.tex}
 
+\newcommand{\UTFT}{{\text{UTFT}}}
+\newcommand{\ALLD}{{\text{ALLD}}}
+
 \begin{document}
     % \begin{table}
     %     \begin{tabular}{rl}
@@ -203,5 +206,160 @@
     % \(b \cdot (1+w+w^2)\)
     % \(-c\)
     % \(b - c \cdot (1+w)\)
-    \(b \cdot (1+w) - c \cdot (1+w+w^2)\)
+    % \(b \cdot (1+w) - c \cdot (1+w+w^2)\)
+
+    % \begin{tabular}{cllll}
+    %     \toprule
+    %     & \(1\) & \(2\) & \(3\) & \(4\) \\ 
+    %     \midrule
+    %     \(t=1\) & \(b\) & \(-c\) & \(b-c\) &\(b-c\)\\
+    %     \(t=2\) & \(b \cdot  w\) & \(0\cdot w\) & \((-c)\cdot w \) &\((b-c)\cdot w \)\\
+    %     \(t=3\) & \(b \cdot w^2\) & \(0\cdot w^2 \) & \(0\cdot w^2 \) &\((-c)\cdot w^2\)\\
+    %     \(t=4\) & \(0 \cdot w^3\) & \(0\cdot w^3 \) & \(0\cdot w^3 \) &\(0 \cdot w^3\)\\
+    %     \dots   &\\
+    %     \midrule
+    %     total   & \(b\cdot \epsilon_2\) 
+    %             & \(-c\) 
+    %             & \(b - c \cdot \epsilon_1\)
+    %             & \(b \cdot \epsilon _1 - c \cdot \epsilon _2\)\\
+    %     \bottomrule
+    % \end{tabular}
+
+    % \begin{tabular}{cllll}
+    %     \toprule
+    %     & \(1\) & \(2\) & \(3\) & \(4\) \\ 
+    %     \midrule
+    %     \(t=1\) & \(b\) & \(b\) & \(b\) &\(b\)\\
+    %     \(t=2\) & \(b \cdot  w\) & \(b\cdot w\) & \(b\cdot w \) &\(b\cdot w \)\\
+    %     \(t=3\) & \(b \cdot w^2\) & \(b\cdot w^2 \) & \(b\cdot w^2 \) &\(b\cdot w^2\)\\
+    %     \(t=4\) & \(b \cdot w^3\) & \(b\cdot w^3 \) & \(b\cdot w^3 \) &\(b \cdot w^3\)\\
+    %     \dots   &\\
+    %     \midrule
+    %     total   
+    %     & \(b\cdot \overline{\epsilon}\)
+    %     & \(b\cdot \overline{\epsilon}\)
+    %     & \(b\cdot \overline{\epsilon}\)
+    %     & \(b\cdot \overline{\epsilon}\)
+    %     \\
+    %     \bottomrule
+    % \end{tabular}
+
+    % \begin{tabular}{cllll}
+    %     \toprule
+    %     & \(1\) & \(2\) & \(3\) & \(4\) \\ 
+    %     \midrule
+    %     \(t=1\) & \(0\) & \(0\) & \(0\) &\(0\)\\
+    %     \(t=2\) & \(0 \cdot  w\) & \(0\cdot w\) & \(0\cdot w \) &\(0\cdot w \)\\
+    %     \(t=3\) & \(0 \cdot w^2\) & \(0\cdot w^2 \) & \(0\cdot w^2 \) &\(0\cdot w^2\)\\
+    %     \(t=4\) & \(0 \cdot w^3\) & \(0\cdot w^3 \) & \(0\cdot w^3 \) &\(0 \cdot w^3\)\\
+    %     \dots   &\\
+    %     \midrule
+    %     total   
+    %     & \(0\)
+    %     & \(0\)
+    %     & \(0\)
+    %     & \(0\)
+    %     \\
+    %     \bottomrule
+    % \end{tabular}
+
+    % Keeping in mind that, for \(0 < w < 1\), it holds that:
+    % \begin{flalign*}
+    %     \qquad\epsilon _n & = 1 + w + w^2 + \dots + w^n &\\
+    %                 & = \frac{1-w^{n+1}}{1-w}, &
+    % \end{flalign*}
+    % with the infinite sum, i.e., for \(n \rightarrow \infty\), being:
+    % \begin{flalign*}
+    %     \qquad\overline{\epsilon} & = 1 + w + w^2 + \dots &\\
+    %                 & = \lim_{n\rightarrow\infty}(1 + w + w^2 + \dots + w^n)&\\
+    %                 & = \frac{1}{1-w}.&
+    % \end{flalign*}
+
+
+
+    % Note that if there is just one ALLD we get a chain of defections, 
+    % and eventually all the UTFTs end up defecting permanently.\\
+
+    % The number of rounds until a UTFT starts defecting depends on 
+    % the number of consecutive UTFTs upstream:
+    % \begin{itemize}
+    %     \item at round \(t=2\), player \(1\) starts defecting
+
+    %     \dots
+
+    %     \item at round \(t = i+1\), player \(i\) starts defecting.
+    % \end{itemize}
+    % So the number of consecutive UTFTs upstream also determines 
+    % a player's payoff.
+
+
+    % An ALLD with \(u\) UTFTs upstream gets a payoff of \(b\) for \(u\) rounds 
+    % (i.e., until the immediately upstream UTFT is converted to defection), 
+    % and \(0\) afterwards, so its expected payoff is:
+    % \begin{flalign*}
+    %     \quad v(\text{ALLD}\mid u) & = b + b \cdot w + \dots + b \cdot w^{u-1} &\\
+    %                          & = b \cdot(1 + w + \dots + w^{u-1}) \\ 
+    %                          & = b \cdot \epsilon_{u-1}.
+    % \end{flalign*}
+    % A UTFT with \(u\) UTFTs upstream gets a payoff of \(b-c\) for the first \(u\) rounds 
+    % (i.e., while the directly upstream player cooperates), \(-c\) at round \(u+1\)
+    % (i.e., when it gets defected on), and \(0\) afterwards (after it starts defecting itself).\\
+
+    % So, if \(u < n-1\), the expected payoff is:
+    % \begin{flalign*}
+    %     \quad v(\text{UTFT}\mid u) & = (b-c) + (b-c) \cdot w + \dots + (b-c) \cdot w^{u-1} + (-c) \cdot w^u &\\
+    %                          & = b \cdot(1 + w + \dots + w^{u-1}) - c \cdot (1 + w + \dots + w^u)\\ 
+    %                          & = b \cdot \epsilon_{u-1} - c \cdot \epsilon _u,
+    % \end{flalign*}
+    
+    % Unless, of course, everyone is a UTFT (\(u = n-1\)), in which case payoffs are \(b-c\) forever:
+    % \begin{flalign*}
+    %     \quad v(\text{UTFT}\mid u) & = (b-c) + (b-c) \cdot w + (b-c) \cdot w^2 + \dots &\\
+    %                          & = (b-c) \cdot(1 + w + w^2 + \dots)\\ 
+    %                          & = (b-c) \cdot \overline{\epsilon },
+    % \end{flalign*}
+    % if \(u = n-1\).
+
+    % Take \(p\) to be the frequency of UTFTs at round \(t\):
+    % \[
+    %     p = \frac{\text{\# of UTFTs at }t}{n}.
+    % \]
+    % The frequency of ALLDs at \(t\) is then \(1-p\).\\
+
+    % Write \(W_\UTFT\) and \(W_\ALLD\) for the fitness of UTFT and ALLD at round \(t\).\\
+
+    % The fitness \(W_s\) of strategy \(s\) (a function of expected payoff, computed earlier) can be interpreted 
+    % as the probability that an individual using \(s\) reproduces.\\
+
+    % So the (expected) number of UTFTs that get to reproduce at \(t\) is \(p \cdot n \cdot W_\UTFT\).\\
+
+    % Similarly, the (expected) number of ALLDs that get reproduce at \(t\) is \((1-p) \cdot n \cdot W_\ALLD\).\\
+
+    % Let's say that each reproducing individual has \(z\) offspring, i.e., copies of itself.\\
+
+    % So at \(t+1\) we get \(p \cdot n \cdot W_\UTFT \cdot z\) UTFTs.\\
+
+    % And the proportion of UTFTs at \(t+1\) is:
+    % \begin{flalign*}
+    %     p' & = \frac{\text{\# of UTFTs at }t+1}{\text{total \# of players at }t+1} \\
+    %        & = \frac{p \cdot n \cdot W_\UTFT \cdot z}{p \cdot n \cdot W_\UTFT \cdot z + (1-p) \cdot n \cdot W_\ALLD \cdot z}\\
+    %        & = \frac{p \cdot W_\UTFT}{p \cdot W_\UTFT + (1-p) \cdot W_\ALLD}.
+    % \end{flalign*}
+
+    % Assume \(\nicefrac{b}{c} = 2\).\\
+
+    % If the initial fraction of UTFTs is above the threshold frequency,
+    % the system evolves to a world with all UTFTs.\\
+
+    % Below this threshold we get ALLDs.\\ 
+
+    % Note that as populations grow larger, the threshold frequency becomes forbiddingly high.
+
+
+    Assume \(\nicefrac{b}{c} = 2\).\\
+
+    If the initial fraction of UTFTs is above the threshold frequency of \(r\),
+    UTFTs can increase when rare.\\
+
+    Again, for larger populations, the threshold frequency becomes forbiddingly high.
 \end{document}
