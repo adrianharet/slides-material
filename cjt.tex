@@ -158,15 +158,39 @@
     % it holds that \(\lim_{n\rightarrow\infty}\Pr\left[ F_\maj(v_1, \dots, v_n) = a\right]\).
 
     %% Model for cascades
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         agents & \(N = \{1, \dots , n\}\) \\
+    %         alternatives & \(A = \{a,b\}\) \\
+    %         better alternative & \(\theta \in A\), we usually assume \(\theta = a\) \\
+    %         voter \(i\)'s signal & \(s_i \in A\)\\
+    %         probability of a correct signal \(i\)'s & \(\Pr[s_i = \theta ] = p\), with \(p > \nicefrac{1}{2}\) \\
+    %         agent \(i\)'s opinion & \(v_i \in A\) \\
+    %                            & agents speak out in sequence, and see previous opinions
+    %     \end{tabular}
+    % \end{table}
+
+    % \begin{table}
+    %     \begin{tabular}{rccc}
+    %         \toprule
+    %               & pros & cons & net \\
+    %         \midrule
+    %         \(a\) & \(a_1, a_2, a_3, a_4\) & \(\overline{a}_1\) & 3 \\
+    %         \(b\) & \(b_1, b_2\) & \(\emptyset\) & 2 \\
+    %         \bottomrule
+    %     \end{tabular}
+    % \end{table}
+
     \begin{table}
-        \begin{tabular}{rl}
-            agents & \(N = \{1, \dots , n\}\) \\
-            alternatives & \(A = \{a,b\}\) \\
-            better alternative & \(\theta \in A\), we usually assume \(\theta = a\) \\
-            voter \(i\)'s signal & \(s_i \in A\)\\
-            probability of a correct signal \(i\)'s & \(\Pr[s_i = \theta ] = p\), with \(p > \nicefrac{1}{2}\) \\
-            agent \(i\)'s opinion & \(v_i \in A\) \\
-                               & agents speak out in sequence, and see previous opinions
+        \begin{tabular}{rccc}
+            \toprule
+                  & pros & cons & net \\
+            \midrule
+            \(a\) & \(a_3, a_4\) & \(\overline{a}_1\) & 1 \\
+            \(b\) & \(b_1,b_2\) & \(\emptyset\) & 2 \\
+            \bottomrule
         \end{tabular}
     \end{table}
+
+    % \(b_1, b_2, \overline{a}_1\)
 \end{document}
