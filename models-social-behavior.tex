@@ -1,0 +1,19 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0pt 1pt 0pt 1pt}, varwidth=11cm]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+    The number of infected at time \(t+1\) is given by the recursion:
+    \begin{flalign*}
+        \qquad I_{t+1} &= I_t + \alpha (N - I_t), &&
+    \end{flalign*}
+
+    or, written as a \emph{difference equation}: 
+    \begin{flalign*}
+        \qquad \Delta I & = I_{t+1} - I_t &&\\ 
+                 & = \alpha (N - I_t). &&
+    \end{flalign*}
+    \end{document}
