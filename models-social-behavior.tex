@@ -1,19 +1,36 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 1pt 0pt 1pt}, varwidth=11cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 1pt 0pt 1pt}, varwidth=10cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
 
 \begin{document}
-    The number of infected at time \(t+1\) is given by the recursion:
-    \begin{flalign*}
-        \qquad I_{t+1} &= I_t + \alpha (N - I_t), &&
-    \end{flalign*}
+    % The SA Model
+    % The number of infected at time \(t+1\) is given by the recursion:
+    % \begin{flalign*}
+    %     \qquad I_{t+1} &= I_t + \alpha (N - I_t), &&
+    % \end{flalign*}
 
-    or, written as a \emph{difference equation}: 
+    % or, written as a \emph{difference equation}: 
+    % \begin{flalign*}
+    %     \qquad \Delta I & = I_{t+1} - I_t &&\\ 
+    %              & = \alpha (N - I_t). &&
+    % \end{flalign*}
+
+    % The SI model
+    The probability that an infectious agent meets a susceptible agent at time \(t\) is:
     \begin{flalign*}
-        \qquad \Delta I & = I_{t+1} - I_t &&\\ 
-                 & = \alpha (N - I_t). &&
+        \qquad \frac{I_t}{N} \cdot \frac{N - I_t}{N},&&
     \end{flalign*}
-    \end{document}
+    which leads to infection with probability \(\tau\). Over \(N\) possible agents, the average 
+    number of new infections at round \(t\) is:
+    \begin{flalign*}
+        \qquad N \cdot \tau \cdot \frac{I_t}{N} \cdot \left(\frac{N-I_t}{N}\right).&&
+    \end{flalign*}
+    Hence, the recursion relation for the number of infectious agents at time \(t+1\) is:
+    \begin{flalign*}
+        \qquad I_{t+1} &= I_t + N \cdot \tau \cdot \frac{I_t}{N} \cdot \left(\frac{N-I_t}{N}\right)&&\\
+                       &= I_t + \tau I_t\left(1-\frac{I_t}{N}\right).&&
+    \end{flalign*}
+\end{document}
