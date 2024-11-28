@@ -6,31 +6,216 @@
 \input{input/macros.tex}
 
 \begin{document}
+    % Compartment models
+    % We have \(N\) agents in an environment.\\
+
+    % At any time-step \(t\), agents are in one of several possible \emph{states}.\\
+    
+    % \emph{Infected} agents have caught the infection.
+    % The number of infected agents at time \(t\) is \(I_t\).\\
+
+    % \emph{Susceptible} agents are not infected, but they can become infected.
+    % The number of susceptible agents at time \(t\) is \(S_t\).\\
+
+    % \emph{Removed}, or \emph{recovered} agents are not infected and they 
+    % cannot become infected, either because they are immune, or because they 
+    % are dead. The number of removed agents at time \(t\) is \(R_t\).
+
+    % Aims
+    % We're interested in the dynamics of \(I_t\), \(S_t\) and \(R_t\) over time.
+
     % The SA Model
-    % The number of infected at time \(t+1\) is given by the recursion:
+    % Only two possible states: susceptible and infected.\\  
+
+    % At time \(t\), a susceptible agent becomes infected 
+    % with probability \(\alpha\).\\
+
+    % Movement and social structure play no role.
+
+    % The number of susceptibles at time \(t\) are the non-infected agents:
+    % \begin{flalign*}
+    %     \qquad S_t = N - I_t. &&
+    % \end{flalign*}
+    % The average number of newly infected at time \(t\) is \(\alpha S_t\), or: 
+    % \begin{flalign*}
+    %     \qquad \alpha (N-I_t).&&
+    % \end{flalign*}
+    % Thus, the number of infected at time \(t+1\) is given by the recursion:
     % \begin{flalign*}
     %     \qquad I_{t+1} &= I_t + \alpha (N - I_t), &&
     % \end{flalign*}
-
-    % or, written as a \emph{difference equation}: 
+    % which, written as a \emph{difference equation}, gives: 
     % \begin{flalign*}
     %     \qquad \Delta I & = I_{t+1} - I_t &&\\ 
     %              & = \alpha (N - I_t). &&
     % \end{flalign*}
 
+    % When we plot the proportion of infected agents over time, we do not see 
+    % the S-shape we are looking for.
+
     % The SI model
-    The probability that an infectious agent meets a susceptible agent at time \(t\) is:
-    \begin{flalign*}
-        \qquad \frac{I_t}{N} \cdot \frac{N - I_t}{N},&&
-    \end{flalign*}
-    which leads to infection with probability \(\tau\). Over \(N\) possible agents, the average 
-    number of new infections at round \(t\) is:
-    \begin{flalign*}
-        \qquad N \cdot \tau \cdot \frac{I_t}{N} \cdot \left(\frac{N-I_t}{N}\right).&&
-    \end{flalign*}
-    Hence, the recursion relation for the number of infectious agents at time \(t+1\) is:
-    \begin{flalign*}
-        \qquad I_{t+1} &= I_t + N \cdot \tau \cdot \frac{I_t}{N} \cdot \left(\frac{N-I_t}{N}\right)&&\\
-                       &= I_t + \tau I_t\left(1-\frac{I_t}{N}\right).&&
-    \end{flalign*}
+    % Only two possible states: susceptible and infected.\\  
+
+    % At time \(t\) agents form pairs.\\
+
+    % This can be approximated by agents moving around and getting close to each other.
+    % Social structure now plays a role!\\
+
+    % An infected agent transmits the disease to a nearby susceptible agent with probability \(\tau\).
+
+    % Imagine a random variable \(X_i\) that keeps track of whether agent \(i\)
+    % gets infected at time \(t\):
+    % \begin{flalign*}
+    %     \qquad X_i & = 
+    %     \begin{cases}
+    %         1,\text{if $i$ gets infected}, \\
+    %         0,\text{otherwise}.    
+    %     \end{cases} &&
+    % \end{flalign*}
+    % The probability of agent \(i\) getting infected at time \(t\), assuming that \(i\) bumps 
+    % into another agent \(j\), is:
+    % \begin{flalign*}
+    %     \qquad \Pr[X_i = 1] & = {\Pr}\big[\text{\(i\) is susceptible, \(j\) is infected, \(j\) passes on the infection}\big]&&\\
+    %                         & = \Pr[\text{\(i\) is susceptible}] \cdot \Pr[\text{\(j\) is infected}] \cdot \Pr[\text{\(j\) passes on the infection}]&&\\
+    %                         & = \frac{N-I_t}{N} \cdot \frac{I_t}{N} \cdot \tau.
+    % \end{flalign*}
+    % The average number of agents becoming infected at time \(t\) is, then:
+    % \begin{flalign*}
+    %     \qquad \EXP\left[\sum_{1}^{N}X_i\right] & = \EXP[X_1] + \dots + \EXP[X_N] &&\\
+    %                                             & = N \cdot \frac{N-I_t}{N} \cdot \frac{I_t}{N} \cdot \tau && \\
+    %                                             & = \tau I_t\left(1-\frac{I_t}{N}\right).
+    % \end{flalign*}
+
+    % Hence, the recursion relation for the number of infectious agents at time \(t+1\) is:
+    % \begin{flalign*}
+    %     \qquad I_{t+1} &= I_t + \tau I_t\left(1-\frac{I_t}{N}\right).&&
+    % \end{flalign*}
+
+    % We see the desired S-shape. Social influence has done the trick!
+
+    % The SIS model
+    % Only two possible states: susceptible and infected.\\  
+
+    % A proportion \(V\) of the population starts out vaccinated, which means they are immune.\\
+
+    % At time \(t\) agents form pairs, as if from getting close to each other.\\
+
+    % An infected agent transmits the disease to a nearby susceptible agent with probability \(\tau\).\\
+
+    % An infected agent becomes susceptible again with probability \(\gamma\).
+
+
+    % Apart from the susceptibles that catch the infection, an average of: 
+    % \begin{flalign*}
+    %     \qquad \gamma I_t &&
+    % \end{flalign*}
+    % infected agents become susceptible again at time \(t\).\\
+
+    % Thus, the recurrence relation becomes:
+    % \begin{flalign*}
+    %     \qquad I_{t+1} &= I_t + \tau I_t\left(1-\frac{I_t}{N}\right) - \gamma I_t.&&
+    % \end{flalign*}
+
+    % A \emph{dynamic equilibrium} occurs when the number of infected agents stabilizes. 
+
+    % The dynamic equilibrium is obtained by setting \(I_{t+1} = I_t = I\), and plugging this
+    % into the recurrence relation to get:
+    % \begin{flalign*}
+    %     \qquad I = I + \tau I\left(1-\frac{I}{N}\right) - \gamma I \quad& \text{iff} \quad \tau\left(1-\frac{I}{N}\right) = \gamma & \\
+    %                                                                & \text{iff}\quad \frac{I}{N} = 1 - \frac{\gamma}{\tau}. &
+    % \end{flalign*}
+
+    % At the beginning of an infection, the number \(I_t\) of infected agents is close to \(0\),
+    % hence:
+    % \begin{flalign*}
+    %     \qquad 1- \frac{I_t}{N} \approx 1.&&
+    % \end{flalign*}
+    % Plugging this into the recurrence relation, we have:
+    % \begin{flalign*}
+    %     \qquad I_{t+1} & = I_t + \tau I_t\left(1-\frac{I_t}{N}\right) - \gamma I_t.&&\\
+    %                    & \approx I_t + \tau \cdot I_t - \gamma \cdot I_t &&\\
+    %                    & = I_t + (\tau - \gamma) I_t.
+    % \end{flalign*}
+    % The condition for the infection spreading becomes:
+    % \begin{flalign*}
+    %     \qquad \tau - \gamma > 0 \quad & \text{iff}\quad \frac{\tau}{\gamma} > 1.&
+    % \end{flalign*}
+
+    % The \emph{basic reproduction number} is defined as: 
+    % \begin{flalign*}
+    %     \qquad R_0 = \frac{\tau}{\gamma}. &&
+    % \end{flalign*}
+    % We have just shown that, under the assumptions of the basic SIS model,
+    % infection spreads just in case \(R_0 >1\).
+
+    % Recall how we keep track of infected agents:
+    % \begin{flalign*}
+    %     \qquad X_i & = 
+    %     \begin{cases}
+    %         1,\text{if $i$ gets infected}, \\
+    %         0,\text{otherwise}.    
+    %     \end{cases} &&
+    % \end{flalign*}
+    % With vaccination, the probability of agent \(i\) getting infected by \(j\) at time \(t\) 
+    % depends on \(i\) being unvaccinated:
+    % \begin{flalign*}
+    %     \qquad \Pr[X_i = 1] & = {\Pr}\big[\text{\(i\) is susceptible, \(i\) is unvaccinated, \(j\) is infected,} &&\\
+    %                         & \qquad\qquad\text{\(j\) passes on the infection}\big]&&\\
+    %                         & = \frac{N-I_t}{N} \cdot (1-V) \cdot \frac{I_t}{N} \cdot \tau.
+    % \end{flalign*}
+    % Thus, the average number of newly infected agents at \(t\) is:
+    % \begin{flalign*}
+    %     \qquad \tau\left(1 - \frac{I_t}{N}\right)(1-V)I_t &&
+    % \end{flalign*}
+
+    % With vaccinated agents, the recurrence relation for the change in infected agents is:
+    % \begin{flalign*}
+    %     \qquad I_{t+1} &= I_t + \tau\left(1-\frac{I_t}{N}\right)(1-V)I_t - \gamma I_t.&&
+    % \end{flalign*}
+    % Approximating \(1-\nicefrac{I_t}{N}\) with \(1\) again, the condition for the infection spreading is:
+    % \begin{flalign*}
+    %     \qquad \tau(1-V) - \gamma > 0 \quad & \text{iff}\quad \frac{\tau}{\gamma}(1-V) > 1 &\\
+    %                                         & \text{iff}\quad R_0(1-V) > 1.
+    % \end{flalign*} 
+
+    % The \emph{effective basic reproductive number} is:
+    % \begin{flalign*}
+    %     \qquad r_0 & = R_0(1-V) &&\\
+    %                & = \frac{\tau}{\gamma}(1 - V).
+    % \end{flalign*}
+
+    % We have just shown that the infection spreads just in case \(r_0 > 1\).
+
+    % The infection does \emph{not} spread just in case:
+    % \begin{flalign*}
+    %     \qquad R_0(1-V) \leq 1 \quad & \text{iff}\quad 1-V \leq \frac{1}{R_0} & \\
+    %                                  & \text{iff}\quad V \geq 1 - \frac{1}{R_0}.
+    % \end{flalign*}
+    % The smallest value for which the infection does not spread, called the \emph{threshold vaccination rate for herd immunity}, 
+    % is:
+    % \begin{flalign*}
+    %     \qquad V^* = 1-\frac{1}{R_0}. &&
+    % \end{flalign*}
+
+    % The SIR Model
+    Three possible states: susceptible, infected and removed\\  
+
+    At time \(t\) agents form pairs, as if from getting close to each other.\\
+
+    An infected agent transmits the disease to a nearby susceptible agent with probability \(\tau\).\\
+
+    An infected agent becomes removed with probability \(\tau\).
+
+    % The dynamics are given by the following recurrence relations:
+    % \begin{flalign*}
+    %     \qquad S_{t+1} & = S_t - \tau S_t \frac{I_t}{N}, &&\\
+    %     \qquad I_{t+1} & = I_t + \tau S_t \frac{I_t}{N} - \gamma I_t, &&\\
+    %     \qquad R_{t+1} & = R_t + \gamma I_t. &&
+    % \end{flalign*}
+    % Written as difference equations:
+    % \begin{flalign*}
+    %     \qquad \Delta S & = -\tau S_t \frac{I}{N}, &&\\
+    %     \qquad \Delta I & = \tau S \frac{I}{N} - \gamma I_t, &&\\
+    %     \qquad \Delta R & = \gamma I. &&
+    % \end{flalign*}
 \end{document}
