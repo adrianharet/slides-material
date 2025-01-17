@@ -1,11 +1,12 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 34pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 1pt 1pt 1pt}, varwidth=12cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
 
 \begin{document}
+    \raggedright
     %% APPORTIONMENT
     %% model
     % \begin{table}
@@ -72,4 +73,20 @@
     %     2+2\delta+ 2\delta^2 + \dots & = 2(1+\delta + \delta^2 + \dots)\\ 
     %                               & = 2\cdot \frac{1}{1-\delta}
     % \end{align*}
+
+    For a state with population \(60\)K and two representatives in the House,
+    there is one representative per \(30\)K people.
+    \vspace{0.7em}
+
+    If the state gets only one representative, there are \(0.5\) representatives per \(30\)K people.\\ 
+    \vspace{0.7em}
+
+    If the state gets three representatives, there are \(1.5\) representatives per \(30\)K people.\\
+    \vspace{0.7em}
+
+    In general, a state with population \(p_i\) and \(k_i\) representatives
+    has \( x_i = 30{,}000 \cdot \nicefrac{k_i}{p_i}\) representatives per \(30\)K people.\\
+    \vspace{0.7em}
+
+    The US Constitution requires \(x_i \leq 1\).
 \end{document}
