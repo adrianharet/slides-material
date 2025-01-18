@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 1pt 1pt 1pt}, varwidth=12cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=15cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -17,12 +17,15 @@
     %         number of seats to be allocated         & \(k\)                     \\
     %         seats allocated to state \(i\)          & \(k_i\)                   \\ 
     %         divisor                                 & \(d\)                      \\
-    %         quota of state \(i\), for divisor \(d\) & \(\hat{q}_i = \nicefrac{p_i}{d}\) \\
-    %         standard (true) quota of state \(i\)    & \(q_i = \nicefrac{p_i}{p}\cdot k\)\\ 
-    %         upper quota of state \(i\)              & \(\lceil q_i \rceil\), i.e., \(q_i\) rounded up to the nearest integer \\
-    %         lower quota of state \(i\)              & \(\lfloor q_i \rfloor\), i.e., \(q_i\) rounded down to the nearest integer
+    %         quota of state \(i\), for divisor \(d\) & \(q_i = \nicefrac{p_i}{d}\) \\
+    %         standard (true) quota of state \(i\)    & \(\hat{q}_i = \nicefrac{p_i}{p}\cdot k\)\\ 
+    %         upper quota of state \(i\)              & \(\lceil \hat{q}_i \rceil\), i.e., \(\hat{q}_i\) rounded up to the nearest integer \\
+    %         lower quota of state \(i\)              & \(\lfloor \hat{q}_i \rfloor\), i.e., \(\hat{q}_i\) rounded down to the nearest integer
     %     \end{tabular}
     % \end{table}
+
+    \(r_i = \hat{q}_i - \lfloor\hat{q}_i\rfloor\)
+
     % 
     % \(\left\lfloor\frac{p_1}{d}\right\rfloor + \dots + \left\lfloor\frac{p_n}{d}\right\rfloor = k\)
     % \(
@@ -35,20 +38,6 @@
     % \(s_2 = \left(\nicefrac{1}{5}, \nicefrac{4}{5}\right)\)
     % \(\bm{s} = \left(s_1, s_2\right)\)
     % 
-    % \begin{align*}
-    %     u_1(\bm{s}) & = u_1(\text{Stag}, s_2)\cdot \Pr\left[\text{1 plays Stag}\right] + 
-    %                     u_1(\text{Hare}, s_2)\cdot \Pr\left[\text{1 plays Hare}\right] \\
-    %                 & = \bigg(u_1(\text{Stag}, \text{Stag})\cdot \Pr[\text{2 plays Stag}] + 
-    %                      u_1(\text{Stag}, \text{Hare})\cdot \Pr[\text{2 plays Hare}]\bigg) \cdot \Pr\left[\text{1 plays Stag}\right] + \\ 
-    %                 & ~~~~~~~~ \bigg(u_1(\text{Hare}, \text{Stag})\cdot \Pr[\text{2 plays Stag}] +
-    %                      u_1(\text{Hare}, \text{Hare})\cdot \Pr[\text{2 plays Hare}]\bigg) \cdot \Pr\left[\text{1 plays Hare}\right] \\ 
-    %                 & = (10 \cdot \nicefrac{1}{5} + 0 \cdot \nicefrac{4}{5}) \cdot \nicefrac{1}{10} +
-    %                     (6 \cdot \nicefrac{1}{5} + 3 \cdot \nicefrac{4}{5}) \cdot \nicefrac{9}{10} \\ 
-    %                 & = 3.44.
-    % \end{align*}
-    % 
-    % \(\bm{s}^*= \big(\left(\nicefrac{1}{2}, \nicefrac{1}{2}\right), \left(\nicefrac{1}{2}, \nicefrac{1}{2}\right)\big)\)
-
     % \(
     %     f(x) = 
     %     \begin{cases}
@@ -67,26 +56,24 @@
     %     \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
     % \]
 
-    % \(u_1{\big(\text{1-1}, (\text{yes}, \text{no}, \text{yes})\big)} = 0\)
-    % \(2+ 2 \delta + 2\delta^2 + \dots\)
-    % \begin{align*}
-    %     2+2\delta+ 2\delta^2 + \dots & = 2(1+\delta + \delta^2 + \dots)\\ 
-    %                               & = 2\cdot \frac{1}{1-\delta}
-    % \end{align*}
 
-    For a state with population \(60\)K and two representatives in the House,
-    there is one representative per \(30\)K people.
-    \vspace{0.7em}
+    % If a state has population \(60\)K and two representatives in the House,
+    % that means one representative per \(30\)K people.
+    % \vspace{0.7em}
 
-    If the state gets only one representative, there are \(0.5\) representatives per \(30\)K people.\\ 
-    \vspace{0.7em}
+    % If the state gets only one representative, that means \(0.5\) representatives per \(30\)K people.\\ 
+    % \vspace{0.7em}
 
-    If the state gets three representatives, there are \(1.5\) representatives per \(30\)K people.\\
-    \vspace{0.7em}
+    % With three representatives, that means \(1.5\) representatives per \(30\)K people.\\
+    % \vspace{0.7em}
 
-    In general, a state with population \(p_i\) and \(k_i\) representatives
-    has \( x_i = 30{,}000 \cdot \nicefrac{k_i}{p_i}\) representatives per \(30\)K people.\\
-    \vspace{0.7em}
+    % In general, if the population is \(p_i\), then \(k_i\) representatives
+    % means \(x_i = 30{,}000 \cdot \nicefrac{k_i}{p_i}\) representatives per \(30\)K people.\\
+    % \vspace{0.7em}
 
-    The US Constitution requires \(x_i \leq 1\).
+    % The US Constitution requires at least one representative per state and \(x_i \leq 1\),
+    % which is equivalent to:
+    % \[
+    %     1 \leq k_i \leq \frac{p_i}{30{,}000}.
+    % \]
 \end{document}
