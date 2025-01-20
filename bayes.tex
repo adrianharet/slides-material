@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=15cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -11,5 +11,60 @@
     %     \Pr [H \mid E] = \frac{\Pr[E \mid H] \cdot \Pr[H]}{\Pr[E]}.
     % \]
 
-    \(a\)
+
+
+    % Nature decides whether a disease occurs (\(d\)) with \emph{prior probability}, 
+    % or \emph{base rate}, \(b\):
+    % \[
+    %     \Pr[d] = b, \qquad \Pr[\lnot d] = 1-b.
+    % \]
+    % A test is administered, which returns either a \emph{positive result} (+),
+    % or a \emph{negative result} (-).
+    % \newline
+
+    % A \emph{false positive} occurs with probability \(\alpha\):
+    % \[
+    %     \Pr[+ \mid \lnot d] = \alpha, \qquad \Pr[- \mid \lnot d] = 1 - \alpha.
+    % \]
+    % A \emph{false negative} occcurs with probability \(\beta\):
+    % \[
+    %     \Pr[- \mid d] = \beta, \qquad \Pr[+ \mid d] = 1 - \beta.
+    % \]
+
+
+
+    % For the MaterniT21 test, the base rate of the disease is one in \(2{,}500\) pregnancies,
+    % i.e., \(\Pr[d] = 0.0004\).
+    % \newline
+
+    % When the disease is present the test identifies it with probability \(0.99\), 
+    % i.e., the false negative rate is \(\Pr[- \mid d] = 0.01\).
+    % \newline
+
+    % The false positive rate is \(\Pr[+ \mid \lnot d] = 0.00022\). Quite low!
+    % \newline
+
+    % This is fine, but what we really want to find out is the probability of 
+    % having the disease given a positive test result:
+    % \[
+    %     \Pr[d \mid +]= ?.
+    % \]
+    % How do we get this?
+
+
+
+    We know that \(\Pr[d] = 0.0004\), \(\Pr[- \mid d] = 0.01\) and \(\Pr[+ \mid \lnot d] = 0.00022\).
+    \newline
+
+    By Bayes' rule, we have:
+    \begin{flalign*}
+        \qquad \Pr[d \mid +] & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+]}& \\ 
+                             & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+ \mid d]\cdot \Pr[d] + \Pr[+ \mid \lnot d] \cdot \Pr[\lnot d]}\\ 
+                             & = \frac{0.99 \cdot 0.0004}{0.99 \cdot 0.0004 + 0.00022 \cdot 0.9996}\\ 
+                             & = 0.643.
+    \end{flalign*}
+    So about 1 in 3 positive results is a dud. MaterniT21 were not lying!
+
+
+
 \end{document}

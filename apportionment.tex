@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=15cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=10cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -24,7 +24,7 @@
     %     \end{tabular}
     % \end{table}
 
-    \(r_i = \hat{q}_i - \lfloor\hat{q}_i\rfloor\)
+    % \(r_i = \hat{q}_i - \lfloor\hat{q}_i\rfloor\)
 
     % 
     % \(\left\lfloor\frac{p_1}{d}\right\rfloor + \dots + \left\lfloor\frac{p_n}{d}\right\rfloor = k\)
@@ -49,12 +49,22 @@
     % \(f{\left(\frac{p_1}{d}\right)} + \dots +f{\left(\frac{p_n}{d}\right)} = k.\)
     % \(f{\left(\nicefrac{p_i}{d} \right)}\)
 
-    % A divisor method is the Huntington-Hill method if and only if
-    % for all states \(i, j \in N\) such that \(\nicefrac{p_i}{k_i} \geq \nicefrac{p_j}{k_j}\),
-    % it holds that:
-    % \[
-    %     \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
-    % \]
+
+    % More generally, we can think of \(f\) as a \emph{rounding function} \(f \colon \mathbb{R} \rightarrow \mathbb{Z}\).
+    % \newline
+
+    % It can be anything, as long as it satisfies these properties:
+    % \begin{itemize}
+    %     \item[($i$)] \(f(x) = x\), if \(x\) is an integer,
+    %     \item[($ii$)] if \(x \geq y\), then \(f(x) \geq f(y)\).
+    % \end{itemize}
+
+    A divisor method is the Huntington-Hill method if and only if
+    for all states \(i, j \in N\) such that \(\nicefrac{p_i}{k_i} \geq \nicefrac{p_j}{k_j}\),
+    it holds that:
+    \[
+        \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
+    \]
 
 
     % If a state has population \(60\)K and two representatives in the House,
