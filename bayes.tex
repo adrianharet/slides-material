@@ -21,7 +21,7 @@
     % A test is administered, which returns either a \emph{positive result} (+),
     % or a \emph{negative result} (-).
     % \newline
-
+    % 
     % A \emph{false positive} occurs with probability \(\alpha\):
     % \[
     %     \Pr[+ \mid \lnot d] = \alpha, \qquad \Pr[- \mid \lnot d] = 1 - \alpha.
@@ -37,34 +37,59 @@
     % i.e., \(\Pr[d] = 0.0004\).
     % \newline
 
-    % When the disease is present the test identifies it with probability \(0.99\), 
-    % i.e., the false negative rate is \(\Pr[- \mid d] = 0.01\).
+    % When the disease is present, the test identifies it with probability \(0.99\)
+    % (the test makers were not lying about this), 
+    % so the false negative rate is \(\Pr[- \mid d] = 0.01\).
     % \newline
 
     % The false positive rate is \(\Pr[+ \mid \lnot d] = 0.00022\). Quite low!
     % \newline
 
-    % This is fine, but what we really want to find out is the probability of 
-    % having the disease given a positive test result:
+    % Now suppose you're one of the women who just got a positive result.
+    % \newline
+
+    % Is this because of a genetic disease, or a false positive?
+    % \newline
+
+    % What you really want to find out is the probability of the disease 
+    % \emph{given} a positive test: 
     % \[
-    %     \Pr[d \mid +]= ?.
+    %     \Pr[d \mid +]=\,\, ?.
     % \]
     % How do we get this?
 
 
 
-    We know that \(\Pr[d] = 0.0004\), \(\Pr[- \mid d] = 0.01\) and \(\Pr[+ \mid \lnot d] = 0.00022\).
+    % We know that \(\Pr[d] = 0.0004\), \(\Pr[- \mid d] = 0.01\) and \(\Pr[+ \mid \lnot d] = 0.00022\).
+    % \newline
+
+    % By Bayes' rule, we have:
+    % \begin{flalign*}
+    %     \qquad \Pr[d \mid +] & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+]}& \\ 
+    %                          & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+ \mid d]\cdot \Pr[d] + \Pr[+ \mid \lnot d] \cdot \Pr[\lnot d]}\\ 
+    %                          & = \frac{0.99 \cdot 0.0004}{0.99 \cdot 0.0004 + 0.00022 \cdot 0.9996}\\ 
+    %                          & = 0.643.
+    % \end{flalign*}
+    % So about a third of the positive results is a dud.
+
+
+
+    Suppose we know the base rate, false positive rate and false positive rate.
     \newline
 
-    By Bayes' rule, we have:
-    \begin{flalign*}
-        \qquad \Pr[d \mid +] & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+]}& \\ 
-                             & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+ \mid d]\cdot \Pr[d] + \Pr[+ \mid \lnot d] \cdot \Pr[\lnot d]}\\ 
-                             & = \frac{0.99 \cdot 0.0004}{0.99 \cdot 0.0004 + 0.00022 \cdot 0.9996}\\ 
-                             & = 0.643.
-    \end{flalign*}
-    So about 1 in 3 positive results is a dud. MaterniT21 were not lying!
+    Testing once, we get a signal \(s_1 \in \{+, -\}\).
+    Updating, we obtain the posterior \(\Pr\left[ d \mid s_1 \right]\).
+    \newline
 
+    Testing again, we obtain a new (independent) signal \(s_2 \in \{+, -\}\).
+    \newline
+
+    We update again, with \(\Pr\left[ d \mid s_1 \right]\) as the new prior:
+    \begin{flalign*}
+        \qquad \Pr[d \mid s_2, s_1] & = \frac{\Pr\left[ d, s_2, s_1 \right]}{\Pr\left[s_2, s_1 \right]}& \\ 
+                               & = \frac{\Pr\left[ s_2 \mid d, s_1 \right] \cdot \Pr\left[ d, s_1 \right]}{\Pr\left[ s_1, s_2 \right]}\\ 
+                               & = \frac{\big(\Pr\left[ s_2 \mid d \right] \cdot \Pr\left[ s_1 \mid d \right]\big) \cdot \Pr\left[ d \right]}{\Pr\left[ s_1, s_2 \right]}
+    \end{flalign*}
 
 
 \end{document}

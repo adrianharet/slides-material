@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=10cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -24,9 +24,82 @@
     %     \end{tabular}
     % \end{table}
 
+
+
+    % If a state has population \(60\)K and two representatives in the House,
+    % that means one representative per \(30\)K people.
+    % \vspace{0.7em}
+
+    % If the state gets only one representative, that means \(0.5\) representatives per \(30\)K people.\\ 
+    % \vspace{0.7em}
+
+    % With three representatives, that means \(1.5\) representatives per \(30\)K people.\\
+    % \vspace{0.7em}
+
+    % In general, if the population is \(p_i\), then \(k_i\) representatives
+    % means \(x_i = 30{,}000 \cdot \nicefrac{k_i}{p_i}\) representatives per \(30\)K people.\\
+    % \vspace{0.7em}
+
+    % The US Constitution requires at least one representative per state and \(x_i \leq 1\),
+    % which is equivalent to:
+    % \[
+    %     1 \leq k_i \leq \frac{p_i}{30{,}000}.
+    % \]
+
+
+
+
+    % The preferred approach at the time was to start with a \emph{divisor} \(d\),
+    % which stands for the desired number of people per representative.
+    % \newline
+
+    % So if a state has population \(p_i\), the number \(k_i\) 
+    % of representatives it gets should be:
+    % \[
+    %     k_i\approx\frac{p_i}{d}.
+    % \]
+    % The US Constitution requires only that \(d \geq 30{,}000\),
+    % and \(k_i \geq 1\).
+
+
+
+    % Choose a divisor \(d\).
+    % \newline
+    
+    % If state \(i\) has population \(p_i\),
+    % then \(i\)'s \emph{quota} is:
+    % \[
+    %     q_i = \frac{p_i}{d}.
+    % \]
+
+
+
+    % If a state \(i\) with population \(p_i\) gets \(k_i\) representatives,
+    % then the \emph{representation ratio} of \(i\) is:
+    % \[
+    %     \frac{p_i}{k_i},
+    % \]
+    % i.e., the number of people per representative.
+
+
+
+    If the total population (across all states) is \(p\), and 
+    we want to assign \(k\) seats, the \emph{standard divisor} is:
+    \[
+        \hat{d} = \frac{p}{k}.
+    \]
+    If a state \(i\) has population \(p_i\), \(i\)'s \emph{standard quota} is:
+    \[
+        \hat{q}_i = \frac{p_i}{\hat{d}}.
+    \]
+
+
+
+
     % \(r_i = \hat{q}_i - \lfloor\hat{q}_i\rfloor\)
 
-    % 
+    
+
     % \(\left\lfloor\frac{p_1}{d}\right\rfloor + \dots + \left\lfloor\frac{p_n}{d}\right\rfloor = k\)
     % \(
     %     \left[\frac{p_1}{d}\right] + \dots + \left[\frac{p_n}{d}\right] = k
@@ -59,31 +132,10 @@
     %     \item[($ii$)] if \(x \geq y\), then \(f(x) \geq f(y)\).
     % \end{itemize}
 
-    A divisor method is the Huntington-Hill method if and only if
-    for all states \(i, j \in N\) such that \(\nicefrac{p_i}{k_i} \geq \nicefrac{p_j}{k_j}\),
-    it holds that:
-    \[
-        \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
-    \]
-
-
-    % If a state has population \(60\)K and two representatives in the House,
-    % that means one representative per \(30\)K people.
-    % \vspace{0.7em}
-
-    % If the state gets only one representative, that means \(0.5\) representatives per \(30\)K people.\\ 
-    % \vspace{0.7em}
-
-    % With three representatives, that means \(1.5\) representatives per \(30\)K people.\\
-    % \vspace{0.7em}
-
-    % In general, if the population is \(p_i\), then \(k_i\) representatives
-    % means \(x_i = 30{,}000 \cdot \nicefrac{k_i}{p_i}\) representatives per \(30\)K people.\\
-    % \vspace{0.7em}
-
-    % The US Constitution requires at least one representative per state and \(x_i \leq 1\),
-    % which is equivalent to:
+    % A divisor method is the Huntington-Hill method if and only if
+    % for all states \(i, j \in N\) such that \(\nicefrac{p_i}{k_i} \geq \nicefrac{p_j}{k_j}\),
+    % it holds that:
     % \[
-    %     1 \leq k_i \leq \frac{p_i}{30{,}000}.
+    %     \frac{\nicefrac{p_i}{k_i}}{\nicefrac{p_j}{k_j}} < \frac{\nicefrac{p_j}{(k_j-1)}}{\nicefrac{p_i}{(k_i+1)}}.
     % \]
 \end{document}
