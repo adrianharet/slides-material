@@ -74,22 +74,46 @@
 
 
 
-    Suppose we know the base rate, false positive rate and false positive rate.
-    \newline
+    % Suppose we know the base rate, false positive rate and false positive rate.
+    % \newline
 
-    Testing once, we get a signal \(s_1 \in \{+, -\}\).
-    Updating, we obtain the posterior \(\Pr\left[ d \mid s_1 \right]\).
-    \newline
+    % Testing once, we get a signal \(s_1 \in \{+, -\}\).
+    % Updating, we obtain the posterior \(\Pr\left[ d \mid s_1 \right]\).
+    % \newline
 
-    Testing again, we obtain a new (independent) signal \(s_2 \in \{+, -\}\).
-    \newline
+    % Testing again, we obtain a new (independent) signal \(s_2 \in \{+, -\}\).
+    % \newline
 
-    We update again, with \(\Pr\left[ d \mid s_1 \right]\) as the new prior:
-    \begin{flalign*}
-        \qquad \Pr[d \mid s_2, s_1] & = \frac{\Pr\left[ d, s_2, s_1 \right]}{\Pr\left[s_2, s_1 \right]}& \\ 
-                               & = \frac{\Pr\left[ s_2 \mid d, s_1 \right] \cdot \Pr\left[ d, s_1 \right]}{\Pr\left[ s_1, s_2 \right]}\\ 
-                               & = \frac{\big(\Pr\left[ s_2 \mid d \right] \cdot \Pr\left[ s_1 \mid d \right]\big) \cdot \Pr\left[ d \right]}{\Pr\left[ s_1, s_2 \right]}
-    \end{flalign*}
+    % We update again, with \(\Pr\left[ d \mid s_1 \right]\) as the new prior:
+    % \begin{flalign*}
+    %     \qquad \Pr[d \mid s_2, s_1] & = \frac{\Pr\left[ d, s_2, s_1 \right]}{\Pr\left[s_2, s_1 \right]}& \\ 
+    %                            & = \frac{\Pr\left[ s_2 \mid d, s_1 \right] \cdot \Pr\left[ d, s_1 \right]}{\Pr\left[ s_1, s_2 \right]}\\ 
+    %                            & = \frac{\big(\Pr\left[ s_2 \mid d \right] \cdot \Pr\left[ s_1 \mid d \right]\big) \cdot \Pr\left[ d \right]}{\Pr\left[ s_1, s_2 \right]}
+    % \end{flalign*}
+
+
+
+
+    % For the MaterniT21 case, 
+    % recall that one positive result gave us:
+    % \[
+    %     \Pr\left[ d \mid + \right] = 0.64.
+    % \]
+    % With two positive test results we can be almost certain:
+    % \[
+    %     \Pr\left[ d \mid +, + \right] = 0.9998.
+    % \]
+    % With three positive test reults we can be certainer:
+    % \[
+    %     \Pr\left[ d \mid +, +, + \right] = 0.9999.
+    % \]
+
+
+\(
+    \underbrace{{\Pr}\big[\text{Data} \mid \text{Null Hypothesis}\big]}_{\text{p-value}} \neq \underbrace{{\Pr}\big[ \text{Null Hypothesis} \mid \text{Data} \big]}_{\text{what we usually want to know}}    
+\)
+
+
 
 
 \end{document}
