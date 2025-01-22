@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=7.5cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -92,28 +92,153 @@
     % \end{flalign*}
 
 
+    % Suppose the base rate of the disease is \(\Pr\left[ d \right] = 0.1\), 
+    % i.e., out of \(100\) foetuses \(10\) will be afflicted.
+    % \newline
 
+    % The test detects the disease with probability \(\Pr\left[ + \mid d \right] = 0.9\),
+    % i.e., it catches \(9\) out of the \(10\) cases.
+    % \newline
 
-    % For the MaterniT21 case, 
-    % recall that one positive result gave us:
+    % The false positive rate is \(\Pr\left[ + \mid \lnot d \right] = 0.1\),
+    % i.e., \(9\) out of the \(90\) healthy foetuses 
+    % show up incorrectly as positive results.
+    % \newline
+    
+    % Bayes rule tell us:
+    % \begin{flalign*}
+    %     \qquad \Pr[d \mid +] & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+]}& \\ 
+    %                          & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+ \mid d]\cdot \Pr[d] + \Pr[+ \mid \lnot d] \cdot \Pr[\lnot d]}\\ 
+    %                          & = \frac{0.9 \cdot 0.1}{0.9 \cdot 0.1 + 0.1 \cdot 0.9}\\ 
+    %                          & = 0.5.
+    % \end{flalign*}
+    % Half of the positive results are healthy foetuses!
+
+    % Note that if the disease is rarer, say \(\Pr\left[ d \right] = 0.05\),
+    % then the same test parameters give us:
+    % \[
+    %     \Pr\left[ d \mid + \right] \approx 0.32.
+    % \]
+    % With a positive result you're actually twice as likely to be healthy!
+    
+
+    % For the MaterniT21 case, one positive result gave us:
     % \[
     %     \Pr\left[ d \mid + \right] = 0.64.
     % \]
-    % With two positive test results we can be almost certain:
+    % Two positive test results and we can be virtually certain:
     % \[
     %     \Pr\left[ d \mid +, + \right] = 0.9998.
     % \]
-    % With three positive test reults we can be certainer:
+    % Three positive results and we can be even certainer:
     % \[
     %     \Pr\left[ d \mid +, +, + \right] = 0.9999.
     % \]
 
 
-\(
-    \underbrace{{\Pr}\big[\text{Data} \mid \text{Null Hypothesis}\big]}_{\text{p-value}} \neq \underbrace{{\Pr}\big[ \text{Null Hypothesis} \mid \text{Data} \big]}_{\text{what we usually want to know}}    
-\)
+    % The experimenter chooses a hypothesis \(h\) to test.
+    % Experiments yield positive (+) or negative results (-).
+    % Confidence in \(h\) gets updated.
+    % \newline
+
+    % Recall that the base rate \(b\) matters for the quality of the 
+    % results, so the experimenter should choose wisely
+    % what to test: very unlikely hypotheses are going to be 
+    % difficult to figure out.
+    % \newline
+
+    % A game against Nature?...
+
+    hypothesis \(h'\)
+
+
+    % \(
+    %     \underbrace{{\Pr}\big[\text{Data} \mid \text{Null Hypothesis}\big]}_{\text{p-value}} \neq \underbrace{{\Pr}\big[ \text{Null Hypothesis} \mid \text{Data} \big]}_{\text{what we usually want to know}}    
+    % \)
+
+
+    % Scientific publishers, especially high impact journals, 
+    % often exhibit a bias in favor of positive results.
+    % \newline
+
+    % Assume a positive result (+) is always published.
+    % \newline
+
+    % A negative result (-) is published with probability \(1-\rho\).
+    % \newline
+
+    % The \emph{publication bias} \(\rho\) is thus the probability 
+    % that a negative result fails to be published.
+    % \newline 
+
+    % There is a \emph{threshold \(\tau\) for canonization}, 
+    % i.e., the posterior \({\Pr}{\left[ h \mid\text{Evidence} \right]}\) 
+    % has to be higher than \(\tau\) for the result to be accepted.
 
 
 
 
+    
+    % There is a population \(N = \{1, \dots, n\}\) of \emph{scientific labs}.
+    % \newline
+
+    % Lab \(i\) tests a hypothesis \(h\).
+    % Its \emph{power} is the true positive rate \(W_i = \Pr\left[ + \mid h \right]\).
+    % The \emph{false positive} rate is \(\alpha_i = \Pr\left[ + \mid \lnot h \right]\).
+    % \newline
+
+    % Lab \(i\) has an \emph{effort level} \(i\) that, together with \(W_i\),
+    % determines the false positive rate:
+    % \[
+    %     \alpha_i = \frac{W_i}{1+ (1-W_i)e_i}.
+    % \]
+    % The idea, (counter)intuitively, is that the false positive rate grows with power,$^{*}$
+    % but the effect is dampened by higher effort.
+
+    % \begin{flushright}
+    %     \footnotesize
+    %     $^*$ You can get a true positive rate of \(1\) by saying yes to everything!
+    % \end{flushright}
+
+
+
+
+    % Lab \(i\) investigates a new hypothesis \(h\) with a probability 
+    % that depends on effort:
+    % \[
+    %     \Pr\left[ \text{new study} \right] = 1 - \eta \log e_i
+    % \]
+    % The higher the effort, the lower the chance to take on new work.
+    % \newline
+
+    % Positive results are always published, negative results are published 
+    % with probability \(1-\rho\).
+    % \newline
+
+    % Positive results yield payoff of \(1\), negative results yield payoff \(v \leq 1\).
+
+
+
+    % Ten labs are chosen at random, and the oldest dies.
+    % \newline
+
+    % Another ten labs are randomly chosen, and the one with the highest 
+    % fitness reproduces: an offspring lab is created with the parameters
+    % of the parent lab.
+    % \newline
+
+    % There are also mutation probabilities \(\mu_W\) and \(\mu_e\).
+
+
+
+
+    % Keeping effort constant (\(e = 75, \mu_e = 0\)),
+    % power evolves to its maximum value and the 
+    % false discovery rate grows.
+
+
+
+    % Keeping power constant (\(W = 0.8, \mu_W = 0\))
+    % and allowing effort to evolve, we see effort 
+    % going to its minimum value and the false discovery rate growing again.
 \end{document}
