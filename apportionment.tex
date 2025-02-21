@@ -1,9 +1,11 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=16.3cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
+
+
 
 \begin{document}
     \raggedright
@@ -24,6 +26,132 @@
     %     \end{tabular}
     % \end{table}
 
+
+    % There are \(k\) \emph{seats} to be divided among a set \(N = \{1, \dots , n\}\) 
+    % of \emph{states}.
+    % State \(i\) has \emph{population} \(p_i\), and the \emph{total population} is:
+    % \[
+    %     p = p_1 + \dots + p_n.
+    % \]
+    % An \emph{apportionment method} assigns to state \(i\) a number \(k_i\) of seats, such that:
+    % \[
+    %     k = k_1 + \dots + k_n.
+    % \]
+    % Given a \emph{divisor} \(d\), which stands for the desired number of people per 
+    % representative, the \emph{quota} of state \(i\) is:
+    % \[
+    %     q_i = \nicefrac{p_i}{d}.
+    % \]
+    % The \emph{standard quota} of state \(i\) is:
+    % \[
+    %     \hat{q}_i = \nicefrac{p_i}{p} \cdot k,
+    % \]
+    % corresponding to the \emph{standard divisor} \(\hat{d} = \nicefrac{p}{k}\).
+    % \newline
+
+    % The \emph{upper quota} of state \(i\) is \(\lceil\hat{q}_i\rceil\),
+    % and the \emph{lower quota} is \(\lfloor\hat{q}_i\rfloor\).
+
+
+    % Choose a \emph{rounding function} \(f \colon \mathbb{R} \rightarrow \mathbb{Z}\).
+    % It can be any function, as long as: 
+    % \begin{itemize}
+    %     \item[(\(i\))] \(f(x) = x\), if \(x \in \mathbb{Z}\),
+    %     \item[(\(ii\))] if \(x \leq y\), then \(f(x) \leq f(y)\).
+    % \end{itemize}
+
+    % Given a rounding function \(f\), a \emph{divisor method} looks for a divisor \(d\) 
+    % such that the quotas, when rounded according to \(f\), add up to the total number of seats :
+    % \[
+    %     f{\left(\frac{p_1}{d}\right)} + \dots + f{\left(\frac{p_n}{d}\right)} = k.
+    % \]
+    % State \(i\) then gets \(k_i = f{\left(\nicefrac{p_i}{d}\right)}\) seats.
+
+
+    % Standard apportionment methods are given by the following rounding functions:
+    % \begin{center}
+    %     \begin{tabular}{rl}
+    %         \textbf{Jefferson}          & \(f(x) = \lfloor x\rfloor\)\\[0.6cm]
+
+    %         \textbf{Adams}              & \(f(x) = \lceil x\rceil\)\\[0.6cm]
+
+    %         \textbf{Webster-Willcox}    & \(f(x) = \left[ x\right] = \begin{cases}
+    %             \lfloor x\rfloor,\quad\text{if}\,\, x < \frac{\left(\lfloor x\rfloor + \lceil x\rceil\right)}{2} \\ 
+    %             \lceil x \rceil,\quad\text{otherwise}.
+    %         \end{cases}\)\\[0.6cm]
+
+    %         \textbf{Huntington-Hill}    & \(f(x) = \begin{cases}
+    %             \lfloor x\rfloor,\quad\text{if}\,\, x < \sqrt{\lfloor x\rfloor \cdot \lceil x\rceil} \\ 
+    %             \lfloor x \rfloor,\quad\text{otherwise}.
+    %         \end{cases}\)\\[0.6cm]
+
+    %         \textbf{Dean}    & \(f(x) = \begin{cases}
+    %             \lfloor x\rfloor,\quad\text{if}\,\, x < \frac{2 \cdot \lfloor x\rfloor \cdot \lceil x\rceil}{\lfloor x\rfloor + \lceil x \rceil} \\ 
+    %             \lfloor x \rfloor,\quad\text{otherwise}.
+    %         \end{cases}\)
+    %     \end{tabular}        
+    % \end{center}
+
+
+
+    % Hamilton's method starts by assigning each state \(i\) its \emph{lower quota} \(\lfloor \hat{q}_i \rfloor\).
+    % At this point the total number of seats assigned is:
+    % \[
+    %     \hat{k} = \lfloor \hat{q}_1 \rfloor + \dots + \lfloor \hat{q}_n \rfloor.
+    % \]
+    % The problem, now, is that we might be left with some unallocated seats: it's possible that \(\hat{k} < k\).
+    % \newline
+
+    % In the second step, states are ordered by their \emph{residue}:
+    % \[
+    %     r_i = \hat{q}_i - \lfloor \hat{q}_i \rfloor,
+    % \]
+    % i.e., the fractional part. The remaining seats go to the states with the highest residues.
+    % \newline
+
+    % Note that if a state \(j\) gets an additional seat in the second step, its assigned number of seats becomes:
+    % \begin{align*}
+    %     k_j & = \lfloor \hat{q_j}\rfloor + 1& \\
+    %                & = \lceil \hat{q_j} \rceil.
+    % \end{align*}
+    % So with Hamilton's method every state gets either its lower quota, or its upper quota.
+
+
+
+    % There are \(k\) \emph{seats} to be divided among a set \(N = \{1, \dots , n\}\) 
+    % of \st{\emph{states}} \emph{parties}.
+    % Party \(i\) has \st{\emph{population}} \emph{vote} \(v_i\), and the \emph{total number of votes} is:
+    % \[
+    %     v = v_1 + \dots + v_n.
+    % \]
+    % An \emph{apportionment method} assigns to party \(i\) a number \(k_i\) of seats, such that:
+    % \[
+    %     k = k_1 + \dots + k_n.
+    % \]
+
+
+    % Seat allocation is done sequentially. The assignment at round \(t\) is written as:
+    % \[
+    %     \bm{k}^t = (k_1^t, \dots , k_n^t).
+    % \]
+    % Start with \(\bm{k}^0 = (0, \dots, 0)\). At every round \(t \geq 1\), 
+    % calculate the \emph{quotient} of party \(i\) as:
+    % \[
+    %     q_i^t = \frac{v_i}{k_i^{t-1} + 1}.
+    % \]
+    % At the end of the round, the party \(j\) with the highest quotient gets an additional seat:
+    % \[
+    %     k_j^t = k_j^{t-1} + 1.
+    % \]
+    % Stop after all seats have been allocated, \(k\) rounds in total.
+
+
+    Works in a similar way to D'Hondt, except that quotients are updates as:
+    \[
+        q_i^t = \frac{v_i}{2k_i^{t-1} + 1}.
+    \]
+
+    
 
 
     % If a state has population \(60\)K and two representatives in the House,
@@ -83,15 +211,15 @@
 
 
 
-    If the total population (across all states) is \(p\), and 
-    we want to assign \(k\) seats, the \emph{standard divisor} is:
-    \[
-        \hat{d} = \frac{p}{k}.
-    \]
-    If a state \(i\) has population \(p_i\), \(i\)'s \emph{standard quota} is:
-    \[
-        \hat{q}_i = \frac{p_i}{\hat{d}}.
-    \]
+    % If the total population (across all states) is \(p\), and 
+    % we want to assign \(k\) seats, the \emph{standard divisor} is:
+    % \[
+    %     \hat{d} = \frac{p}{k}.
+    % \]
+    % If a state \(i\) has population \(p_i\), \(i\)'s \emph{standard quota} is:
+    % \[
+    %     \hat{q}_i = \frac{p_i}{\hat{d}}.
+    % \]
 
 
 
