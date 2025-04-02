@@ -1,0 +1,58 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, varwidth=9cm, border={0pt 1pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}
+    % \begin{table}
+    %     \begin{tabular}{rl}
+    %         players              & \(N = \{1, \dots, n\}\) \\
+    %         \(i\)'s contribution & \(c_i \in \{0, 1\}\) \\
+    %         benefit              & \(b(\bm{c}) \in \mathbb{R}\) \\
+    %         \(i\)'s utility      & \(u_i(\bm{c}) = b(\bm{c}) - c_i\) \\
+    %     \end{tabular}
+    % \end{table}
+
+
+
+    % A group \(N = \{1, \dots, n\}\) of \(n\) \emph{players}. 
+    % Each player \(i\) makes a \emph{contribution} \(c_i \in \{0, 1\}\).
+    % Contributions generate a \emph{benefit} \(b(\bm{c})\), with \(\bm{c} = (c_1, \dots, c_n)\).\\
+
+    % Player \(i\)'s \emph{utility} is:
+    % \[
+    %     u_i(\bm{c}) = b (\bm{c}) - c_i.
+    % \]
+    % The \emph{social welfare} of the group is:
+    % \[
+    %     \mathit{sw}(\bm{c}) = \sum_{i} u_i(\bm{c}).
+    % \]
+
+    % The public good, valued at \(r > 1\), is provided just in case the number of contributors is at least 
+    % a certain \emph{threshold} \({k \in \{0, \dots, n\}}\):
+    % \[
+    %     b (\bm{c}) =
+    %     \begin{cases}
+    %         r  & \text{if } \geq k \text{ contributors in } \bm{c},\\ 
+    %         0, & \text{otherwise}.
+    %     \end{cases}  
+    % \]
+
+
+    Take a threshold of \(3\) \(\big({\approx\nicefrac{n}{2}}\big)\).\\
+
+    We need at least \(3\) contributors for the public good to be provided.\\ 
+
+    If a player's contribution makes no difference, 
+    there is no incentive to contribute.
+
+    
+    % In experimental settings, the benefit function is often:
+    % \[
+    %     b(\bm{c}) = \frac{1}{n} \cdot \sum_{i}c_i \cdot g.
+    % \]
+    % In this setting, contributing \(0\) is a dominant strategy.
+
+\end{document}

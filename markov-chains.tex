@@ -1,0 +1,61 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[preview, border={0.4pt 5pt 0.4pt 1pt}, varwidth=20cm]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\tikzset{
+  state/.style={
+    circle,
+    draw,
+    minimum size=1cm,
+    font=\small,
+    align=center
+  }
+}
+
+\begin{document}
+    \begin{tikzpicture}[->, >=stealth, node distance=2cm, auto]
+        % Define the nodes
+        \node[state] (n)     {$n$};
+        \node[state] (n1)    [right of=n] {$n-1$};
+        \node        (dots)  [right of=n1] {$\cdots$};
+        \node[state] (k)     [right of=dots] {$k$};
+        \node[state] (k1)    [right of=k] {$k-1$};
+        \node[state] (k2)    [right of=k1] {$k-2$};
+        \node        (dots2) [right of=k2] {$\cdots$};
+        \node[state] (one)   [right of=dots2] {$1$};
+        \node[state] (zero)  [right of=one] {$0$};
+
+        % payoff at each node
+        \node (un) [above of=n]{\(n\)};
+        \node (un1) [above of=n1]{\(n-1\)};
+        \node (uk) [above of=k]{\(k\)};
+        \node (uk1) [above of=k1]{\(k-1\)};
+        \node (uk2) [above of=k2]{\(k-2\)};
+        \node (1) [above of=one]{\(1\)};
+        \node (0) [above of=zero]{\(0\)};
+
+        % Arrows with transition probabilities
+        \path (n)    edge[bend left] node[above]  {$1$} (n1);
+        
+        \path (n1)   edge[bend left] node[above]  {\tiny$\frac{n-1}{n}$} (dots);
+        \path (n1)   edge[loop below, looseness=4] node[below]  {\tiny$\frac{1}{n}$} (n1);
+        
+        \path (dots) edge[bend left] node[above]  {\tiny$\frac{k+1}{n}$} (k);
+        \path (k)   edge[loop below, looseness=4] node[below]  {$1$} (k);
+        
+        \path (k1)   edge[bend left] node[above]  {\tiny$\frac{k-1}{n}$} (k2);
+        \path (k2)   edge[bend left] node[above]  {\tiny$\frac{k-2}{n}$} (dots2);
+
+        \path (k2)   edge[loop below, looseness=4] node[below]  {\tiny$\frac{n-(k-2)}{n}$} (k2);
+        \path (k1)   edge[bend left] node[below]  {\tiny$\frac{n-(k-1)}{n}$} (k);
+
+        \path (dots2)   edge[bend left] node[above]  {\tiny$\frac{2}{n}$} (one);
+        \path (one)  edge[loop below, looseness=4] node[below]  {\tiny$\frac{n-1}{n}$} (one);
+        
+        \path (one)  edge[bend left] node[above]  {\tiny$\frac{1}{n}$} (zero);
+        \path (zero) edge[loop below, looseness=4] node[below]  {$1$} (zero);
+    \end{tikzpicture}
+\end{document}
