@@ -1,5 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, varwidth=9cm, border={0pt 1pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, varwidth=14cm, border={0pt 1pt 1pt 1pt}]{standalone} % border options are {left bottom right top}
+
+
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -25,34 +27,190 @@
     % \[
     %     u_i(\bm{c}) = b (\bm{c}) - c_i.
     % \]
-    % The \emph{social welfare} of the group is:
-    % \[
-    %     \mathit{sw}(\bm{c}) = \sum_{i} u_i(\bm{c}).
-    % \]
+    % % The \emph{social welfare} of the group is:
+    % % \[
+    % %     \mathit{sw}(\bm{c}) = \sum_{i} u_i(\bm{c}).
+    % % \]
 
-    % The public good, valued at \(r > 1\), is provided just in case the number of contributors is at least 
-    % a certain \emph{threshold} \({k \in \{0, \dots, n\}}\):
+    % The public good, valued at \(r > 1\), is provided just in case the fraction of contributors is at least 
+    % a certain \emph{threshold} \({\theta \in [0, 1]}\):
     % \[
     %     b (\bm{c}) =
     %     \begin{cases}
-    %         r  & \text{if } \geq k \text{ contributors in } \bm{c},\\ 
+    %         r  & \text{if the fraction of contributors in } \bm{c} \text{ is} \geq \theta,\\ 
     %         0, & \text{otherwise}.
     %     \end{cases}  
     % \]
 
 
-    Take a threshold of \(3\) \(\big({\approx\nicefrac{n}{2}}\big)\).\\
+    % Take \(\theta = \nicefrac{1}{2}\)\\
+    
+    % At least three contributors are needed for the public good to be provided.\\
 
-    We need at least \(3\) contributors for the public good to be provided.\\ 
+    % A player has an incentive to contribute only if they are \emph{pivotal}.
 
-    If a player's contribution makes no difference, 
-    there is no incentive to contribute.
 
     
+
     % In experimental settings, the benefit function is often:
     % \[
-    %     b(\bm{c}) = \frac{1}{n} \cdot \sum_{i}c_i \cdot g.
+    %     b(\bm{c}) = \frac{1}{n} \cdot \sum_{i}c_i \cdot g,
     % \]
-    % In this setting, contributing \(0\) is a dominant strategy.
+    % for some \(g > 1\).\\
 
+    % In this setting, contributing \(0\) is a dominant strategy.\\ 
+
+    % But we get the same equilibria (with \(0\) and \(k\) contributors) 
+    % if the game is repeated for \(m > \nicefrac{(n-1)}{n} \cdot \nicefrac{r}{(r-1)}\) rounds
+    % and players play a threshold \emph{strategy}. 
+
+    
+
+    % For a threshold of \(k\),\(^*\) profiles with exactly \(k\) contributors are equilibria.\\
+    
+    % The profile with \(0\) contributors is also an equilibrium (except when \(k=1\)).
+
+    % \begin{flushright}
+    %     \(^*\)Every threshold \(\theta\) corresponds to an integer threshold of \(k \in \{0,\dots, n\}\).
+    % \end{flushright}
+
+
+    % Take the threshold to be \(\theta = \nicefrac{1}{2}\), i.e., 
+    % a player benefits only if at least half of their closed neighborhood contribute.\\ 
+    
+    % A profile where everyone contributes is still not an equilibrium.\\
+
+    % The profile with \(0\) contributors is no longer an equilibrium (!).\\
+    
+    % The profile where only the center contributes is not an equilibrium.\\
+
+    % But the profile where only the agents on the periphery contribute is an equilibrium.
+
+
+    % On average, we get around \(qn\) initial contributors.
+
+
+    % Assume the game is played over several rounds.\\
+
+    % At every new round, player \(i\) contributes their \emph{best response} 
+    % \(\mathit{br}_i(\bm{c})\) with respect to the previous contributions \(\bm{c}\):
+    % \[
+    %     \mathit{br}_i(\bm{c}) = 
+    %     \begin{cases}
+    %         1, &\text{if } i \text{ is pivotal in } \bm{c},\\
+    %         0, &\text{otherwise}.            
+    %     \end{cases}
+    % \]
+
+
+
+    % If exactly three (or two!) players contribute initially, 
+    % we reach an equilibrium with three contributors.\\
+
+    % Anything else and we end up in the \((0, \dots, 0)\) equilibrium.
+
+
+    % At every new round \(t+1\), player \(i\) contributes:
+    % \[
+    %     c_i ^{t+1} = 
+    %     \begin{cases}
+    %         \mathit{br}_i(\bm{c}^t), &\text{with probability } 1-\alpha, \\ 
+    %         c_i^t, &\text{with probability } \alpha.
+    %     \end{cases}
+    % \]
+
+
+    % With \(\alpha = 1\), players just repeat their initial contribution.\\
+
+    % With \(\alpha = 0\), players invariably play their best response.\\
+
+    % For \(0 < \alpha < 1\), players play a mixture.\\
+
+    % The equilibrium at \(\theta\) is reached, most of the time, if 
+    % \(q > \theta\).\\ 
+    
+    % But only for very high \(\alpha\)!
+
+
+    % A \emph{social norm applied to player \(i\)} is a function 
+    % \(\nu \colon N \times \{0, 1\}^n \rightarrow \{0, 1\}\):
+    % \[
+    %     (i, \bm{c}) \longmapsto  \nu_i (\bm{c})
+    % \]
+
+
+
+
+    % Take \(\alpha \in [0, 1]\), the \emph{prosociality} of players.\\
+
+    % At every new round \(t+1\), player \(i\) contributes:
+    % \[
+    %     c_i ^{t+1} = 
+    %     \begin{cases}
+    %         \nu_i(\bm{c}^t), &\text{with probability } \alpha,\\
+    %         \mathit{br}_i(\bm{c}^t), &\text{with probability } 1-\alpha.
+    %     \end{cases}
+    % \]
+
+
+
+    \begin{tabular}{rl}
+        Best Response: & \(\nu_i(\bm{c}) = \mathit{br}_i(\bm{c})\) \\[0.2cm]
+            Be Yourself: & \(\nu_i(\bm{c}) = c_i\)  \\[0.2cm] 
+        Be Like Others: & 
+        \(\nu_i(\bm{c}) = \text{the majority contribution in } \bm{c}_{-i}\) \\ 
+        \dots   & \dots
+    \end{tabular}
+
+
+    % The majority rule ('Be Like Others') does a bit better, at lower values of 
+    % prosociality.\\ 
+
+    % But we still need \(q > \theta\)!
+
+    % So far we have been assuming that everyone is connected to everyone else.\\ 
+
+    % But many other structures are possible.
+
+
+
+    % On networks, \(i\)'s utility is:
+    % \[
+    %     u_i(\bm{c}) = b{\left( \bm{c}_{N[i]} \right)} - c_i,
+    % \]
+    % where \(N[i]\) contains \(i\)'s neighbors, plus \(i\).\\
+
+
+    % Player \(i\) wants to contribute only if they are pivotal
+    % \emph{in their neighborhood} \(N[i]\).
+
+
+
+    % Take \(\theta = \nicefrac{1}{2}\) and a star graph.\\ 
+
+    % Everyone contributing still not an equilibrium.\\ 
+
+    % No contributors is not an equilibrium (!).\\ 
+
+    % Only the players on the periphery contributing is an equilibrium.
+
+
+    % Consider the \emph{Be Like Others} norm, with \(\alpha=1\).\(^*\)\\ 
+
+    % If the two players in the center start out cooperating,
+    % we eventually get full cooperation!\\ 
+
+    % And this generalizes to larger graphs.
+
+    % \begin{flushright}
+    %     \(^*\)Assume tie-breaking favors contributing.
+    % \end{flushright}
+
+    % The more structured the graph, the better.
+
+    % Scale-free networks, generated using a preferential attachment mechanism.
+
+    % Social norms as internalized behavior rules (requirements).\\ 
+
+    % Powerful, and even more so in the presence of social networks.
 \end{document}
