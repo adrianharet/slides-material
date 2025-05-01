@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -18,7 +18,37 @@
     %         majority vote & \(F_{\maj}(\bm{v}) = x\), such that \(v_i = x\) for a (strict) majority of voters
     %     \end{tabular}
     % \end{table}
+
+    %% Notation
+    % There is a set \(N = \{1, \dots, n\}\) of \emph{voters}. 
+    % There are two \emph{alternatives}, \(a\) and \(b\), one of which is \emph{correct}.
+    % Each voter casts a \emph{vote} for one of the alternatives. We keep track of whether each voter \(i\) is 
+    % correct using a \emph{random variable} \(v_i\):
+    % \[
+    %     v_i = \begin{cases}
+    %         1, & \text{if voter } i \text{ votes for the correct alternative,} \\
+    %         0, & \text{otherwise.}
+    %     \end{cases}
+    % \]
+    % The \emph{profile} of votes is a vector \(\bm{v} = (v_1, \dots, v_n)\) of the votes cast.\\
     
+    % The \emph{majority vote} \(F_{\maj}(\bm{v})\) outputs the alternative that receives the most votes.\\
+
+    % Each voter \(i\) has a \emph{competence} \(p_i\), which is the probability of voting correctly:
+    % \[
+    %     v_i = 
+    %     \begin{cases}
+    %         1, & \text{with probability } p_i, \\
+    %         0, & \text{with probability } 1 - p_i.
+    %     \end{cases}
+    % \]
+
+
+
+    % \({\Pr}\big[F_{\maj}(\bm{v})=1\big]\)
+
+
+
     %% Assumptions
     % \begin{description}
     %     \item[(Competence)] Agents are better than random at being correct:
@@ -36,21 +66,124 @@
     % \end{description}
     % \vspace{0.1em}
 
-    % \({\Pr}{\left[ F_\maj(v_1, \dots , v_n) = a\right]}\)
 
+    % \({\Pr}{\left[ F_\maj(\bm{v}) = 1\right]}\)
+
+
+
+    % % The Condorcet Jury Theorem
+    % For \(n\) voters with equal competence \(p > \nicefrac{1}{2}\) that vote independently of each other,
+    % then, for any odd \(n\), it holds that:
+    % \begin{itemize}
+    %     \item[(1)] \({\Pr}{\left[ F_\maj(v_1, \dots, v_n, v_{n+1}, v_{n+2}) = 1\right]} > 
+    %         {\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]}\), and
+    %     \item[(2)] \({\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]} \geq p\), and
+    %     \item[(3)] \(\lim_{n\rightarrow\infty}{\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]} = 1\).
+    % \end{itemize}
+
+
+    %% CJT explanations:
+    % \begin{itemize}
+    %     \item[(1)] Larger groups are more accurate than smaller groups.
+
+    %     \item[(2)] Groups are more accurate than their members.
+
+    %     \item[(3)] The probability of a correct decision approaches \(1\) as the group size increases.
+    % \end{itemize}
+
+
+    %% One voter
     % The profile is \(\bm{v} = (v_1)\).\\
-
+    
     % The probability of a correct decision is:
     % \begin{flalign*}
-    %     \Pr\left[F_\maj(v_1) = a\right] & = \Pr\left[v_1 = a\right] &\\
+    %     {\Pr}{\big[F_\maj(v_1) = 1\big]} & = {\Pr}{\big[v_1 = 1\big]} &\\
     %                                     & = p &\\
     %                                     & > \nicefrac{1}{2}.&
     % \end{flalign*}
-    % Note that as \(p\) grows, so does group accuracy.
+    % As \(p\) grows, so does group accuracy.
 
+
+    %% Two voters
     % The profile is \(\bm{v} = (v_1, v_2) \).\\
 
     % Oh wait, we're not looking at this case.
+
+
+    %% Three voters
+    % The profile is \(\bm{v} = (v_1, v_2, v_3)\).\\
+
+    % The probability of a correct decision is:
+    % \begin{flalign*}
+    %     {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
+    %         & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
+    %         & = {\Pr}{\big[\text{at least two voters in }\bm{v} \text{ are correct}\big]} &\\
+    %         & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,0), (1,0,1), (0,1,1) \text{ or } (1,1,1)\big]} &\\
+    %         & = {\Pr}{\big[\bm{v} = (1, 1, 0)\big]} + 
+    %             {\Pr}{\big[\bm{v} = (1, 0, 1)\big]} +
+    %             {\Pr}{\big[\bm{v} = (0, 1, 1)\big]} +
+    %             {\Pr}{\big[\bm{v} = (1, 1, 1)\big]}
+    %             &\\
+    %         & = {\Pr}{\big[v_1 = 1\big]} \cdot {\Pr}{\big[v_2 = 1\big]} \cdot {\Pr}{\big[v_3 = 0\big]} + \\
+    %         & \qquad {\Pr}{\big[v_1 = 1\big]} \cdot {\Pr}{\big[v_2 = 0\big]} \cdot {\Pr}{\big[v_3 = 1\big]} + \\
+    %         & \qquad\quad {\Pr}{\big[v_1 = 0\big]} \cdot {\Pr}{\big[v_2 = 1\big]} \cdot {\Pr}{\big[v_3 = 1\big]} + \\
+    %         & \qquad\qquad {\Pr}{\big[v_1 = 1\big]} \cdot {\Pr}{\big[v_2 = 1\big]} \cdot {\Pr}{\big[v_3 = 1\big]} &\\
+    %         & = p \cdot p \cdot (1-p) + p \cdot(1-p) \cdot p + (1-p) \cdot p \cdot p + p \cdot p \cdot p &\\
+    %         & = 3p^2(1-p) + p^3 &\\
+    %         & > p.&
+    % \end{flalign*}
+    % Again, as \(p\) grows, so does group accuracy.\\ 
+
+    % And a group of three voters is more accurate than a single voter!
+
+
+
+
+
+    % %% Five voters
+    % The profile is \(\bm{v} = (v_1, v_2, v_3, v_4, v_5)\).\\
+
+    % The probability of a correct decision is:
+    % \begin{flalign*}
+    %     {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
+    %         & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
+    %         & = {\Pr}{\big[\text{at least three voters in }\bm{v} \text{ are correct}\big]} &\\
+    %         & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,1,0,0), \dots, (1,1,1,1,0), \dots, \text{ or } (1,1,1,1,1)\big]} &\\
+    %         & = 10 \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &\\
+    %         & = {5 \choose 3} \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &
+    % \end{flalign*}
+    % Again, as \(p\) grows, so does group accuracy.\\ 
+
+    % And a group of five voters is more accurate than a group of three!
+
+
+
+    %% Any odd number of voters
+    The profile is \(\bm{v} = (v_1, \dots, v_n)\), with \(n\) odd.\\
+
+    The probability of a correct decision is:
+    \begin{flalign*}
+        {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
+            & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
+            & = {\Pr}{\big[\text{at least three voters in }\bm{v} \text{ are correct}\big]} &\\
+            & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,1,0,0), \dots, (1,1,1,1,0), \dots, \text{ or } (1,1,1,1,1)\big]} &\\
+            & = 10 \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &\\
+            & = {5 \choose 3} \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &
+    \end{flalign*}
+    Again, as \(p\) grows, so does group accuracy.\\ 
+
+    And a group of five voters is more accurate than a group of three!
+
+
+
+
+
+    % To prove that accuracy increases with group size, we derive a recurrence relation for the probability of a correct decision
+    % with \(n+2\) voters, given the probability of a correct decision with \(n\) voters.\\
+
+    % Take \(n=5\).
+
+
 
     % Generalizing the previous identity we get the following recurrence:
     % {
@@ -131,6 +264,9 @@
     % Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
 
 
+
+
+
     % Take three voters with competences \(p_1\), \(p_2\), \(p_3\).\\ 
 
     % The probability of a correct majority decision is:
@@ -181,16 +317,16 @@
     %     \end{tabular}
     % \end{table}
 
-    \begin{table}
-        \begin{tabular}{rccc}
-            \toprule
-                  & pros & cons & net \\
-            \midrule
-            \(a\) & \(a_3, a_4\) & \(\overline{a}_1\) & 1 \\
-            \(b\) & \(b_1,b_2\) & \(\emptyset\) & 2 \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
+    % \begin{table}
+    %     \begin{tabular}{rccc}
+    %         \toprule
+    %               & pros & cons & net \\
+    %         \midrule
+    %         \(a\) & \(a_3, a_4\) & \(\overline{a}_1\) & 1 \\
+    %         \(b\) & \(b_1,b_2\) & \(\emptyset\) & 2 \\
+    %         \bottomrule
+    %     \end{tabular}
+    % \end{table}
 
     % \(b_1, b_2, \overline{a}_1\)
 \end{document}
