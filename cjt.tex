@@ -19,7 +19,7 @@
     %     \end{tabular}
     % \end{table}
 
-    %% Notation
+    % % Notation
     % There is a set \(N = \{1, \dots, n\}\) of \emph{voters}. 
     % There are two \emph{alternatives}, \(a\) and \(b\), one of which is \emph{correct}.
     % Each voter casts a \emph{vote} for one of the alternatives. We keep track of whether each voter \(i\) is 
@@ -30,11 +30,10 @@
     %         0, & \text{otherwise.}
     %     \end{cases}
     % \]
-    % The \emph{profile} of votes is a vector \(\bm{v} = (v_1, \dots, v_n)\) of the votes cast.\\
-    
-    % The \emph{majority vote} \(F_{\maj}(\bm{v})\) outputs the alternative that receives the most votes.\\
+    % The \emph{profile} of votes is a vector \(\bm{v} = (v_1, \dots, v_n)\) of the votes cast.
+    % The \emph{majority outcome}\(^*\) is the alternative with the most votes.\\
 
-    % Each voter \(i\) has a \emph{competence} \(p_i\), which is the probability of voting correctly:
+    % Each voter \(i\) has a \emph{competence} \(p_i\), which is their probability of voting correctly:
     % \[
     %     v_i = 
     %     \begin{cases}
@@ -43,9 +42,26 @@
     %     \end{cases}
     % \]
 
+    % \footnotesize \(^*\)We assume \(n\) is odd to avoid ties.
 
 
-    % \({\Pr}\big[F_{\maj}(\bm{v})=1\big]\)
+    % May I humbly point out that the vote random variables \(v_i\) 
+    % are called \emph{Bernoulli variables}: \(v_i = 1\) is \emph{success},
+    % \(v_i = 0\) is \emph{failure}.\\
+
+    % The sum of the votes is also a random variable:
+    % \[
+    %     S_n = v_1 + \dots + v_n.
+    % \]
+    % \(S_n\) tracks the number of correct votes in a profile of \(n\) votes.\\
+
+    % Note that the majority outcome is correct exactly when 
+    % \({S_n > \left\lfloor \nicefrac{n}{2} \right\rfloor}\).
+
+
+
+
+    % \({\Pr}\Big[S_n > \lfloor \nicefrac{n}{2} \rfloor \Big]\)
 
 
 
@@ -75,10 +91,10 @@
     % For \(n\) voters with equal competence \(p > \nicefrac{1}{2}\) that vote independently of each other,
     % then, for any odd \(n\), it holds that:
     % \begin{itemize}
-    %     \item[(1)] \({\Pr}{\left[ F_\maj(v_1, \dots, v_n, v_{n+1}, v_{n+2}) = 1\right]} > 
-    %         {\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]}\), and
-    %     \item[(2)] \({\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]} \geq p\), and
-    %     \item[(3)] \(\lim_{n\rightarrow\infty}{\Pr}{\left[ F_\maj(v_1, \dots, v_n) = 1\right]} = 1\).
+    %     \item[(1)] \({\Pr}{\Big[ S_{n+2} > \lfloor \nicefrac{(n+2)}{2} \rfloor\Big]} > 
+    %         {\Pr}{\Big[ S_n > \lfloor \nicefrac{n}{2} \rfloor\Big]}\), and
+    %     \item[(2)] \({\Pr}{\Big[ S_n > \lfloor \nicefrac{n}{2} \rfloor \Big]} \geq p\), and
+    %     \item[(3)] \(\lim_{n\rightarrow\infty}{\Pr}{\Big[ S_n > \lfloor \nicefrac{n}{2} \rfloor \Big]} = 1\).
     % \end{itemize}
 
 
@@ -92,12 +108,12 @@
     % \end{itemize}
 
 
-    %% One voter
+    % One voter
     % The profile is \(\bm{v} = (v_1)\).\\
     
     % The probability of a correct decision is:
     % \begin{flalign*}
-    %     {\Pr}{\big[F_\maj(v_1) = 1\big]} & = {\Pr}{\big[v_1 = 1\big]} &\\
+    %     {\Pr}{\Big[S_1 > 0\Big]} & = {\Pr}{\Big[v_1 = 1\Big]} &\\
     %                                     & = p &\\
     %                                     & > \nicefrac{1}{2}.&
     % \end{flalign*}
@@ -110,19 +126,18 @@
     % Oh wait, we're not looking at this case.
 
 
-    %% Three voters
+    % Three voters
     % The profile is \(\bm{v} = (v_1, v_2, v_3)\).\\
 
     % The probability of a correct decision is:
     % \begin{flalign*}
-    %     {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
-    %         & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
-    %         & = {\Pr}{\big[\text{at least two voters in }\bm{v} \text{ are correct}\big]} &\\
-    %         & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,0), (1,0,1), (0,1,1) \text{ or } (1,1,1)\big]} &\\
-    %         & = {\Pr}{\big[\bm{v} = (1, 1, 0)\big]} + 
-    %             {\Pr}{\big[\bm{v} = (1, 0, 1)\big]} +
-    %             {\Pr}{\big[\bm{v} = (0, 1, 1)\big]} +
-    %             {\Pr}{\big[\bm{v} = (1, 1, 1)\big]}
+    %     {\Pr}{\Big[S_3 > 1\Big]} 
+    %         & = {\Pr}{\Big[S_3 = 2 \text{ or } S_3 = 3\Big]} &\\
+    %         & = {\Pr}{\Big[\bm{v} \text{ is one of } (1,1,0), (1,0,1), (0,1,1) \text{ or } (1,1,1)\Big]} &\\
+    %         & = {\Pr}{\Big[\bm{v} = (1, 1, 0)\Big]} + 
+    %             {\Pr}{\Big[\bm{v} = (1, 0, 1)\Big]} +
+    %             {\Pr}{\Big[\bm{v} = (0, 1, 1)\Big]} +
+    %             {\Pr}{\Big[\bm{v} = (1, 1, 1)\Big]}
     %             &\\
     %         & = {\Pr}{\big[v_1 = 1\big]} \cdot {\Pr}{\big[v_2 = 1\big]} \cdot {\Pr}{\big[v_3 = 0\big]} + \\
     %         & \qquad {\Pr}{\big[v_1 = 1\big]} \cdot {\Pr}{\big[v_2 = 0\big]} \cdot {\Pr}{\big[v_3 = 1\big]} + \\
@@ -140,17 +155,17 @@
 
 
 
-    % %% Five voters
+    % % Five voters
     % The profile is \(\bm{v} = (v_1, v_2, v_3, v_4, v_5)\).\\
 
     % The probability of a correct decision is:
     % \begin{flalign*}
-    %     {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
-    %         & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
-    %         & = {\Pr}{\big[\text{at least three voters in }\bm{v} \text{ are correct}\big]} &\\
-    %         & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,1,0,0), \dots, (1,1,1,1,0), \dots, \text{ or } (1,1,1,1,1)\big]} &\\
-    %         & = 10 \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &\\
-    %         & = {5 \choose 3} \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &
+    %     {\Pr}{\Big[S_5 > 2 \Big]} 
+    %         & = {\Pr}{\Big[S_5 = 3 \text{ or } S_5 = 4 \text{ or } S_5 = 5 \Big]} &\\
+    %                     & = {\Pr}{\big[\bm{v} \text{ is either } (1,1,1,0,0), \dots, (1,1,1,1,0), \dots, \text{ or } (1,1,1,1,1)\big]} &\\
+    %                     & \dots &\\
+    %                     & = 10 \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) + p^5 &\\
+    %                     & = {5 \choose 3} p^3(1-p)^2 + {5 \choose 4} p^4(1-p) + {5 \choose 5} p^5 &
     % \end{flalign*}
     % Again, as \(p\) grows, so does group accuracy.\\ 
 
@@ -158,22 +173,19 @@
 
 
 
-    %% Any odd number of voters
-    The profile is \(\bm{v} = (v_1, \dots, v_n)\), with \(n\) odd.\\
+    % Any odd number of voters
+    The profile is \(\bm{v} = (v_1, \dots, v_n)\), for \(n=2k+1\) and \(k \geq 1\).\\
 
     The probability of a correct decision is:
     \begin{flalign*}
-        {\Pr}{\big[F_\maj(\bm{v}) = 1\big]} 
-            & = {\Pr}{\big[\text{a majority of voters in } \bm{v} \text{ are correct}]} &\\
-            & = {\Pr}{\big[\text{at least three voters in }\bm{v} \text{ are correct}\big]} &\\
-            & = {\Pr}{\big[\bm{v} \text{ is one of } (1,1,1,0,0), \dots, (1,1,1,1,0), \dots, \text{ or } (1,1,1,1,1)\big]} &\\
-            & = 10 \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &\\
-            & = {5 \choose 3} \cdot p^3(1-p)^2 + 5 \cdot p^4(1-p) +p^5 &
+        {\Pr}{\Big[S_n > k \Big]} 
+            & = {\Pr}{\Big[S_n = k{+}1 \text{ or } \dots \text{ or } S_n = n\Big]} &\\
+            & = {n \choose k+1} \cdot p^{k+1}(1-p)^{n-(k+1)} + \dots + {n \choose n-1} \cdot p^{n-1}(1-p)^1 + {n \choose n} p^n & \\ 
+            & = \sum_{i=k+1}^{n} {n \choose i} \cdot p^i(1-p)^{n-i}.
     \end{flalign*}
-    Again, as \(p\) grows, so does group accuracy.\\ 
+    And it looks like the same reasoning applies: as \(n\) grows, so does group accuracy!\\
 
-    And a group of five voters is more accurate than a group of three!
-
+    But only as long as \(p > \nicefrac{1}{2}\)\dots
 
 
 
@@ -183,6 +195,62 @@
 
     % Take \(n=5\).
 
+    % \[
+    %     {\Pr}{\Big[ S_5 > 2 \Big]} = 
+    %         (1-p)^2 \cdot {\Pr}{\Big[ S_3 > 2 \Big]} +
+    %         2p(1-p)^2 \cdot {\Pr}{\Big[ S_3 > 1 \Big]} +
+    %         p^2 \cdot {\Pr}{\Big[ S_3 > 0 \Big]}.
+    % \]
+
+
+    % \[
+    %     \textcolor{GameTheory}{{\Pr}{\left[ S_{n+2} > \left\lfloor\frac{n+2}{2} \right\rfloor \right]}} = 
+    %     (1-p)^2 \cdot \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2}\right\rfloor + 1 \right]}} + 
+    %     2p(1-p)^2 \cdot \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor \right]}} + 
+    %     p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2} \right\rfloor - 1 \right]}}        
+    % \]
+
+    % \[
+    %     \textcolor{GameTheory}{{\Pr}{\Big[ S_{2k+3} > k{+}1 \Big]}} = 
+    %     (1-p)^2 \cdot \textcolor{Azure}{{\Pr}{\Big[ S_{2k+1} > k {+} 1 \Big]}} + 
+    %     2p(1-p)^2 \cdot \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} + 
+    %     p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\Big[ S_{2k+1} > k {-} 1 \Big]}}.
+    % \]
+
+
+    % \begin{align*}
+    %     \textcolor{PastelGreen}{{\Pr}{\Big[ S_{2k+1} > k{-}1 \Big]}} 
+    %         & = \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} + {\Pr}{\Big[ S_{2k+1} = k \Big]} &\\
+    %         & = \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} + \binom{2k{+}1}{k}\cdot p^k(1-p)^{k+1} &\\
+    %     \textcolor{Azure}{{\Pr}{\Big[ S_{2k+1} > k{+}1 \Big]}} 
+    %         & = \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} - {\Pr}{\Big[ S_{2k+1} = k{+}1 \Big]} &\\
+    %         &= \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} - \binom{2k+1}{k+1}\cdot p^{k+1}(1-p)^{k}
+    % \end{align*}
+
+    % \[
+    %     {2k+1 \choose k} = {2k+1 \choose k+1} = c
+    % \]
+
+    % \begin{align*}
+    %     \textcolor{GameTheory}{{\Pr}{\Big[ S_{2k+3} > k{+}1 \Big]}} 
+    %     & = (1-p)^2 \cdot \textcolor{Azure}{{\Pr}{\Big[ S_{2k+1} > k {+} 1 \Big]}} + 
+    %         2p(1-p)^2 \cdot \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} + 
+    %         p^2 \cdot \textcolor{PastelGreen}{{\Pr}{\Big[ S_{2k+1} > k {-} 1 \Big]}} \\
+    %     & \dots \\
+    %     & = \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}} + c \cdot p^{k+1} \cdot (1-p)^{k+1} \cdot (2p-1)\\ 
+    %     & > \textcolor{Honey}{{\Pr}{\Big[ S_{2k+1} > k \Big]}}.
+    % \end{align*}
+
+
+
+    % \begin{align*}
+    %     \textcolor{PastelGreen}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor-1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} + 
+    %     \binom{n}{\lfloor\nicefrac{n}{2}\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor+1}\\
+    %     \textcolor{Azure}{{\Pr}{\left[ S_n > \left\lfloor \frac{n}{2}\right\rfloor+1 \right]}} &= 
+    %     \textcolor{Honey}{{\Pr}{\left[ S_n > \left\lfloor\frac{n}{2} \right\rfloor \right]}} -
+    %     \binom{n}{\lfloor\nicefrac{n}{2}+1\rfloor}\cdot p^{\lfloor\nicefrac{n}{2}\rfloor+1}(1-p)^{\lfloor\nicefrac{n}{2}\rfloor}
+    % \end{align*}
 
 
     % Generalizing the previous identity we get the following recurrence:
