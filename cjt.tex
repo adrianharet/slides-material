@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=15.5cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=11cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -356,14 +356,17 @@
     % \end{flalign*}
 
 
-    % Take three voters with competences \(p_1 = 0.9\), \(p_2 = 0.66\) and \(p_3 = 0.56\).\\
+
+
+
+    % Take three voters with competences \(p_1 = 1\), \(p_2 = \nicefrac{3}{4}\) and \(p_3 = \nicefrac{5}{8}\).\\
 
     % The probability of a correct majority decision is:
     % \begin{flalign*}
     %     \quad{\Pr}\Big[ S_3 > 1 \Big] & = {\Pr}{\Big[S_3 = 2 \text{ or } S_3 = 3 \Big]} &\\
     %                                   & = p_1p_2(1-p_3) + p_1(1-p_2)p_3 + (1-p_1)p_2p_3 + p_1p_2p_3 &\\
-    %                                   & = 0.9 \cdot 0.66 \cdot (1-0.56) + 0.9 \cdot (1-0.66) \cdot 0.56 + (1-0.9) \cdot 0.66 \cdot 0.56 + 0.9 \cdot 0.66 \cdot 0.56 &\\
-    %                                   & \approx 0.8& \\ 
+    %                                   & = 1 \cdot \frac{3}{4} \cdot \left(1-\frac{5}{8}\right) + 1 \cdot \left(1-\frac{3}{4}\right) \cdot \frac{5}{8} + (1-1) \cdot \frac{3}{4} \cdot \frac{5}{8} + 1 \cdot \frac{3}{4} \cdot \frac{5}{8} &\\
+    %                                   & = 0.90625& \\
     %                                   & < p_1.&
     % \end{flalign*}
     % Now we have an expert (i.e., voter \(1\)) who is actually better than the majority vote.
@@ -371,24 +374,33 @@
 
 
 
-    Take \(n\) voters with competences:
-    \[
-        p_1 = \frac{1}{2} + \epsilon,~p_2 = \frac{1}{2} + \epsilon,~p_3 = \frac{1}{2} + \epsilon,
-    \]
 
+    % Suppose we add two voters with competences \(p_4 = \nicefrac{9}{16}\) and \(p_5 = \nicefrac{17}{32}\) to the previous group.\\
 
-
-    % Suppose we add two voters with competences \(p_4 = 0.53\) and \(p_5 = 0.51\) to the previous group.\\
-
-    % We now have a group of five voters with competences \(\bm{p} = \big(0.9, 0.66, 0.56, 0.53, 0.51\big)\).\\
+    % We now have a group of five voters with competences 
+    % \(\bm{p} = \Big(1, \nicefrac{3}{4}, \nicefrac{5}{8}, \nicefrac{15}{16}, \nicefrac{16}{32} \Big)\).\\
 
     % The probability of a correct majority decision is now:
     % \begin{flalign*}
-    %     \quad{\Pr}\Big[ S_5 > 2 \Big] & \approx 0.74\\ 
-    %                                   & < 0.8 & \\
+    %     \quad{\Pr}\Big[ S_5 > 2 \Big] & \approx 0.84\\ 
+    %                                   & < 0.91 & \\
     %                                   & \approx {\Pr}\Big[ S_3 > 1 \Big].&
     % \end{flalign*}
     % Adding voters \(4\) and \(5\) made the group less accurate than before!
+
+
+
+    Take \(n\) voters with competences:
+    \begin{flalign*}
+      \quad p_1 &= \frac{1}{2} + \frac{1}{2}, \quad p_2 = \frac{1}{2} + \frac{1}{2^2}, \quad \dots, \quad p_n = \frac{1}{2} + \frac{1}{2^n}.&      
+    \end{flalign*}
+    
+    The probability of a correct majority decision, as \(n\) grows, is:
+    \begin{flalign*}
+      \quad\lim_{n \rightarrow \infty} {\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] &= \frac{1}{2}.&
+    \end{flalign*}
+    Even though the competence of each voter is above \(\nicefrac{1}{2}\), 
+    the probability of a correct majority decision does not go asymptotically towards \(1\).\\
 
 
     % The group is no longer better than its members:
