@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=15.5cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -152,9 +152,6 @@
     % And a group of three voters is more accurate than a single voter!
 
 
-
-
-
     % % Five voters
     % The profile is \(\bm{v} = (v_1, v_2, v_3, v_4, v_5)\).\\
 
@@ -173,19 +170,19 @@
 
 
 
-    % Any odd number of voters
-    The profile is \(\bm{v} = (v_1, \dots, v_n)\), for \(n=2k+1\) and \(k \geq 1\).\\
+    % % Any odd number of voters
+    % The profile is \(\bm{v} = (v_1, \dots, v_n)\), for \(n=2k+1\) and \(k \geq 1\).\\
 
-    The probability of a correct decision is:
-    \begin{flalign*}
-        {\Pr}{\Big[S_n > k \Big]} 
-            & = {\Pr}{\Big[S_n = k{+}1 \text{ or } \dots \text{ or } S_n = n\Big]} &\\
-            & = {n \choose k+1} \cdot p^{k+1}(1-p)^{n-(k+1)} + \dots + {n \choose n-1} \cdot p^{n-1}(1-p)^1 + {n \choose n} p^n & \\ 
-            & = \sum_{i=k+1}^{n} {n \choose i} \cdot p^i(1-p)^{n-i}.
-    \end{flalign*}
-    And it looks like the same reasoning applies: as \(n\) grows, so does group accuracy!\\
+    % The probability of a correct decision is:
+    % \begin{flalign*}
+    %     {\Pr}{\Big[S_n > k \Big]} 
+    %         & = {\Pr}{\Big[S_n = k{+}1 \text{ or } \dots \text{ or } S_n = n\Big]} &\\
+    %         & = {n \choose k+1} \cdot p^{k+1}(1-p)^{n-(k+1)} + \dots + {n \choose n-1} \cdot p^{n-1}(1-p)^1 + {n \choose n} p^n & \\ 
+    %         & = \sum_{i=k+1}^{n} {n \choose i} \cdot p^i(1-p)^{n-i}.
+    % \end{flalign*}
+    % And it looks like the same reasoning applies: as \(n\) grows, so does group accuracy!\\
 
-    But only as long as \(p > \nicefrac{1}{2}\)\dots
+    % But only as long as \(p > \nicefrac{1}{2}\)\dots
 
 
 
@@ -294,10 +291,10 @@
 
     % This follows from Claim 1:
     % \begin{flalign*}
-    %     p & = {\Pr}{\left[ S_1 > 0 \right]} \\ 
-    %       & < {\Pr}{\left[ S_3 > 1 \right]} \\
+    %     p & = {\Pr}{\Big[ S_1 > 0 \Big]} \\ 
+    %       & < {\Pr}{\Big[ S_3 > 1 \Big]} \\
     %       & \dots \\ 
-    %       & < \Pr{\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right]} \\ 
+    %       & < \Pr{\Big[ S_n > \lfloor \nicefrac{n}{2} \rfloor \Big]} \\ 
     %       & \dots 
     % \end{flalign*}
 
@@ -308,28 +305,37 @@
     %     \lim_{n \rightarrow \infty} \Pr\left[ \left|\frac{X_1 + \dots + X_n}{n} - \mu\right|< \epsilon \right] = 1.
     % \]
 
-
-    % \(\Pr\left[ X_i=1 \right] = p, \quad\Pr\left[ X_i =0\right] = 1-p\)
-
-    % \begin{flushright}
-    %     \(S_n = k\) is equivalent to 
-    % \end{flushright}
-
-    % We need to show that:
+  % In our case, each independent random variable \(v_i\) 
+    % keeps track of whether voter \(i\) votes correctly, with:
     % \[
-    %     \lim_{n \rightarrow \infty} \Pr\left[ S_n > \lfloor \nicefrac{n}{2} \rfloor \right] = 1.
+    %     v_i = \begin{cases}
+    %         1, & \text{with probability } p \\
+    %         0, & \text{with probability } 1-p.
+    %     \end{cases}
+    % \]
+    % The majority vote is correct when:
+    % \[
+    %     v_1 + v_2 + \dots + v_n > \frac{n}{2} \quad\text{iff}\quad
+    %     \frac{v_1 + \dots v_n}{n} > \frac{1}{2}.
     % \]
 
-    % Now, the expected value (i.e., mean \(\mu\)) of the voter random variables \(X_i\) is:
-    % \begin{align*}
-    %     \EXP[X_i] & = 1 \cdot p + 0 \cdot (1-p) \\ 
-    %               & = p,
-    % \end{align*}
-    % and the Weak Law of Large Numbers gives us that, for any \(\epsilon > 0\):
-    % \[
-    %     \lim_{n \rightarrow \infty} \Pr\left[ \left| \frac{S_n}{n} - p\right| > \epsilon  \right] = 0.
-    % \]
-    % Choosing \(\epsilon\) appropriately and massaging this expression we obtain the desired conclusion.
+
+    % The \emph{Law of Large Numbers} gives us that, as \(n\) grows, \(\nicefrac{(v_1 + \dots v_n)}{n}\)
+    % gets very close to the expected value of the random variables \(v_i\).\\
+
+    % The expected value (i.e., mean \(\mu\)) is:
+    % \begin{flalign*}
+    %     && \EXP\big[v_i\big] & = 1 \cdot p + 0 \cdot (1-p) &\\ 
+    %     &&           & = p.&
+    % \end{flalign*}
+    % So, for very large \(n\), with high probability:
+    % \begin{flalign*}
+    %     && \frac{v_1 + \dots + v_n}{n} & \approx p &\\ 
+    %     &&                             & > \frac{1}{2}.
+    % \end{flalign*}
+    % This can be made precise with an appropriate choice of \(\epsilon\) 
+    % in the \emph{Law of Large Numbers}.
+    
 
 
 
@@ -339,10 +345,51 @@
 
     % The probability of a correct majority decision is:
     % \begin{flalign*}
-    %     \quad\Pr\left[ F_\maj(v_1, v_2, v_3) = a \right] &={ \Pr}{\left[ \text{the profile is one of } aab, aba, baa, aaa \right]} &\\
-    %                                                 & = p_1p_2(1-p_3) + p_1(1-p_2)p_3 + (1-p_1)p_2p_3 + p_1p_2p_3 &\\
-    %                                                 & = p_1p_2 + p_2p_3 + p_1p_3 - 2p_1p_2p_3.&
+    %     \quad{\Pr}\Big[ S_n > 1 \Big] & = {\Pr}{\Big[S_n = 2 \text{ or } S_n = 3 \Big]} &\\
+    %                                   & = p_1p_2(1-p_3) + p_1(1-p_2)p_3 + (1-p_1)p_2p_3 + p_1p_2p_3 &\\
+    %                                   & = p_1p_2 + p_2p_3 + p_1p_3 - 2p_1p_2p_3.&
     % \end{flalign*}
+    % For \(n\) voters, \(n\) odd, with competences \(p_1\), \dots, \(p_n\), the probability of a correct majority decision is:
+    % \begin{flalign*}
+    %     \quad{\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] & = 
+    %         \sum_{C \subseteq N, |C| > \nicefrac{n}{2}} \left(\prod_{i \in C} p_i \cdot \prod_{N \setminus C}(1-p_i) \right).&  
+    % \end{flalign*}
+
+
+    % Take three voters with competences \(p_1 = 0.9\), \(p_2 = 0.66\) and \(p_3 = 0.56\).\\
+
+    % The probability of a correct majority decision is:
+    % \begin{flalign*}
+    %     \quad{\Pr}\Big[ S_3 > 1 \Big] & = {\Pr}{\Big[S_3 = 2 \text{ or } S_3 = 3 \Big]} &\\
+    %                                   & = p_1p_2(1-p_3) + p_1(1-p_2)p_3 + (1-p_1)p_2p_3 + p_1p_2p_3 &\\
+    %                                   & = 0.9 \cdot 0.66 \cdot (1-0.56) + 0.9 \cdot (1-0.66) \cdot 0.56 + (1-0.9) \cdot 0.66 \cdot 0.56 + 0.9 \cdot 0.66 \cdot 0.56 &\\
+    %                                   & \approx 0.8& \\ 
+    %                                   & < p_1.&
+    % \end{flalign*}
+    % Now we have an expert (i.e., voter \(1\)) who is actually better than the majority vote.
+
+
+
+
+    Take \(n\) voters with competences:
+    \[
+        p_1 = \frac{1}{2} + \epsilon,~p_2 = \frac{1}{2} + \epsilon,~p_3 = \frac{1}{2} + \epsilon,
+    \]
+
+
+
+    % Suppose we add two voters with competences \(p_4 = 0.53\) and \(p_5 = 0.51\) to the previous group.\\
+
+    % We now have a group of five voters with competences \(\bm{p} = \big(0.9, 0.66, 0.56, 0.53, 0.51\big)\).\\
+
+    % The probability of a correct majority decision is now:
+    % \begin{flalign*}
+    %     \quad{\Pr}\Big[ S_5 > 2 \Big] & \approx 0.74\\ 
+    %                                   & < 0.8 & \\
+    %                                   & \approx {\Pr}\Big[ S_3 > 1 \Big].&
+    % \end{flalign*}
+    % Adding voters \(4\) and \(5\) made the group less accurate than before!
+
 
     % The group is no longer better than its members:
     % \begin{flalign*}
