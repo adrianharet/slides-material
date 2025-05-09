@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=11cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -375,12 +375,13 @@
 
 
 
-    % Suppose we add two voters with competences \(p_4 = \nicefrac{9}{16}\) and \(p_5 = \nicefrac{17}{32}\) to the previous group.\\
+    % Suppose we add two voters with competences \(p_4 = \nicefrac{9}{16}\) and \(p_5 = \nicefrac{17}{32}\)
+    % to the previous group.\\
 
-    % We now have a group of five voters with competences 
-    % \(\bm{p} = \Big(1, \nicefrac{3}{4}, \nicefrac{5}{8}, \nicefrac{15}{16}, \nicefrac{16}{32} \Big)\).\\
+    % We now have a group of five voters whose competences are
+    % \({\bm{p} = \Big(1, \nicefrac{3}{4}, \nicefrac{5}{8}, \nicefrac{15}{16}, \nicefrac{16}{32} \Big)}\).\\
 
-    % The probability of a correct majority decision is now:
+    % The probability of a correct majority decision is:
     % \begin{flalign*}
     %     \quad{\Pr}\Big[ S_5 > 2 \Big] & \approx 0.84\\ 
     %                                   & < 0.91 & \\
@@ -390,35 +391,66 @@
 
 
 
-    Take \(n\) voters with competences:
-    \begin{flalign*}
-      \quad p_1 &= \frac{1}{2} + \frac{1}{2}, \quad p_2 = \frac{1}{2} + \frac{1}{2^2}, \quad \dots, \quad p_n = \frac{1}{2} + \frac{1}{2^n}.&      
-    \end{flalign*}
+    % Take \(n\) voters with competences:
+    % \begin{flalign*}
+    %   \quad p_1 &= \frac{1}{2} + \frac{1}{2}, \quad p_2 = \frac{1}{2} + \frac{1}{2^2}, \quad \dots, \quad p_n = \frac{1}{2} + \frac{1}{2^n}.&      
+    % \end{flalign*}
     
-    The probability of a correct majority decision, as \(n\) grows, is:
-    \begin{flalign*}
-      \quad\lim_{n \rightarrow \infty} {\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] &= \frac{1}{2}.&
-    \end{flalign*}
-    Even though the competence of each voter is above \(\nicefrac{1}{2}\), 
-    the probability of a correct majority decision does not go asymptotically towards \(1\).\\
+    % The probability of a correct majority decision, as \(n\) grows, is:
+    % \begin{flalign*}
+    %   \quad\lim_{n \rightarrow \infty} {\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] &= \frac{1}{2}.&
+    % \end{flalign*}
+    % Even though the competence of each voter is above \(\nicefrac{1}{2}\), 
+    % the probability of a correct majority decision does not go asymptotically towards \(1\).
 
 
-    % The group is no longer better than its members:
+
+
+
+    % For an odd number \(n\) of voters with competences \(p_1\), \dots , \(p_n\) 
+    % who vote independently of each other, then, if \(p_n > \nicefrac{1}{2} + \epsilon \), 
+    % for some \(\epsilon > 0\), it holds that:
+    % \[
+    %   \lim_{n\rightarrow\infty}{\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] = 1.
+    % \]
+
+    Take \(\bm{p} = \big(p_1, \dots, p_n\big)\) to be the vector of competences of \(n\) voters.\\
+
+    Note, first, that if we improve the competence of one voter, 
+    then the probability of a correct majority decision increases.\\
+
+    Formally, suppose we replace some \(p_i\) in \(\bm{p}\) with \(p'_i > p_i\), 
+    while keeping all other competences the same.
+    We say the resulting vector \(\bm{p}'\) is \emph{improvement} of \(\bm{p}\).\\
+    
+    If \(S'_n\) is the sum of the votes determined by \(\bm{p}'\), we have that: 
+    \[
+      {\Pr}\Big[ S'_n > \nicefrac{n}{2}\Big] > {\Pr}\Big[ S_n > \nicefrac{n}{2}\Big]
+    \]
+
+    Note, now, that we can get from \(\bm{p}^* = \Big(\nicefrac{1}{2} + \epsilon, \dots, \nicefrac{1}{2} + \epsilon \Big)\)
+    to any \(\bm{p} = \Big(p_1, \dots, p_n\Big)\) by a series of improvements.\\
+
+    But we already know, from the Condorcet Jury Theorem, that the group accuracy of \(\bm{p}^*\) approaches \(1\) asymptotically.\\
+
+    So the accuracy of \(\bm{p}\) does the same.\\
+
+    % The expected value of the random variable \(v_i\) is:
     % \begin{flalign*}
-    %     \qquad\Pr\left[ F_\maj(0.9, 0.6, 0.55) = a\right] & = 0.77.&
+    %     \qquad\EXP\big[v_i\big] & = 1 \cdot p_i + 0 \cdot (1-p) &\\ 
+    %               & = p_i.&
     % \end{flalign*}
-    % Enlarging the group does not necessarily make it better:
+    % This means that:
     % \begin{flalign*}
-    %     \qquad\Pr\left[ F_\maj(0.9, 0.6, 0.55, 0.55, 0.55) = a\right] & = 0.76.&
-    % \end{flalign*}
-    % And if the \(p_i\)'s approach \(\nicefrac{1}{2}\) very fast then:
-    % \begin{flalign*}
-    %     \qquad\lim_{n\rightarrow\infty}\Pr\left[ F_\maj(v_1, \dots, v_n) = a\right] & \neq 1.&
+    %     \qquad\EXP\big[S_n\big] & = \EXP\big[v_1\big] + \EXP\big[v_2\big] + \dots + \EXP\big[v_n\big] &\\
+    %                & = p_1 + p_2 + \dots + p_n.&
     % \end{flalign*}
 
-    % For \(n\) voters with competences \(p_1\), \dots , \(p_n\) that vote independently of each other,
-    % if \(p_n > \nicefrac{1}{2} + \epsilon \), for some \(\epsilon > 0\), then, for any odd \(n\), 
-    % it holds that \(\lim_{n\rightarrow\infty}\Pr\left[ F_\maj(v_1, \dots, v_n) = a\right]\).
+
+
+
+
+
 
     %% Model for cascades
     % \begin{table}
