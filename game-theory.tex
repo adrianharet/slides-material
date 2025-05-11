@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, varwidth=10cm, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
+\documentclass[preview, varwidth=12.5cm, border={0pt 5pt 0pt 1pt}]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -8,7 +8,7 @@
 \newcommand{\UTFT}{{\text{UTFT}}}
 \newcommand{\ALLD}{{\text{ALLD}}}
 
-\begin{document}
+\begin{document}\raggedright
     % \begin{table}
     %     \begin{tabular}{rl}
     %         players & \(N = \{1, \dots , n\}\) \\
@@ -67,38 +67,82 @@
     
     
     
-    % A \emph{mixed strategy} for player \(i\) is a probability ditribution over actions,
-    % written \(s_i = (p_1, \dots , p_j, \dots )\), where \(p_i\) is the probability 
-    % with which player \(i\) plays action \(j\).\\
+    % A \emph{mixed strategy} \(s_i\) for player \(i\) is a probability distribution over actions,
+    % written \(s_i = \big(p_1, \dots , p_j, \dots \big)\), where \(p_i\) is the probability 
+    % with which player \(i\) plays action \(j\).
+    % \vspace{1em}
+
+    % Note that it needs to hold that \(\sum_j p_j = 1\) and \(p_j \geq 0\).
+
+
+
+
+
+
+    % If Player 1 plays \(s_1 = (0.9, 0.1)\), that means they play 
+    % Heads with probability \(0.9\) and Tails with probability \(0.1\).
+    % \vspace{1em}
 
     % Note that the pure strategies we've been dealing with so far are special cases of mixed 
-    % strategies, in which one action is played with probability \(1\).
+    % strategies, in which one action is played with probability \(1\) 
+    % and the rest with probability \(0\).
+
+
 
     % \(\text{state}~\ell~(p_\ell)\)
     % \(u(\text{action }k, \text{state }\ell)\)
 
-    % Assume Player 1 has strategy \(s_1 = (0.9, 0.1)\). What should Player 2 do?
+
+
+
+    % Suppose Player 1 uses strategy \(s_1 = \big( 0.9, 0.1 \big)\). What should Player 2 do?
     % \begin{flalign*}
-    %     \qquad\EXP[\text{Heads}] & = (-1) \cdot 0.9 + 1 \cdot 0.1 &\\ 
+    %     \qquad\EXP\Big[\text{Heads} \mid s_1 \Big] & = (-1) \cdot 0.9 + 1 \cdot 0.1 &\\ 
     %                        & = -0.8.&\\
-    %     \EXP[\text{Tails}] & = 1 \cdot 0.9 + (-1) \cdot 0.1 &\\ 
+    %     \EXP\Big[\text{Tails} \mid s_1\Big] & = 1 \cdot 0.9 + (-1) \cdot 0.1 &\\ 
     %                        & = 0.8.&
     % \end{flalign*}
-    % If Player 2 always plays Heads, they get an average payoff of \(-0.8\). 
-    % If they always play Tails, they get an average payoff of \(0.8\).\\ 
+    % If Player 2 always plays Heads, i.e., \(s_2 = \big(1, 0 \big)\), 
+    % they get an average payoff of \(-0.8\).
+    % If they always play Tails, i.e., \(s'_2 = \big(0, 1 \big)\), 
+    % they get an average payoff of \(0.8\).
+    % \vspace{1em}
 
-    % Would it make sense for Player 2 to mix between Heads and Tails, say with \(s_2' = (0.3, 0.7)\)?
+    % Would it make sense for Player 2 to mix between Heads and Tails, say with 
+    % strategy \(s''_2 = \big(0.3, 0.7\big)\)? With \(s''_2\), the expected payoff of Player 2 is:
     % \begin{flalign*}
-    %     \qquad\EXP[s'_2] & = (-0.8) \cdot 0.3 + 0.8 \cdot 0.7 &\\ 
+    %     \qquad\EXP\Big[s''_2 \mid s_1 \Big] & = \EXP\Big[ \text{Heads} \Big] \cdot 0.3 + \EXP\Big[ \text{Tails} \Big] \cdot 0.7 &\\ 
     %                        & = 0.32&\\
     %                        & < 0.8. &
     % \end{flalign*}    
+    % Given that Player 1 plays \(s_1 = \big(0.9, 0.1\big)\), 
+    % then, between \(s_2\), \(s'_2\) and \(s''_2\),
+    % Player 2 would rather play \(s'_2 = \big( 0, 1 \big)\).
 
-    % No mixing gives better results than always going for Tails, so Player 2 wants to play \(s_2 = (0, 1)\).\\
 
-    % Is \(\bm{s} = (s_1, s_2)\) a Nash equilibrium?\\
 
-    % No! If Player 2 plays \(s_2 = (0, 1)\), Player \(1\) wants to switch to \(s'_1 = (0, 1)\).
+
+
+    One can check that if Player 1 plays \(s_1 = \big(0.9, 0.1\big)\), 
+    then the strategy that maximizes Player 2's expected utility is \(s'_2 = \big(0, 1\big)\).
+    \vspace{1em}
+
+    In other words, \(s'_2 = \big(0, 1\big)\) is Player 2's \emph{best response} to \(s_1 = \big(0.9, 0.1\big)\).
+    \vspace{1em}
+
+    So is \(\bm{s} = \big(s_1, s'_2\big)\) a Nash equilibrium?
+    \vspace{1em}
+
+    No! If Player 2 plays \(s'_2 = \big(0, 1\big)\), Player 1 
+    wants to deviate to \(s'_1 = \big(1, 0\big)\):
+    \begin{flalign*}
+        \qquad\EXP\Big[s_1 \mid s'_2 \Big] & = \EXP\Big[ \text{Heads} \mid s'_2\Big] \cdot 0.9 + \EXP\Big[ \text{Tails} \mid s'_2\Big] \cdot 0.1 &\\
+            & = (-1) \cdot 0.9 + 1 \cdot 0.1 &\\ 
+            & = -0.8&
+    \end{flalign*}    
+
+
+
 
 
 
@@ -356,10 +400,14 @@
     % Note that as populations grow larger, the threshold frequency becomes forbiddingly high.
 
 
-    Assume \(\nicefrac{b}{c} = 2\).\\
 
-    If the initial fraction of UTFTs is above the threshold frequency of \(r\),
-    UTFTs can increase when rare.\\
 
-    Again, for larger populations, the threshold frequency becomes forbiddingly high.
+
+
+    % Assume \(\nicefrac{b}{c} = 2\).\\
+
+    % If the initial fraction of UTFTs is above the threshold frequency of \(r\),
+    % UTFTs can increase when rare.\\
+
+    % Again, for larger populations, the threshold frequency becomes forbiddingly high.
 \end{document}
