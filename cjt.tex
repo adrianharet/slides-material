@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=14cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 3pt 1pt}, varwidth=14.5cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -409,8 +409,8 @@
 
 
 % For an odd number \(n\) of voters with competences \(p_1\), \dots , \(p_n\) 
-% who vote independently of each other, then, if \(p_n > \nicefrac{1}{2} + \epsilon \), 
-% for some \(\epsilon > 0\), it holds that:
+% who vote independently of each other, then, if \(p_i > \nicefrac{1}{2} + \epsilon \), 
+% for every voter \(i\) and some \(\epsilon > 0\), it holds that:
 % \[
 %   \lim_{n\rightarrow\infty}{\Pr}\Big[ S_n > \nicefrac{n}{2} \Big] = 1.
 % \]    
@@ -451,11 +451,95 @@
 
 
 
-Every voter \(i\) has a weight \(w_i\).
-\vspace{1em}
+% Recall that votes are \(v_i \in \{0, 1\}\).
+% The \emph{sum of the votes} is \(S_n = v_1 + \dots + v_n\),
+% and the majority outcome is correct when \(S_n > \nicefrac{n}{2}\),
+% which is equivalent to:
+% \[
+%     \frac{1}{n} \cdot v_1 + \dots + \frac{1}{n} \cdot v_n > \frac{1}{2}.
+% \]
+% We can interpret \(\nicefrac{1}{n}\) as a weight, such that each vote \(v_i\) is weighted equally.
+% \vspace{1em}
 
-The collectis
+% Relaxing this assumption, we assume that each voter \(i\) has a \emph{weight} \(w_i \in \mathbb{R}\).
+% \vspace{1em}
 
+% The \emph{weighted sum of the votes} is:
+% \[
+%     W_n = w_1 v_1 + \dots + w_n v_n,
+% \]
+% We define the \emph{group vote} to be \(a\) (the correct alternative) if:
+% \[
+%     W_n > \frac{w_1 + \dots + w_n}{2}.
+% \]
+
+
+
+
+% Take three voters, with weights \(w_1 = 4\), \(w_2 = 1\), \(w_3 = 1\).
+% The weighted sum of the votes is:
+% \begin{flalign*}
+%     \qquad W_3 & = 4v_1 + v_2 + v_3, &
+% \end{flalign*}
+% and the threshold for voting for \(a\) is \(3\).
+% \vspace{1em}
+
+% Suppose the votes are \(v_1 = 1\), \(v_2 = 0\) and \(v_3 = 0\).
+% The weighted sum is:
+% \begin{flalign*}
+%     \qquad W_3 & = 4 > 3,&
+% \end{flalign*}
+% which means the group vote is \(a\). The group votes correctly, 
+% despite a wrong vote from \(v_2\) and \(v_3\).
+% \vspace{1em}
+
+% If the votes are \(v_1 = 0\), \(v_2 = 1\) and \(v_3 = 1\), the weighted sum is:
+% \begin{flalign*}
+%     \qquad W_3 & = 2 < 3,&
+% \end{flalign*}
+% which means the group vote is \(b\). The group votes incorrectly, despite 
+% correct votes from \(v_2\) and \(v_3\).
+
+
+
+
+
+% Take three voters, with weights \(w_1 = 2\), \(w_2 = -3\), \(w_3 = -3\).
+% The weighted sum of the votes is:
+% \begin{flalign*}
+%     \qquad W_3 & = 2v_1 - 3v_2 - 3v_3, &
+% \end{flalign*}
+% and the threshold for voting for \(a\) is \(-2\).
+% \vspace{1em}
+
+% Suppose the votes are \(v_1 = 1\), \(v_2 = 1\) and \(v_3 = 1\).
+% The weighted sum is:
+% \begin{flalign*}
+%     \qquad W_3 & = -4 < -2,&
+% \end{flalign*}
+% which means the group vote is \(b\).
+
+% \vspace{1em}
+
+% The group votes incorrectly, 
+% even though everyone votes correctly (!!!).
+% \vspace{1em}
+
+% Wut?
+
+
+
+% \({\Pr}\bigg[ W_n > \frac{w_1 + \dots + w_n}{2} \bigg]\)
+
+
+
+
+For \(n\) voters with competences \(p_1\), \dots, \(p_n\), 
+the neutral\(^*\) decision rule that maximizes the probability of a correct decision is
+a weighted voting rule with weights \(w_1\), \dots, \(w_n\) such that:
+\[
+    w_i \propto \ln{\frac{p_i}{1-p_i}}, \text{ for every voter } i.
+\]
 
 
 
