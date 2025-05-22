@@ -67,8 +67,8 @@
     
     
     
-    % A \emph{mixed strategy} \(s_i\) for player \(i\) is a probability distribution over actions,
-    % written \(s_i = \big(p_1, \dots , p_j, \dots \big)\), where \(p_i\) is the probability 
+    % A \emph{mixed strategy} \(s_i\) for player \(i\) is a probability distribution over \(i\)'s actions,
+    % written \(s_i = \big(p_1, \dots , p_j, \dots \big)\), where \(p_j\) is the probability 
     % with which player \(i\) plays action \(j\).
     % \vspace{1em}
 
@@ -148,39 +148,39 @@
 
 
 
-    Suppose Players 1 and 2 play mixed strategies 
-    \(s_1 = \big(p, 1-p\big)\) and \(s_2 = \big(q, 1-q\big)\), respectively, 
-    for \(p, q > 0\).
-    \vspace{1em}
+    % Suppose Players 1 and 2 play mixed strategies 
+    % \(s_1 = \big(p, 1-p\big)\) and \(s_2 = \big(q, 1-q\big)\), respectively, 
+    % for \(p, q > 0\).
+    % \vspace{1em}
 
-    Note that Player 2's expected payoff with these strategies is:
-    \begin{flalign*}
-        \qquad\EXP\Big[s_2 \mid s_1\Big] & = \EXP\Big[\text{Heads} \mid s_1\Big] \cdot q + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot (1-q). &
-    \end{flalign*}
-    Suppose, now, that Player 1's strategy makes Heads more attractive for Player 2:
-    \begin{flalign*}
-        \qquad\EXP\Big[\text{Heads} \mid s_1\Big] & > \EXP\Big[\text{Tails} \mid s_1\Big].&
-    \end{flalign*}
-    In this case, Player 2 would want to deviate to \(s'_2 = \big(1, 0\big)\):
-    \begin{flalign*}
-        \qquad\EXP\Big[s'_2 \mid s_1\Big] & = \EXP\Big[\text{Heads} \mid s_1\Big] \cdot 1 + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot 0 &\\ 
-        % & = \EXP\Big[\text{Heads} \mid s_1\Big] &\\ 
-        & > \EXP\Big[\text{Heads} \mid s_1\Big] \cdot q + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot (1-q).&
-    \end{flalign*}
+    % Note that Player 2's expected payoff with these strategies is:
+    % \begin{flalign*}
+    %     \qquad\EXP\Big[s_2 \mid s_1\Big] & = \EXP\Big[\text{Heads} \mid s_1\Big] \cdot q + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot (1-q). &
+    % \end{flalign*}
+    % Suppose, now, that Player 1's strategy makes Heads more attractive for Player 2:
+    % \begin{flalign*}
+    %     \qquad\EXP\Big[\text{Heads} \mid s_1\Big] & > \EXP\Big[\text{Tails} \mid s_1\Big].&
+    % \end{flalign*}
+    % In this case, Player 2 would want to deviate to \(s'_2 = \big(1, 0\big)\):
+    % \begin{flalign*}
+    %     \qquad\EXP\Big[s'_2 \mid s_1\Big] & = \EXP\Big[\text{Heads} \mid s_1\Big] \cdot 1 + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot 0 &\\ 
+    %     % & = \EXP\Big[\text{Heads} \mid s_1\Big] &\\ 
+    %     & > \EXP\Big[\text{Heads} \mid s_1\Big] \cdot q + \EXP\Big[\text{Tails} \mid s_1\Big] \cdot (1-q).&
+    % \end{flalign*}
 
-    So \(\bm{s} = \big(s_1, s_2\big)\) cannot be a Nash equilibrium.
-    Same if \(\EXP\Big[\text{Tails} \mid s_1\Big] > \EXP\Big[\text{Heads} \mid s_1\Big]\).
-    \vspace{1em}
+    % So \(\bm{s} = \big(s_1, s_2\big)\) cannot be a Nash equilibrium.
+    % Same if \(\EXP\Big[\text{Tails} \mid s_1\Big] > \EXP\Big[\text{Heads} \mid s_1\Big]\).
+    % \vspace{1em}
     
-    The only way to avoid this is for Player 1 to play a strategy \(s^*_1 = (p, 1-p)\) that makes
-    Player 2 indifferent between their actions:
-    \begin{flalign*}
-        \qquad\EXP\Big[\text{Heads} \mid s_1\Big] = \EXP\Big[\text{Tails} \mid s_2\Big] & 
-            \text{ iff } (-1) \cdot p + 1 \cdot (1-p) = 1 \cdot p + (-1) \cdot (1-p)&\\ 
-                & \text{ iff } p = \nicefrac{1}{2}.&
-    \end{flalign*}
-    So Player 1 wants to play \(s^*_1 = \big(\nicefrac{1}{2}, \nicefrac{1}{2}\big)\). 
-    Similarly, Player 2 wants to play \(s^*_2 = \big(\nicefrac{1}{2}, \nicefrac{1}{2}\big)\). This is the mixed Nash equilibrium.
+    % The only way to avoid this is for Player 1 to play a strategy \(s^*_1 = (p, 1-p)\) that makes
+    % Player 2 indifferent between their actions:
+    % \begin{flalign*}
+    %     \qquad\EXP\Big[\text{Heads} \mid s_1\Big] = \EXP\Big[\text{Tails} \mid s_1\Big] & 
+    %         \text{ iff } (-1) \cdot p + 1 \cdot (1-p) = 1 \cdot p + (-1) \cdot (1-p)&\\ 
+    %             & \text{ iff } p = \nicefrac{1}{2}.&
+    % \end{flalign*}
+    % So Player 1 wants to play \(s^*_1 = \big(\nicefrac{1}{2}, \nicefrac{1}{2}\big)\). 
+    % Similarly, Player 2 wants to play \(s^*_2 = \big(\nicefrac{1}{2}, \nicefrac{1}{2}\big)\). This is the mixed Nash equilibrium.
 
 
 
@@ -188,6 +188,17 @@
     % \(\bm{s}^* = \Big( (\nicefrac{1}{2}, \nicefrac{1}{2}), (\nicefrac{1}{2}, \nicefrac{1}{2})\Big)\)
 
 
+
+
+
+
+    A two-player game is \emph{zero-sum} if players' payoffs add up to zero in every outcome.
+    That is, if Player 1 plays action \(a\) and Player 2 plays action \(b\), then:
+    \[
+        u_1(a, b) + u_2(a, b) = 0.
+    \]
+    \vspace{1em}
+    In other words, \(u_1(a, b) = - u_2(a, b)\).\\
 
 
 
