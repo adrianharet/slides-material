@@ -1,8 +1,8 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 11cm, 
-    border = {0pt 10pt 1pt 1pt}
+    varwidth = 8cm, 
+    border = {0pt 0pt 1pt 1pt}
     ]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
@@ -203,7 +203,9 @@
 
     % \(\bm{s}^* = \Big( (\nicefrac{1}{2}, \nicefrac{1}{2}), (\nicefrac{1}{2}, \nicefrac{1}{2})\Big)\)
 
-    % \(\bm{s}^* = \Big( (\nicefrac{1}{4}, \nicefrac{3}{4}), (\nicefrac{1}{2}, \nicefrac{1}{2})\Big)\)
+    \(\bm{s}^* = \Big( \big(38.47\%, 61.53\% \big), (40.23\%, 59.77\%)\Big)\)
+
+    % \(\bm{s}^* = \Big( (\nicefrac{3}{7}, \nicefrac{4}{7}), (\nicefrac{4}{7}, \nicefrac{3}{7})\Big)\)
 
     % \(\bm{s}^* = \big( \text{B}, \text{B}\big)\)
 
@@ -270,6 +272,10 @@
     % If \(4p - 2 = 0\), \(f\) is constant at \(f(p, \nicefrac{1}{2}) = 0\).
     % \vspace{1em}
     
+
+
+
+
     % So Player 1's worst-case payoff is:\
     % \begin{flalign*}
     %     \qquad\min_q f(p, q) & = 
@@ -293,10 +299,49 @@
     %     \max_p \min_q f(p, q) = \min_q \max_p f(p, q) = 0.
     % \]
 
-    \[
-        \max_{s_1} \min_{s_2} \EXP\Big[u_1{\big( s_1, s_2 \big)}\Big] = 
-        \min_{s_2} \max_{s_1} \EXP\Big[u_1{\big( s_1, s_2 \big)}\Big].
-    \]
+    % \[
+    %     \max_{s_1} \min_{s_2} \EXP\Big[u_1{\big( s_1, s_2 \big)}\Big] = 
+    %     \min_{s_2} \max_{s_1} \EXP\Big[u_1{\big( s_1, s_2 \big)}\Big].
+    % \]
+
+
+
+
+    % The Kicker and Goalkeeper play mixed strategies \(s_{\text{K}} = \big(p, 1-p\big)\)
+    % and \(s_{\text{G}} = \big(q, 1-q\big)\), respectively.
+    % \vspace{1em}
+
+    % To get the mixed Nash equilibrium, we find the values of \(p\) and \(q\) that
+    % make the Kicker and the Goalkeeper indifferent between their actions:
+    % \begin{flalign*}
+    %     % \quad
+    %     \EXP\Big[u_{\text{K}}\big(\text{L}, s_{\text{G}}\big)\Big] = \EXP\Big[u_{\text{K}}\big(\text{R}, s_{\text{G}}\big)\Big] & 
+    %         \text{ iff } 0 \cdot q + 1 \cdot (1-q) = \frac{3}{4} \cdot q + 0 \cdot (1-q)&\\ 
+    %             & \text{ iff } q = \frac{4}{7}.& \\
+    %     \EXP\Big[u_{\text{G}}\big(s_{\text{K}}, \text{L}\big)\Big] = \EXP\Big[u_{\text{G}}\big(s_{\text{K}}, \text{R}\big)\Big] & 
+    %         \text{ iff } 1 \cdot p + \frac{1}{4} \cdot (1-p) = 0 \cdot p + 1 \cdot (1-p)&\\ 
+    %             & \text{ iff } p = \frac{3}{7}.&
+    % \end{flalign*}
+    % Interestingly, the Kicker now shoots to their weak side (right) more often!
+    % \vspace{1em}
+
+    % What's going on here?
+
+
+
+
+    % Write \(x\), \(y\), \(z\), \(t\), for the various average success rates of the Kicker 
+    % (see payoffs on the right).
+    % \vspace{1em}
+
+    % Statistics give us the average numbers displayed (as percentages).
+    % \vspace{1em}
+
+    % This gives us a very specific prediction, as the mixed Nash equilibrium.
+
+
+
+
 
 
     % Assume that at some time \(t\) there are \(c\) cooperators and \(d\) defectors.\\
