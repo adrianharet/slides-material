@@ -1,0 +1,21 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[
+    preview, 
+    varwidth = 11cm, 
+    border = {0pt 0pt 1pt 1pt}
+    ]{standalone} % border options are {left bottom right top}
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+
+\begin{document}\raggedright
+We represent a \emph{social network} as a graph $G = (V, E)$, 
+where $V$ is the set of \emph{vertices} (agents) and 
+$E$ is the set of \emph{edges} (relationships).
+\vspace{1em}
+
+The graph can be \emph{directed} or \emph{undirected}, 
+depending on whether relationships are one-way or two-way.
+\end{document}
