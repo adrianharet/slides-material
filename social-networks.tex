@@ -1,8 +1,8 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 11cm, 
-    border = {0pt 0pt 1pt 1pt}
+    varwidth = 12cm, 
+    border = {2pt 0pt 0pt 0pt}
     ]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
@@ -11,11 +11,32 @@
 
 
 \begin{document}\raggedright
-We represent a \emph{social network} as a graph $G = (V, E)$, 
-where $V$ is the set of \emph{vertices} (agents) and 
-$E$ is the set of \emph{edges} (relationships).
+% We represent a \emph{social network} as a graph $G = (V, E)$, 
+% where $V$ is the set of \emph{vertices} (agents) and 
+% $E$ is the set of \emph{edges} (relationships).
+% \vspace{1em}
+
+% The graph can be \emph{directed} or \emph{undirected}, 
+% depending on whether relationships are one-way or two-way.
+
+
+% The \emph{degree} \(d_i\) of a node \(i\) is the number of edges connected to it:
+% \begin{align*}
+%     d_i & = \big|\big\{j \in V \mid (i, j) \in E\big\}\big|.&
+% \end{align*}
+
+
+The \emph{degree distribution} \(P(d)\) of a network is a description of the relative frequencies of nodes that
+have different degrees. 
 \vspace{1em}
 
-The graph can be \emph{directed} or \emph{undirected}, 
-depending on whether relationships are one-way or two-way.
+In other words, \(P(d)\) is the fraction of nodes that have degree \(d\).
+\vspace{1em}
+
+The function \(P\) can be a frequency distribution, if we are describing a specific network;
+or a probability distribution, if we are working with random networks.
+
+% \vspace{1em}
+% The \emph{degree distribution} is the probability distribution of the degrees of the nodes in the network,
 \end{document}
+
