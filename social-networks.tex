@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 12cm, 
+    varwidth = 4cm, 
     border = {2pt 0pt 0pt 0pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -26,17 +26,75 @@
 % \end{align*}
 
 
-The \emph{degree distribution} \(P(d)\) of a network is a description of the relative frequencies of nodes that
-have different degrees. 
-\vspace{1em}
 
-In other words, \(P(d)\) is the fraction of nodes that have degree \(d\).
-\vspace{1em}
 
-The function \(P\) can be a frequency distribution, if we are describing a specific network;
-or a probability distribution, if we are working with random networks.
 
+% The \emph{degree distribution} \(P(d)\) of a network is a description of the relative frequencies of nodes that
+% have different degrees. 
 % \vspace{1em}
-% The \emph{degree distribution} is the probability distribution of the degrees of the nodes in the network,
+
+% In other words, \(P(d)\) is the fraction of nodes that have degree \(d\).
+% \vspace{1em}
+
+% The function \(P\) can be a frequency distribution, if we are describing a specific network;
+% or a probability distribution, if we are working with random networks.
+
+
+
+% For a set of \(n\) nodes and a probability \(p\), the \emph{Erdős-Rényi model} generates a random graph \(G(n, p)\) 
+% by going through all possible pairs of nodes and adding an edge between them with probability \(p\).
+
+
+
+
+% The degree distribution of an Erdős-Rényi random graph \(G(n, p)\) is given by the \emph{binomial distribution}:
+% \[
+%     {\Pr}\Big[ d = k \Big] = {n-1 \choose k} p^k (1-p)^{n-1-k}.
+% \]
+
+% The `typical' node has degree \((n-1)p\).
+
+
+
+% A \emph{scale-free network} is a type of network whose degree distribution follows a power law:
+% \[
+%     P(d) \sim c \cdot d^{-\gamma},
+% \]
+% where \(c>0\) and \(\gamma\) is a constant typically in the range \(2 < \gamma < 3\).
+
+% The relative frequencies stay constant as the degree grows from \(d\) to \(kd\):
+% \vspace{1em}
+
+% Thus:
+% \begin{flalign*}
+%     \qquad
+%     \frac{P(kd)}{P(d)} & = \frac{c \cdot k^{-\gamma} d ^{-\gamma}}{c \cdot d^{-\gamma}} &\\ 
+%                        & = k^{-\gamma}. &
+% \end{flalign*}
+% This is true regardless of the degree \(d\) we start with:
+% \begin{flalign*}
+%     \qquad
+%     \frac{P(2)}{P(1)} & = \frac{P(20)}{P(10)} = \frac{P(200)}{P(100)} = \dots&
+% \end{flalign*}
+% This is best seen when graphing the degree distribution.
+% \vspace{1em}
+
+% On a log-log scale, the degree distribution of a scale-free network appears as a straight line with slope \(-\gamma\).
+
+% The \emph{distance} \(d(i, j)\) between two nodes \(i\) and \(j\) 
+% in a network is the length of the shortest path between \(i\) and \(j\).
+
+% The \emph{diameter} of a network \(G\) is the maximum distance between any two nodes:
+% \begin{flalign*}
+%     \qquad
+%     \text{diam}(G) & = \max_{i, j \in V} d(i, j). &
+% \end{flalign*}
+
+
+The maximum distance (i.e., diameter) is 
+\(2\) in \(G_1\). 
+\vspace{1em}
+
+And \(4\) in \(G_2\).
 \end{document}
 
