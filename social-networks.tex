@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 4cm, 
+    varwidth = 9cm, 
     border = {2pt 0pt 0pt 0pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -62,24 +62,40 @@
 % \]
 % where \(c>0\) and \(\gamma\) is a constant typically in the range \(2 < \gamma < 3\).
 
-% The relative frequencies stay constant as the degree grows from \(d\) to \(kd\):
-% \vspace{1em}
 
-% Thus:
+
+
+The relative frequencies stay constant as the degree grows from \(d\) to \(kd\):
+\begin{flalign*}
+    \qquad
+    \frac{P(kd)}{P(d)} & = \frac{c \cdot k^{-\gamma} d ^{-\gamma}}{c \cdot d^{-\gamma}} &\\ 
+                       & = k^{-\gamma}. &
+\end{flalign*}
+This is true regardless of the degree \(d\) we start with:
+\begin{flalign*}
+    \qquad
+    \frac{P(2)}{P(1)} & = \frac{P(20)}{P(10)} = \frac{P(200)}{P(100)} = \dots&
+\end{flalign*}
+Best seen when graphing the degree distribution\dots
+\vspace{1em}
+
+\dots on a \emph{log-log scale}, for readability:
+the degree distribution of a scale-free network appears as a straight line with slope \(-\gamma\).
+
+
+% Start with \(m_0\) nodes. New nodes are added, one at a time.
+% Each new node connects to an existing node \(i\) with a probability \(p_i\) 
+% proportional to \(i\)'s degree:
 % \begin{flalign*}
 %     \qquad
-%     \frac{P(kd)}{P(d)} & = \frac{c \cdot k^{-\gamma} d ^{-\gamma}}{c \cdot d^{-\gamma}} &\\ 
-%                        & = k^{-\gamma}. &
+%     p_i & = \frac{d_i}{\sum_{j} d_j}. &
 % \end{flalign*}
-% This is true regardless of the degree \(d\) we start with:
-% \begin{flalign*}
-%     \qquad
-%     \frac{P(2)}{P(1)} & = \frac{P(20)}{P(10)} = \frac{P(200)}{P(100)} = \dots&
-% \end{flalign*}
-% This is best seen when graphing the degree distribution.
-% \vspace{1em}
 
-% On a log-log scale, the degree distribution of a scale-free network appears as a straight line with slope \(-\gamma\).
+
+
+
+
+
 
 % The \emph{distance} \(d(i, j)\) between two nodes \(i\) and \(j\) 
 % in a network is the length of the shortest path between \(i\) and \(j\).
@@ -91,10 +107,72 @@
 % \end{flalign*}
 
 
-The maximum distance (i.e., diameter) is 
-\(2\) in \(G_1\). 
-\vspace{1em}
+% The maximum distance (i.e., diameter) is 
+% \(2\) in \(G_1\). 
+% \vspace{1em}
 
-And \(4\) in \(G_2\).
+% And \(4\) in \(G_2\).
+
+
+% The \emph{neighborhood} \(N(i)\) of a node \(i\) is the set of nodes that are directly connected to \(i\):
+% \begin{flalign*}
+%     \qquad
+%     N(i) & = \big\{j \in V \mid (i, j) \in E\big\}. &
+% \end{flalign*}
+
+
+% The \emph{degree} \(d_i\) of a node \(i\) is the size of \(i\)'s neighborhood:
+% \begin{flalign*}
+%     \qquad
+%     d_i & = \big|N(i) \big|, &
+% \end{flalign*}
+% i.e., the number of nodes directly connected to \(i\).
+
+
+% Consider the \emph{star graph} \(G_1\).
+% \vspace{1em}
+
+% And the \emph{(binary) tree} \(G_2\).
+% \vspace{1em}
+
+% The distance between \(i\) and \(j\) is \(2\) in \(G_1\) and \(4\) in \(G_2\).
+
+
+% The \emph{average shortest path length} \(\mathit{L}(G)\) of a network \(G\) is the average distance between all pairs of nodes:
+% \begin{flalign*}
+%     \qquad
+%     \mathit{L}(G) & = \frac{1}{|V|(|V|-1)} \sum_{i, j \in V} d(i, j). &
+% \end{flalign*}
+
+
+% The \emph{clustering coefficient} \(\mathit{Cl}(i)\) of a node \(i\) is the fraction of pairs of its neighbors 
+% connected to each other:
+% \begin{flalign*}
+%     \quad
+%     \mathit{Cl}(i) & = \frac{\text{number of edges between neighbors of } i}{\text{number of pairs of neighbors of } i} 
+%                      = \frac{\bigg|\Big\{\{j, k\} \subseteq N(i) \mid (j, k) \in E\Big\}\bigg|}{\bigg|\Big\{\{j, k\} \subseteq N(i)\Big\}\bigg|} & \\
+%                    & = \frac{\bigg|\Big\{\{j, k\} \subseteq N(i) \mid (j, k) \in E\Big\}\bigg|}{\binom{d_i}{2}}  &\\
+%                      & = 2 \cdot \frac{\bigg|\Big\{\{j, k\} \subseteq N(i) \mid (j, k) \in E\Big\}\bigg|}{d_i(d_i - 1)}. &
+% \end{flalign*}
+
+
+% The \emph{clustering coefficient} \(\mathit{Cl}(G)\) of network \(G\) is the average clustering coefficient of its nodes:
+% \begin{flalign*}
+%     \qquad
+%     \mathit{Cl}(G) & = \frac{1}{|V|} \sum_{i \in V} \mathit{Cl}(i). &
+% \end{flalign*}
+
+
+% A \emph{small-world network} is a type of network characterized by a \emph{high clustering coefficient} and 
+% \emph{short average path length}:
+%     \[
+%         \mathit{L}(G) \sim \log(|V|),
+%     \]
+% i.e., the average distance between any two nodes is proportional to the logarithm of the number of nodes.
+
+
+% Start with a graph where each node is connected to exactly \(k\) other nodes. 
+% Then, at every time step, randomly rewire each edge with probability \(p\) to an unattached node.
+
 \end{document}
 
