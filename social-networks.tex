@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 9cm, 
+    varwidth = 12cm, 
     border = {2pt 0pt 0pt 0pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -65,22 +65,22 @@
 
 
 
-The relative frequencies stay constant as the degree grows from \(d\) to \(kd\):
-\begin{flalign*}
-    \qquad
-    \frac{P(kd)}{P(d)} & = \frac{c \cdot k^{-\gamma} d ^{-\gamma}}{c \cdot d^{-\gamma}} &\\ 
-                       & = k^{-\gamma}. &
-\end{flalign*}
-This is true regardless of the degree \(d\) we start with:
-\begin{flalign*}
-    \qquad
-    \frac{P(2)}{P(1)} & = \frac{P(20)}{P(10)} = \frac{P(200)}{P(100)} = \dots&
-\end{flalign*}
-Best seen when graphing the degree distribution\dots
-\vspace{1em}
+% The relative frequencies stay constant as the degree grows from \(d\) to \(kd\):
+% \begin{flalign*}
+%     \qquad
+%     \frac{P(kd)}{P(d)} & = \frac{c \cdot k^{-\gamma} d ^{-\gamma}}{c \cdot d^{-\gamma}} &\\ 
+%                        & = k^{-\gamma}. &
+% \end{flalign*}
+% This is true regardless of the degree \(d\) we start with:
+% \begin{flalign*}
+%     \qquad
+%     \frac{P(2)}{P(1)} & = \frac{P(20)}{P(10)} = \frac{P(200)}{P(100)} = \dots&
+% \end{flalign*}
+% Best seen when graphing the degree distribution\dots
+% \vspace{1em}
 
-\dots on a \emph{log-log scale}, for readability:
-the degree distribution of a scale-free network appears as a straight line with slope \(-\gamma\).
+% \dots on a \emph{log-log scale}, for readability:
+% the degree distribution of a scale-free network appears as a straight line with slope \(-\gamma\).
 
 
 % Start with \(m_0\) nodes. New nodes are added, one at a time.
@@ -173,6 +173,39 @@ the degree distribution of a scale-free network appears as a straight line with 
 
 % Start with a graph where each node is connected to exactly \(k\) other nodes. 
 % Then, at every time step, randomly rewire each edge with probability \(p\) to an unattached node.
+
+
+
+% The \emph{degree centrality}\(^*\) \(C_d(i)\) of node \(i\) is the number of nodes connected to \(i\):
+% \begin{flalign*}
+%     \qquad
+%     C_d(i) & = d_i. &
+% \end{flalign*}
+
+% To make it easier to compare centralities across different networks, 
+% we can normalize it relative to the total number \(n\) of nodes:
+% \begin{flalign*}
+%     \qquad
+%     C_d(i) & = \frac{d_i}{n - 1}. &
+% \end{flalign*}
+
+% \(^*\)Note that this definition applies to undirected networks.
+
+
+
+
+Take \(\sigma_{j, k}\) to be \emph{the number of shortest paths between \(j\) and \(k\)}, 
+and \(\sigma_{j, k}(i)\) to be the number of shortest paths between \(j\) and \(k\) 
+\emph{that pass through \(i\)}.
+\vspace{1em}
+
+The \emph{betweeness centrality} of node \(i\) is defined as: 
+\begin{flalign*}
+    \qquad
+    C_{\mathit{bet}}(i) & = \frac{1}{\nicefrac{(n-1)(n-2)}{2}} \cdot 
+        \sum_{j \neq k, j \neq i, k \neq i } \frac{\sigma_{j, k}(i)}{\sigma_{j, k}}, &
+\end{flalign*}
+i.e., the average fraction of shortest paths that pass through \(i\)
 
 \end{document}
 
