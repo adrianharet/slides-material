@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 12cm, 
+    varwidth = 8cm, 
     border = {2pt 0pt 0pt 0pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -194,18 +194,98 @@
 
 
 
-Take \(\sigma_{j, k}\) to be \emph{the number of shortest paths between \(j\) and \(k\)}, 
-and \(\sigma_{j, k}(i)\) to be the number of shortest paths between \(j\) and \(k\) 
-\emph{that pass through \(i\)}.
-\vspace{1em}
+% Take \(\sigma_{j, k}\) to be \emph{the number of shortest paths between \(j\) and \(k\)}, 
+% and \(\sigma_{j, k}(i)\) to be the number of shortest paths between \(j\) and \(k\) 
+% \emph{that pass through \(i\)}.
+% \vspace{1em}
 
-The \emph{betweeness centrality} of node \(i\) is defined as: 
-\begin{flalign*}
-    \qquad
-    C_{\mathit{bet}}(i) & = \frac{1}{\nicefrac{(n-1)(n-2)}{2}} \cdot 
-        \sum_{j \neq k, j \neq i, k \neq i } \frac{\sigma_{j, k}(i)}{\sigma_{j, k}}, &
-\end{flalign*}
-i.e., the average fraction of shortest paths that pass through \(i\)
+% The \emph{betweeness centrality} of node \(i\) is defined as: 
+% \begin{flalign*}
+%     \qquad
+%     C_b(i) & = \frac{1}{\nicefrac{(n-1)(n-2)}{2}} \cdot 
+%         \sum_{j \neq k, j \neq i, k \neq i } \frac{\sigma_{j, k}(i)}{\sigma_{j, k}}, &
+% \end{flalign*}
+% i.e., the average fraction of shortest paths that pass through \(i\).
+
+
+
+% There are \(\nicefrac{1}{2} \cdot (7-1) \cdot (7-2) = 15\) pairs of nodes that do not include node \(3\):
+% \begin{flalign*}
+%     \qquad
+%     & (0, 1), (0, 2), (0, 4), (0, 5), (0, 6), &\\
+%     & (1, 2), (1, 4), (1, 5), (1, 6),         &\\
+%     & (2, 4), (2, 5), (2, 6),                 &\\
+%     & (4, 5), (4, 6),                         &\\
+%     & (5, 6).    
+% \end{flalign*}
+% The shortest path between \(0\) and \(1\) is \((0,1)\).
+% The shortest path between \(0\) and \(4\) is \((0, 2, 3, 4)\)\dots 
+% \vspace{1em}
+
+% Every pair of nodes has a unique shortest path,
+% i.e., \(\sigma_{j, k} = 1\) for all \(j\neq 3\) and \(k \neq 3\).
+% \vspace{1em}
+
+% Node \(3\) is on the shortest path for \(9\) out of the \(15\) pairs of nodes.
+% \vspace{1em}
+
+% The \emph{betweeness centrality} of node \(3\) is thus:
+% \begin{flalign*}
+%     \qquad
+%     C_b(3) & = \frac{1}{\nicefrac{(7-1)(7-2)}{2}} \cdot 9 &\\
+%            & = 0.6. &
+% \end{flalign*}
+
+
+
+% The \emph{eigenvector centrality} \(C_e(i)\) of node \(i\) is defined as:
+% \begin{flalign*}
+%     \qquad
+%     C_e(i) & = \frac{1}{\lambda} \sum_{j \in N(i)} C_e(j), &
+% \end{flalign*}
+% where \(\lambda\) is the largest eigenvalue of the adjacency matrix \(A\) of the network,
+% and \(N(i)\) is the neighborhood of node \(i\).
+
+
+% For an \(n \times n\) matrix 
+% \(
+%     \bm{M} = 
+%     \begin{bmatrix}
+%         m_{11} & \dots & m_{1n}  \\
+%         \vdots & \ddots & \vdots  \\
+%         m_{n1} & \dots & m_{nn}
+%     \end{bmatrix},
+% \)
+% an \emph{eigenvector} 
+% \(
+%     \bm{v} = 
+%     \begin{bmatrix}
+%         v_1  \\
+%         \vdots \\
+%         v_{n}
+%     \end{bmatrix}
+%     \) 
+% is a non-zero \(n \times 1\) vector such that:
+% \begin{flalign*}
+%     \qquad
+%     & \bm{M}\bm{v} = \lambda \bm{v}, &
+% \end{flalign*}
+% where \(\lambda\) is a scalar called the \emph{eigenvalue} of \(\bm{M}\) corresponding to the eigenvector \(\bm{v}\).
+
+
+% \[
+%     \bm{A} = 
+%     \begin{bmatrix}
+%         0 & 1 & 1 & 1 & 1  \\
+%         1 & 0 & 0 & 1 & 0  \\
+%         1 & 0 & 0 & 1 & 0  \\
+%         1 & 1 & 1 & 0 & 1  \\
+%         1 & 0 & 0 & 1 & 0
+%     \end{bmatrix}
+% \]
+
+The \emph{adjacency matrix} \(\bm{A}\) of a network with \(n\) nodes is an \(n\times n\) matrix 
+where entry \(a_{ij}\) is \(1\) if there is an edge between nodes \(i\) and \(j\), and \(0\) otherwise.
 
 \end{document}
 
