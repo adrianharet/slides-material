@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=10cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=19.5cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -31,6 +31,37 @@
     %                     & to a weighted average over the beliefs of neighbors
     %     \end{tabular}
     % \end{table}
+
+    There is a set \(N = \{1, 2, \dots, n\}\) of \emph{agents}.
+    Each agent \(i\) has an \emph{opinion}, or \emph{belief}, \(x_i \in [0,1]\).
+    The opinions are meant to track a \emph{true state} \(\mu \in (0, 1)\).
+    \vspace{1em}
+
+    Time goes by in discrete steps \(t \in \{0, 1, 2, \dots \}\).
+    Agent \(i\)'s \emph{opinion at time} \(t\) is \(x^t_i\).
+    \vspace{1em}
+
+    Agents are connected by a \emph{social network} \(G = (N, E)\), which is a directed graph.
+    An edge from \(i\) to \(j\) indicates that agent \(i\) pays attention to agent \(j\).
+    Agent \(i\)'s \emph{(out-)neighborhood} \(N(i)\) is the set of agents that \(i\) pays attention to:
+    \begin{flalign*}
+        \qquad
+        N(i) &= \{ j \in N \mid (i, j) \in E \}. &
+    \end{flalign*}
+    Each agent \(i\) distributes a total weight of \(1\) across the agents in \(N(i)\):
+    \begin{flalign*}
+        \qquad
+        \sum_{j \in N(i)} w_{ij} &= 1, &
+    \end{flalign*}
+    where \(w_{ij} > 0\) is the \emph{weight} that agent \(i\) places on agent \(j\)'s opinion.
+    \vspace{1em}
+
+    At each new time step, agents \emph{update} their opinions to a weighted average 
+    of the opinions of agents they pay attention to:
+    \begin{flalign*}
+        \qquad
+        x^{t+1}_i &= \sum_{j \in N(i)} w_{ij} x^t_j. &
+    \end{flalign*}
 
     % \( t = \infty\)
 
@@ -85,17 +116,17 @@
 
     % \(\nicefrac{1}{2(n{-}1)}\)
 
-    The network grows by adding agents that listen to the central agent 1.\\
+    % The network grows by adding agents that listen to the central agent 1.\\
 
-    The eigenvector centralities are:
+    % The eigenvector centralities are:
 
-    \[
-        \bm{c} = \left(\frac{1}{2}, \frac{1}{2(n-1)}, \dots , \frac{1}{2(n-1)}\right)
-    \]
+    % \[
+    %     \bm{c} = \left(\frac{1}{2}, \frac{1}{2(n-1)}, \dots , \frac{1}{2(n-1)}\right)
+    % \]
 
-    Agent 1 retains a constant share of (network) influence as \(n\) grows.\\
+    % Agent 1 retains a constant share of (network) influence as \(n\) grows.\\
 
-    And thus decides the consensus belief.\\
+    % And thus decides the consensus belief.\\
 
-    No bueno.
+    % No bueno.
 \end{document}
