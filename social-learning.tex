@@ -1,11 +1,12 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=19.5cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
 
-\begin{document}
+\begin{document}\raggedright
+
     %% Model
     % \begin{table}
     %     \begin{tabular}{rl}
@@ -32,36 +33,63 @@
     %     \end{tabular}
     % \end{table}
 
-    There is a set \(N = \{1, 2, \dots, n\}\) of \emph{agents}.
-    Each agent \(i\) has an \emph{opinion}, or \emph{belief}, \(x_i \in [0,1]\).
-    The opinions are meant to track a \emph{true state} \(\mu \in (0, 1)\).
+    % There is a set \(N = \{1, 2, \dots, n\}\) of \emph{agents}.
+    % Each agent \(i\) has an \emph{opinion}, or \emph{belief}, \(x_i \in [0,1]\).
+    % The opinions are meant to track a \emph{true state} \(\mu \in (0, 1)\).
+    % \vspace{1em}
+
+    % Time goes by in discrete steps \(t \in \{0, 1, 2, \dots \}\).
+    % Agent \(i\)'s \emph{opinion at time} \(t\) is \(x^t_i\).
+    % \vspace{1em}
+
+    % Agents are connected by a \emph{social network} \(G = (N, E)\), which is a directed graph.
+    % An edge from \(i\) to \(j\) indicates that agent \(i\) pays attention to agent \(j\).
+    % Agent \(i\)'s \emph{(out-)neighborhood} \(N(i)\) is the set of agents that \(i\) pays attention to:
+    % \begin{flalign*}
+    %     \qquad
+    %     N(i) &= \{ j \in N \mid (i, j) \in E \}. &
+    % \end{flalign*}
+    % Each agent \(i\) distributes a total weight of \(1\) across the agents in \(N(i)\):
+    % \begin{flalign*}
+    %     \qquad
+    %     \sum_{j \in N(i)} w_{ij} &= 1, &
+    % \end{flalign*}
+    % where \(w_{ij} > 0\) is the \emph{weight} that agent \(i\) places on agent \(j\)'s opinion.
+    % \vspace{1em}
+
+    % At each new time step, agents \emph{update} their opinions to a weighted average 
+    % of the opinions of agents they pay attention to:
+    % \begin{flalign*}
+    %     \qquad
+    %     x^{t+1}_i &= \sum_{j \in N(i)} w_{ij} x^t_j. &
+    % \end{flalign*}
+
+
+    Take \(N = \{1, \dots, 6\}\) to be the set of agents.
+    They are connected by the social network \(G\) on the right.
     \vspace{1em}
 
-    Time goes by in discrete steps \(t \in \{0, 1, 2, \dots \}\).
-    Agent \(i\)'s \emph{opinion at time} \(t\) is \(x^t_i\).
+    Each agent distributes a total weight of \(1\) across the agents in their neighborhood.
     \vspace{1em}
 
-    Agents are connected by a \emph{social network} \(G = (N, E)\), which is a directed graph.
-    An edge from \(i\) to \(j\) indicates that agent \(i\) pays attention to agent \(j\).
-    Agent \(i\)'s \emph{(out-)neighborhood} \(N(i)\) is the set of agents that \(i\) pays attention to:
-    \begin{flalign*}
-        \qquad
-        N(i) &= \{ j \in N \mid (i, j) \in E \}. &
-    \end{flalign*}
-    Each agent \(i\) distributes a total weight of \(1\) across the agents in \(N(i)\):
-    \begin{flalign*}
-        \qquad
-        \sum_{j \in N(i)} w_{ij} &= 1, &
-    \end{flalign*}
-    where \(w_{ij} > 0\) is the \emph{weight} that agent \(i\) places on agent \(j\)'s opinion.
+    The true state is \(\mu = 0.5\).
+    Each agent starts with the initial belief shown on the right.\(^*\)
     \vspace{1em}
 
-    At each new time step, agents \emph{update} their opinions to a weighted average 
-    of the opinions of agents they pay attention to:
+    Time starts at \(t = 0\).
+    \vspace{1em}
+
+    At \(t=1\), each agent updates their belief to a weighted average of the beliefs of agents they pay attention to. For instance, agent \(1\)'s belief becomes:
     \begin{flalign*}
         \qquad
-        x^{t+1}_i &= \sum_{j \in N(i)} w_{ij} x^t_j. &
+        x^1_1 &= 0.5 \cdot 0 + 0.3 \cdot 1 + 0.2 \cdot 0.2 &\\
+              &= 0.34. &
     \end{flalign*}
+    This keeps going for as long as we like\dots
+
+
+
+
 
     % \( t = \infty\)
 
