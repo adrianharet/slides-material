@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 5pt 0pt 1pt}, varwidth=13cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -65,52 +65,229 @@
     % \end{flalign*}
 
 
-    Take \(N = \{1, \dots, 6\}\) to be the set of agents.
-    They are connected by the social network \(G\) on the right.
-    \vspace{1em}
+    % Take \(N = \{1, \dots, 6\}\) to be the set of agents.
+    % They are connected by the social network \(G\) on the right.
+    % \vspace{1em}
 
-    Each agent distributes a total weight of \(1\) across the agents in their neighborhood.
-    \vspace{1em}
+    % Each agent distributes a total weight of \(1\) across the agents in their neighborhood.
+    % \vspace{1em}
 
-    The true state is \(\mu = 0.5\).
-    Each agent starts with the initial belief shown on the right.\(^*\)
-    \vspace{1em}
+    % The true state is \(\mu = 0.5\).
+    % Each agent starts with the initial belief shown on the right.\(^*\)
+    % \vspace{1em}
 
-    Time starts at \(t = 0\).
-    \vspace{1em}
+    % Time starts at \(t = 0\).
+    % \vspace{1em}
 
-    At \(t=1\), each agent updates their belief to a weighted average of the beliefs of agents they pay attention to. For instance, agent \(1\)'s belief becomes:
-    \begin{flalign*}
-        \qquad
-        x^1_1 &= 0.5 \cdot 0 + 0.3 \cdot 1 + 0.2 \cdot 0.2 &\\
-              &= 0.34. &
-    \end{flalign*}
-    This keeps going for as long as we like\dots
-
-
-
-
-
-    % \( t = \infty\)
-
-    % We write \(G_n\) for a network with \(n\) vertices.\\
-
-    % A sequence \(G_1, G_2, \dots , G_n, \dots \) of (strongly connected and aperiodic) networks of increasing size 
-    % is \emph{wise} if the consensus belief {approaches} the true state \(\mu\) asymptotically, as \(n\) goes to infinity.
-
-    % A sequence \(G_1, G_2, \dots , G_n, \dots \) of (strongly connected and aperiodic) networks of increasing size 
-    % is \emph{wise} if and only if the eigenvector centrality of every agent \(i\) approaches \(0\) asymptotically, 
-    % as \(n\) goes to infinity.
-
-    % The eigenvector centralities are \(\bm{c} = (\nicefrac{2}{3}, \nicefrac{1}{6}, \nicefrac{1}{6})\).\\
-
-    % Centralities indicate the importance of the nodes for \\the limit consensus belief:
+    % At \(t=1\), each agent updates their belief to a weighted average of the beliefs of agents they pay attention to. For instance, agent \(1\)'s belief becomes:
     % \begin{flalign*}
-    %     \left(\frac{2}{3}, \frac{1}{6}, \frac{1}{6}\right)\cdot \left(1, 0, 0\right) &= 
-    %         \frac{2}{3}\cdot 1 + \frac{1}{6}\cdot 0 + \frac{1}{6}\cdot 0 &&\\ 
-    %         & = \frac{2}{3}. &&
+    %     \qquad
+    %     x^1_1 &= 0.5 \cdot 0 + 0.3 \cdot 1 + 0.2 \cdot 0.2 &\\
+    %           &= 0.34. &
+    % \end{flalign*}
+    % This keeps going for as long as we like\dots
+
+
+
+
+
+
+
+    
+    
+
+
+    % The \emph{weight matrix} of network \(G\) is a matrix 
+    % \(
+    % W = 
+    % \begin{bmatrix}
+    %     w_{11} & w_{12} & \cdots & w_{1n} \\
+    %     w_{21} & w_{22} & \cdots & w_{2n} \\
+    %     \vdots & \vdots & \ddots & \vdots \\
+    %     w_{n1} & w_{n2} & \cdots & w_{nn}
+    % \end{bmatrix}
+    % \), 
+    % where:
+    % \[
+    %     w_{ij} = 
+    %     \begin{cases}
+    %         \text{weight that agent \(i\) places on agent \(j\)'s opinion,} & \text{if } (i, j) \in E \\
+    %         0 & \text{otherwise.}
+    %     \end{cases}
+    % \]
+
+
+    % Consider the graph on the right. The weight matrix is:
+    % \begin{flalign*}
+    %     \qquad
+    %     W &= 
+    %     \begin{bmatrix}
+    %         0.5 & 0.25 & 0.25 \\
+    %         1 & 0 & 0 \\
+    %         1 & 0 & 0            
+    %     \end{bmatrix}.&
+    % \end{flalign*}
+    % Take initial beliefs to be \(x_1^0 = 1\), \(x_2^0 = 0\), and \(x_3^0 = 0\).
+    % \vspace{1em}
+
+    % Beliefs at time \(t=1\) are:
+    % \begin{flalign*}
+    % \qquad
+    %     \bm{x}^1 & = W \cdot \bm{x}^0 &\\
+    %              &  = \begin{bmatrix}
+    %                     0.5 & 0.25 & 0.25 \\
+    %                     1 & 0 & 0 \\
+    %                     1 & 0 & 0            
+    %                 \end{bmatrix}
+    %                 \cdot \begin{bmatrix}
+    %                     1 \\
+    %                     0 \\
+    %                     0   
+    %                 \end{bmatrix} &\\
+    %             & = \begin{bmatrix}
+    %                 0.5 \cdot 1 + 0.25 \cdot 0 + 0.25 \cdot 0 \\
+    %                 1 \cdot 1 + 0 \cdot 0 + 0 \cdot 0 \\
+    %                 1 \cdot 1 + 0 \cdot 0 + 0 \cdot 0
+    %             \end{bmatrix}\\
+    %             &= \begin{bmatrix}
+    %                 0.5 \\
+    %                 1 \\
+    %                 1
+    %             \end{bmatrix}.&
     % \end{flalign*}
 
+    % Beliefs at time \(t=2\) are:
+    % \begin{flalign*}
+    %     \qquad
+    %     \bm{x}^2 & = W \cdot \bm{x}^1 &\\
+    %              & = W \cdot \left(W \cdot \bm{x}^0\right) &\\
+    %              & = W^2 \cdot \bm{x}^0. &\\
+    %             & = \begin{bmatrix}
+    %                 0.75\\
+    %                 0.5 \\
+    %                 0.5 
+    %             \end{bmatrix} &
+    % \end{flalign*}
+
+    % In general, beliefs at time \(t\) are:
+    % \begin{flalign*}
+    %     \qquad
+    %     \bm{x}^t & = W^t \cdot \bm{x}^0. &
+    % \end{flalign*}
+
+
+    % As \(t\) goes to infinity, the beliefs converge to a limit:\(^*\)
+    % \begin{flalign*}   
+    %     \qquad
+    %     \bm{x}^* & = \lim_{t \to \infty} W^t \cdot \bm{x}^0 & \\
+    %              & = W^* \cdot \bm{x}^0. & \\
+    %              & = \begin{bmatrix}
+    %                  w^*_1 & w^*_2 & w_3^*\\
+    %                  w^*_1 & w^*_2 & w_3^*\\
+    %                  w^*_1 & w^*_2 & w_3^*
+    %                 \end{bmatrix}
+    %                 \cdot
+    %                 \begin{bmatrix}
+    %                     x^0_1 \\
+    %                     x^0_2 \\
+    %                     x^0_3
+    %                 \end{bmatrix}.&
+    % \end{flalign*}
+    % \begin{flushright}
+    %     \footnotesize
+    %     \(^*\)Note that, since the limit belief is indenpendent of the initial beliefs, 
+    %     the rows of \(W^*\) have to be equal.        
+    % \end{flushright}
+
+
+    % So the limit belief is:
+    % \begin{flalign*}
+    %     \qquad
+    %     \tilde{x} & = w_1^* x^0_1 + w_2^* x^0_2 + w_3^* x^0_3 & \\
+    %               & =
+    %                 \begin{bmatrix}
+    %                     w_1^* & w_2^* & w_3^*
+    %                 \end{bmatrix}  
+    %                 \cdot 
+    %                 \begin{bmatrix}
+    %                     x^0_1 \\
+    %                     x^0_2 \\
+    %                     x^0_3
+    %                 \end{bmatrix} & \\
+    %               & = \bm{w} \cdot \bm{x}^0.  
+    % \end{flalign*}
+    % Note, again, that this holds for any initial beliefs.
+
+
+    % We got that the consensus belief is:
+    % \begin{flalign*}
+    %     \qquad
+    %     \tilde{x} &= \bm{w} \cdot \bm{x}^0.&
+    % \end{flalign*}
+    % But note that we would get the same consensus belief
+    % even if we started at \(\bm{x}^1\)!
+    % \vspace{1em}
+    
+    % So:
+    % \begin{flalign*}
+    %     \qquad
+    %     \bm{w} \cdot \bm{x}^0 & = \bm{w} \cdot \bm{x}^1 & \\
+    %                           & = \bm{w} \cdot \left(W \cdot \bm{x}^0 \right) & \\
+    %                           & = \left(\bm{w} \cdot W\right) \cdot \bm{x}^0. &
+    % \end{flalign*}
+    % Simplifying and rearranging gives us:
+    % \begin{flalign*}
+    %     \qquad
+    %     \bm{w} \cdot W & = \bm{w}. &
+    % \end{flalign*}
+    % This means that \(\bm{w}\) is a \emph{left eigenvector} of \(W\) with eigenvalue \(1\).
+
+
+
+
+    % Consider the graph on the right. The weight matrix is:
+    % \begin{flalign*}
+    %     \qquad
+    %     W &= 
+    %     \begin{bmatrix}
+    %         0.5 & 0.25 & 0.25 \\
+    %         1 & 0 & 0 \\
+    %         1 & 0 & 0            
+    %     \end{bmatrix}.&
+    % \end{flalign*}
+    % The eigenvector centralities of the nodes are 
+    % \(c_1 = \nicefrac{2}{3}\), \(c_2 = \nicefrac{1}{6}\), and \(c_3 = \nicefrac{1}{6}\).
+    % \vspace{1em}
+
+    % Take initial beliefs to be \(x_1^0 = 1\), \(x_2^0 = 0\), and \(x_3^0 = 0\).
+    % \vspace{1em}
+
+    % If we compute the limits and do the maths, we get the consensus belief as:
+    % \begin{flalign*}
+    %     \qquad
+    %     \tilde{x} & = \frac{2}{3}.&
+    % \end{flalign*}
+    % Note that we get the same from the eigenvector centralities and initial beliefs:
+    % \begin{flalign*}
+    %     \qquad
+    %     c_1 \cdot x_1^0 + c_2 \cdot x_2^0 + c_3 \cdot x_3^0 & = \frac{2}{3} \cdot 1 + \frac{1}{6} \cdot 0 + \frac{1}{6} \cdot 0&\\
+    %     & = \frac{2}{3}.&
+    % \end{flalign*}
+    % \vspace{1em}
+
+
+
+    Assume a sequence \(G_1\), \(G_2\), \dots, of strongly connected and aperiodic networks of increasing size, 
+    and initial beliefs drawn from a distribution with mean \(\mu\) (the true state) and 
+    finite variance above a threshold \(\delta > 0\).
+    \vspace{1em}
+
+    The sequence of networks is \emph{wise} if and only if the eigenvector centrality of every agent 
+    approaches \(0\) asymptotically, as \(n\) goes to infinity.
+
+
+
+    
     %% Model for cascades
     % \begin{table}
     %     \begin{tabular}{rl}
