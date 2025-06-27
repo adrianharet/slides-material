@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth = 7.5cm, 
+    varwidth = 9cm, 
     border = {2pt 0pt 1pt 1pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -394,18 +394,18 @@
     % \end{flalign*}
 
 
-    When paired, we assume the focal agent \(i\) is player \(1\), and agent \(j\) is player \(2\).
-    \vspace{1em}
+    % When paired, we assume the focal agent \(i\) is player \(1\), and agent \(j\) is player \(2\).
+    % \vspace{1em}
 
-    And we look only at the payoffs of the focal agent.
-    \vspace{1em}
+    % And we look only at the payoffs of the focal agent.
+    % \vspace{1em}
 
-    Thus:
-    \begin{flalign*}
-        \qquad
-        & u(C, D) &
-    \end{flalign*}
-    is the payoff of player \(i\) when \(i\) is a cooperator and \(j\) is a defector.
+    % Thus:
+    % \begin{flalign*}
+    %     \qquad
+    %     & u(C, D) &
+    % \end{flalign*}
+    % is the payoff of player \(i\) when \(i\) is a cooperator and \(j\) is a defector.
 
 
 
@@ -484,6 +484,46 @@
     %     \qquad
     %     {\Pr}{\big[ j = \text{C} \mid i = \text{C} \big]} - {\Pr}{\big[ j = \text{C} \mid i = \text{D} \big]} &> \frac{c}{b}.&
     % \end{flalign*}
+
+
+
+
+    % There are \(p\) cooperators and \(1-p\) defectors.
+    % The focal agent \(i\) is paired with another agent \(j\).
+    % \vspace{1em}
+
+    % There is a \emph{relatedness factor} \(r\), the probability that \(j\) and \(i\) share the same 
+    % gene (i.e., strategy) by common descent. In this case \(i\) and \(j\) get paired for sure.
+    % \vspace{1em}
+
+    % But \(i\) and \(j\) can get paired up even if they're not related by common descent,
+    % simply because the gene is common in the population: \(p\) cooperators, \(1-p\) defectors.
+    % \vspace{1em}
+
+    % This makes the pairing probabilities:
+    % \begin{flalign*}
+    %     \qquad
+    %     {\Pr}{\big[ j = \text{C} \mid i = \text{C} \big]} & = r \cdot 1 + (1 - r) \cdot p, & \\
+    %     {\Pr}{\big[ j = \text{D} \mid i = \text{C} \big]} & = r \cdot 0 + (1-r) \cdot (1-p), &\\
+    %     {\Pr}{\big[ j = \text{D} \mid i = \text{D} \big]} & = r \cdot 1 + (1-r) \cdot (1-p), &\\
+    %     {\Pr}{\big[ j = \text{C} \mid i = \text{D} \big]} & = r \cdot 0 + (1-r) \cdot p.&
+    % \end{flalign*}
+    % Plug this into the positive assortment equation to get:
+    % \begin{flalign*}
+    %     \qquad
+    %     {\Pr}{\big[ j = \text{C} \mid i = \text{C} \big]} - {\Pr}{\big[ j = \text{C} \mid i = \text{D} \big]} & > \frac{c}{b} \qquad\text{iff}\\
+    %     r \cdot 1 + (1 - r) \cdot p - \big(r \cdot 0 + (1-r) \cdot p \big) &> \frac{c}{b} \qquad\text{iff}&\\
+    %     r &> \frac{c}{b}. &
+    % \end{flalign*}
+
+
+
+
+    Cooperation increases in frequency if and only if:
+    \begin{flalign*}
+        \qquad
+        r &> \frac{c}{b}.&
+    \end{flalign*}
 
 
 

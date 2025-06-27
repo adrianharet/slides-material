@@ -79,6 +79,9 @@
     % Time starts at \(t = 0\).
     % \vspace{1em}
 
+
+
+    
     % At \(t=1\), each agent updates their belief to a weighted average of the beliefs of agents they pay attention to. For instance, agent \(1\)'s belief becomes:
     % \begin{flalign*}
     %     \qquad
@@ -88,7 +91,30 @@
     % This keeps going for as long as we like\dots
 
 
+    
 
+    % If the social network is strongly connected and aperiodic, 
+    % then the agents' opinions converge to a common value \(\tilde{x} \in [0, 1]\), 
+    % called the \emph{consensus belief}:
+    % \begin{flalign*}
+    %     \qquad
+    %     \lim_{t \to \infty} x^t_i &= \tilde{x}, &
+    % \end{flalign*}
+    % for all agents \(i\).
+
+
+
+
+    We write \(G_n\) for a network with \(n\) vertices.
+    \vspace{1em}
+
+    A sequence \(G_1\), \(G_2\), \dots, of 
+    networks of increasing size is \emph{wise} if each network \(G_i\) admits a consensus belief,     
+    and the consensus belief approaches the true state \(\mu\) asymptotically, as \(n\) goes to infinity:
+    \begin{flalign*}
+        \qquad
+        \lim_{n \to \infty} \bigg(\lim_{t \rightarrow \infty} x_i^t, \text{ for every } i \text{ in } G_n \bigg) & = \mu. &
+    \end{flalign*}
 
 
 
@@ -277,13 +303,13 @@
 
 
 
-    Assume a sequence \(G_1\), \(G_2\), \dots, of strongly connected and aperiodic networks of increasing size, 
-    and initial beliefs drawn from a distribution with mean \(\mu\) (the true state) and 
-    finite variance above a threshold \(\delta > 0\).
-    \vspace{1em}
+    % Assume a sequence \(G_1\), \(G_2\), \dots, of strongly connected and aperiodic networks of increasing size, 
+    % and initial beliefs drawn from a distribution with mean \(\mu\) (the true state) and 
+    % finite variance above a threshold \(\delta > 0\).
+    % \vspace{1em}
 
-    The sequence of networks is \emph{wise} if and only if the eigenvector centrality of every agent 
-    approaches \(0\) asymptotically, as \(n\) goes to infinity.
+    % The sequence of networks is \emph{wise} if and only if the eigenvector centrality of every agent 
+    % approaches \(0\) asymptotically, as \(n\) goes to infinity.
 
 
 
