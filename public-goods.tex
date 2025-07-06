@@ -1,13 +1,16 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, varwidth=14cm, border={0pt 1pt 1pt 1pt}]{standalone} % border options are {left bottom right top}
-
+\documentclass[
+    preview, 
+    varwidth=8cm, 
+    border={0pt 1pt 1pt 1pt}
+    ]{standalone} % border options are {left bottom right top}
 
 
 \input{input/packages.tex}
 \input{input/colors.tex}
 \input{input/macros.tex}
 
-\begin{document}
+\begin{document}\raggedright
     % \begin{table}
     %     \begin{tabular}{rl}
     %         players              & \(N = \{1, \dots, n\}\) \\
@@ -154,13 +157,13 @@
 
 
 
-    \begin{tabular}{rl}
-        Best Response: & \(\nu_i(\bm{c}) = \mathit{br}_i(\bm{c})\) \\[0.2cm]
-            Be Yourself: & \(\nu_i(\bm{c}) = c_i\)  \\[0.2cm] 
-        Be Like Others: & 
-        \(\nu_i(\bm{c}) = \text{the majority contribution in } \bm{c}_{-i}\) \\ 
-        \dots   & \dots
-    \end{tabular}
+    % \begin{tabular}{rl}
+    %     Best Response: & \(\nu_i(\bm{c}) = \mathit{br}_i(\bm{c})\) \\[0.2cm]
+    %     Be Yourself: & \(\nu_i(\bm{c}) = c_i\)  \\[0.2cm] 
+    %     Be Like Others: & 
+    %     \(\nu_i(\bm{c}) = \text{the majority contribution in } \bm{c}_{-i}\) \\ 
+    %     \dots   & \dots
+    % \end{tabular}
 
 
     % The majority rule ('Be Like Others') does a bit better, at lower values of 
@@ -213,4 +216,51 @@
     % Social norms as internalized behavior rules (requirements).\\ 
 
     % Powerful, and even more so in the presence of social networks.
+
+
+
+
+    % There is a set \(N = \{1, \dots, n\}\) of \emph{players}.
+    
+    % \vspace{1em}
+    % Each player \(i\) starts with an \emph{endowment} \(e\)
+    % and makes a \emph{contribution} \(c_i \in [0, e]\).
+
+    % \vspace{1em}
+    % The \emph{public good} is obtained by pooling all contributions,
+    % and multiplying them by a constant \(r > 1\).
+
+    % \vspace{1em}    
+    % Each player receives an equal share of the public good.
+
+
+    % If player \(i\) contributes \(c_i > 0\), they make:
+    % \begin{flalign*}
+    %     \qquad
+    %     e - c_i + r \cdot \frac{\sum_{j \neq i}c_j + c_i}{n}. &&
+    % \end{flalign*}
+    % If player \(i\) lowers their contribution to \(c'_i < c_i\), while 
+    % everyone else keeps their contribution constant, they make:
+    % \begin{flalign*}
+    %     \qquad
+    %     e - c'_i + r \cdot \frac{\sum_{j \neq i}c_j + c'_i}{n}. &&
+    % \end{flalign*}
+    % Lowering the contribution is worth it just in case:
+    % \begin{flalign*}
+    %     \qquad
+    %     e - c'_i + r \cdot \frac{\sum_{j \neq i}c_j + c'_i}{n} &> e - c_i + r \cdot \frac{\sum_{j \neq i}c_j + c_i}{n} & \text{iff} \\
+    %     c_i - c'_i & > r \cdot \frac{c_i-c'_i}{n} &\text{iff} \\
+    %     n & > r.&
+    % \end{flalign*}
+
+    If everyone contributes \(0\), there is no public good and each player 
+    is stuck with their initial endowment \(e\).\\
+
+    \vspace{1em}
+    In this situation, if a player \(i\) decides to deviate and contribute \(c_i > 0\), they make:
+    \begin{flalign*}
+        \qquad
+        e - c_i + r \cdot \frac{c_i}{n} & < e, & \text{as long as } r < n. &&
+    \end{flalign*}
+
 \end{document}
