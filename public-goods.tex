@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth=8cm, 
+    varwidth=6.5cm, 
     border={0pt 1pt 1pt 1pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -220,6 +220,10 @@
 
 
 
+
+
+
+
     % There is a set \(N = \{1, \dots, n\}\) of \emph{players}.
     
     % \vspace{1em}
@@ -253,14 +257,35 @@
     %     n & > r.&
     % \end{flalign*}
 
-    If everyone contributes \(0\), there is no public good and each player 
-    is stuck with their initial endowment \(e\).\\
+
+
+
+    % If everyone contributes \(0\), there is no public good and each player 
+    % is stuck with their initial endowment \(e\).\\
+
+    % \vspace{1em}
+    % In this situation, if a player \(i\) decides to deviate and contribute \(c_i > 0\), they make:
+    % \begin{flalign*}
+    %     \qquad
+    %     e - c_i + r \cdot \frac{c_i}{n} & < e, & \text{as long as } r < n. &&
+    % \end{flalign*}
+
+
+
+
+
+
+    There is a set \(N = \{1, \dots, n\}\) of \emph{players}.
+    
+    \vspace{1em}
+    At the first round players either 
+    make a \emph{contribution} of \(c > 0\), or \emph{freeride} by contributing \(0\).
 
     \vspace{1em}
-    In this situation, if a player \(i\) decides to deviate and contribute \(c_i > 0\), they make:
-    \begin{flalign*}
-        \qquad
-        e - c_i + r \cdot \frac{c_i}{n} & < e, & \text{as long as } r < n. &&
-    \end{flalign*}
+    If there are enough\(^*\) contributions 
+    the public good is provided and everyone receives a benefit \(b > c\).
 
+    \vspace{1em}
+    At the second round an authority imposes a penalty \(h\) to 
+    non-contributors.
 \end{document}
