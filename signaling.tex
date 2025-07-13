@@ -1,0 +1,59 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[
+    preview, 
+    varwidth=7cm, 
+    border={0pt 1pt 1pt 1pt}
+    ]{standalone} % border options are {left bottom right top}
+
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}\raggedright
+    % There is a player, \emph{Nature}, that determines 
+    % Player~\(1\)'s type (High or Low)
+    % with some probability.
+
+    % \vspace{0.2cm}
+    % Player \(1\) chooses whether to send a signal.
+
+    % \vspace{0.2cm}
+    % Sending the signal incurs cost \(c_H\) if 
+    % Player \(1\) is of High type, and \(c_L\) if Low type.
+
+    % \vspace{0.2cm}
+    % Player \(2\) only observes the signal,
+    % but does not know Player \(1\)'s type (the dashed line).
+
+    % \vspace{0.2cm}
+    % Player \(2\) chooses to accept or reject Player \(1\).
+
+    % \vspace{0.2cm}
+    % Player \(1\) gets a benefit \(b > 0\) if they are accepted, 
+    % and nothing if they are rejected. And they also pay the cost of sending the signal.
+
+    % \vspace{0.2cm}
+    % Player \(2\) gets \(a > 0\) if they accept a high type, 
+    % \(-a\) if they accept a low type,\(^*\)
+    % and nothing if they reject.
+
+
+    Keeping Player \(1\)'s strategy fixed, Player \(2\) does not want to deviate 
+    just in case:
+    \[
+        a > 0,
+    \]
+    which we've assumed to be the case.
+
+    \vspace{0.2cm}
+    Keeping Player \(2\)'s strategy fixed, Player \(1\) does not want to deviate
+    just in case:
+    \[
+        b - c_H \geq 0 \quad \text{and} \quad b - c_L \leq 0,
+    \]
+    which is equivalent to:
+    \[
+        c_H \leq b \leq c_L.
+    \]
+\end{document}
