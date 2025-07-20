@@ -1,0 +1,92 @@
+%% magick convert -density 1200 test.pdf test.png
+\documentclass[
+    preview, 
+    varwidth=11.7cm, 
+    border={0pt 1pt 1pt 1pt}
+    ]{standalone} % border options are {left bottom right top}
+
+
+\input{input/packages.tex}
+\input{input/colors.tex}
+\input{input/macros.tex}
+
+\begin{document}\raggedright
+    % \emph{Nature} determines the state:
+    % \emph{High} with probability \(p\) and \emph{Low} with probability \(1 - p\).
+
+    % \vspace{0.2cm}
+    % Player \(1\) can get evidence of the state:
+    % with probability \(q_h\) if state is High,
+    % and \(q_\ell\) if state is Low.
+    % In the remaining cases Player \(1\) gets no evidence.
+
+    % \vspace{0.2cm}
+    % Player \(1\) sees only the evidence, if any, 
+    % but not the state itself (dashed line).
+
+    % \vspace{0.2cm}
+    % If in possession of evidence, Player \(1\) chooses whether to reveal it (R or \(\lnot\)R)
+    % to Player \(2\). If Player \(1\) hasn't gotten any evidence,
+    % they don't reveal anything (\(\lnot\)R).
+
+    % \vspace{0.2cm}
+    % Player \(2\) observes only Player \(1\)'s action (\(\textsf{X} \in \{\textsf{R}, \lnot \textsf{R}\}\)),
+    % but not the state or the evidence (dashed lines).
+
+    % \vspace{0.2cm}
+    % Based on Player \(1\)'s action, Player \(2\) updates 
+    % their posterior belief about the state:
+    % \[
+    %     {\Pr}\Big[ \text{High} \mid \textsf{X} \Big].
+    % \]
+    % Player \(1\)'s utility is Player \(2\)'s posterior about the state being High.\(^*\)
+
+
+
+    % Consider the strategy profile in which:
+    % \begin{itemize}
+    %     \item Player \(1\) reveals the evidence when getting it, and (obviously) withholds it otherwise;
+    %     \item Player \(2\) updates their posterior---expecting that Player \(1\) reveals the evidence when they have it, and does not reveal it otherwise.
+    % \end{itemize}
+    % Player \(2\)'s posteriors, given they expect Player \(1\) to follow this strategy, are:
+    % \begin{flalign*}
+    %     \qquad
+    %     {\Pr}\Big[ \text{High} \mid \textsf{R} \Big] &=
+    %     \frac{{\Pr}\big[ \textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \textsf{R}\big]} 
+    %     = \frac{q_h \cdot p}{q_h \cdot p + (1 - q_h) (1 - p)}, &\\
+    %     {\Pr}\Big[ \text{High} \mid \lnot \textsf{R} \Big] 
+    %     & =\frac{{\Pr}\big[ \lnot\textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \lnot\textsf{R}\big]}
+    %     =\frac{(1 - q_h) p}{(1 - q_h) p + (1-q_\ell) (1 - p)}.&
+    % \end{flalign*}
+    % This is an equilibrium as long as Player \(1\) does not want to deviate,
+    % which happens as long as \({\Pr}\big[ \text{High} \mid \textsf{R} \big] \geq {\Pr}\big[ \text{High} \mid \lnot \textsf{R} \big]\). 
+    
+    % \vspace{0.2cm}
+    % Equivalent to:
+    % \begin{flalign*}
+    %     \qquad
+    %     \frac{q_h \cdot p}{q_h \cdot p + (1 - q_h) (1 - p)} \geq \frac{(1 - q_h) p}{(1 - q_h) p + (1-q_\ell) (1 - p)} & \text{ iff } q_h \geq q_\ell.&
+    % \end{flalign*}
+
+
+
+
+
+    Consider the alternative strategy profile in which:
+    \begin{itemize}
+        \item Player \(1\) never reveals anything, even;
+        \item Player \(2\) updates their posterior---expecting that Player \(1\) never reveals.
+    \end{itemize}
+    Player \(2\)'s posteriors, given they expect Player \(1\) to follow this strategy, are:
+    \begin{flalign*}
+        \qquad
+        {\Pr}\Big[ \text{High} \mid \textsf{R} \Big] &=
+        \frac{{\Pr}\big[ \textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \textsf{R}\big]} 
+        = \frac{0 \cdot p}{0 \cdot p + (1 - q_h) (1 - p)} = 0, &\\
+        {\Pr}\Big[ \text{High} \mid \lnot \textsf{R} \Big] 
+        & =\frac{{\Pr}\big[ \lnot\textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \lnot\textsf{R}\big]}
+        =\frac{1 \cdot p}{1} = p.&
+    \end{flalign*}
+    Player \(1\) does not want to switch to revealing, so this is also an equilibrium.
+
+\end{document}
