@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth=11.7cm, 
+    varwidth=8.5cm, 
     border={0pt 1pt 1pt 1pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -72,21 +72,109 @@
 
 
 
-    Consider the alternative strategy profile in which:
+    % Consider the alternative strategy profile in which:
+    % \begin{itemize}
+    %     \item Player \(1\) never reveals anything, even when they have evidence;
+    %     \item Player \(2\) updates their posterior---expecting that Player \(1\) never reveals.
+    % \end{itemize}
+    % Player \(2\)'s posteriors, given they expect Player \(1\) to follow this strategy, are:
+    % \begin{flalign*}
+    %     \qquad
+    %     {\Pr}\Big[ \text{High} \mid \textsf{R} \Big] &=
+    %     \frac{{\Pr}\big[ \textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \textsf{R}\big]} 
+    %     = \frac{0 \cdot p}{0 \cdot p + (1 - q_h) (1 - p)} = 0, &\\
+    %     {\Pr}\Big[ \text{High} \mid \lnot \textsf{R} \Big] 
+    %     & =\frac{{\Pr}\big[ \lnot\textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \lnot\textsf{R}\big]}
+    %     =\frac{1 \cdot p}{1} = p.&
+    % \end{flalign*}
+    % Player \(1\) does not want to switch to revealing, so this is also an equilibrium.
+
+
+
+
+    % Nature determines the state (High or Low) with probability \(p\)
+    % and generates evidence with probabilities \(q_h\) and \(q_\ell\), respectively.
+
+    % \vspace{0.2cm}
+    % Player \(1\) does not have immediate access to the evidence, but has to search for it.
+
+    % \vspace{0.2cm}
+    % Player \(1\) can search for evidence, 
+    % using two levels of effort: Max, which involves cost \(c\),
+    % and Min, which involves cost \(0\).
+
+    % \vspace{0.2cm}
+    % If it exists, evidence is obtained (O) with probabilities \(f_{max}\) or \(f_{min}\), 
+    % depending on the effort expended (\(f_{max} > f_{min}\)). In the remaining cases,
+    % no evidence is obtained (\(\lnot\)O).
+
+    % \vspace{0.2cm}
+    % Player \(1\) chooses whether to reveal evidence (R or \(\lnot\)R), if obtained.
+    % If no evidence is obtained, Player \(1\) does not reveal anything (\(\lnot\)R).
+
+
+    % \vspace{0.2cm}
+    % Player \(2\) updates their posterior belief about the state depending on whether 
+    % Player \(1\) reveals evidence or not.
+
+    % \vspace{0.2cm}
+    % Player \(1\)'s utility is Player \(2\)'s posterior about the state, together with the search cost.
+
+
+
+
+
+    % Consider the strategy profile in which:
+    % \begin{itemize}
+    %     \item Player \(1\) expends Max effort and reveals the evidence when getting it;
+    %     \item Player \(2\) updates their posterior as usual.
+    % \end{itemize}
+    
+
+    % \vspace{0.2cm}
+    % This is an equilibrium as long as:
+    % \begin{flalign*}
+    %     \quad
+    %     c  \leq \big(f_{max} - f_{min}\big) \cdot {\Pr}\big[ \textsf{Ev} \big]
+    %     \cdot \bigg({\Pr}\big[ \text{High} \mid \textsf{R} \big] - {\Pr}\big[ \text{High} \mid \lnot\textsf{R} \big]\bigg).&&
+    % \end{flalign*}
+
+
+
+
+
+    % Nature determines the state (High or Low) with probability \(p\).
+    % Player \(1\) does not know the state.
+
+    % \vspace{0.2cm}
+    % Player \(1\) can choose a test \((q_h, q_\ell)\), with \(q_h > q_\ell\).
+
+    % \vspace{0.2cm}
+    % Evidence is generated according to the chosen test, and the state of the world.
+
+    % \vspace{0.2cm}
+    % If evidence is generated, Player \(1\) automatically observes it and chooses whether to 
+    % reveal it to Player~\(2\).
+
+    % \vspace{0.2cm}
+    % Player \(2\) updates their posterior belief about the state depending on whether 
+    % Player \(1\) reveals evidence or not, and their beliefs about the test and state.
+
+    % \vspace{0.2cm}
+    % Player \(1\)'s utility is Player \(2\)'s posterior about the state.
+
+
+
+
+    Consider the strategy profile in which:
     \begin{itemize}
-        \item Player \(1\) never reveals anything, even;
-        \item Player \(2\) updates their posterior---expecting that Player \(1\) never reveals.
+        \item Player \(1\) chooses a test that maximizes \(q_h\) and \(q_\ell\), 
+                and reveals evidence when generated.
+        \item Player \(2\) updates as usual.
     \end{itemize}
-    Player \(2\)'s posteriors, given they expect Player \(1\) to follow this strategy, are:
-    \begin{flalign*}
-        \qquad
-        {\Pr}\Big[ \text{High} \mid \textsf{R} \Big] &=
-        \frac{{\Pr}\big[ \textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \textsf{R}\big]} 
-        = \frac{0 \cdot p}{0 \cdot p + (1 - q_h) (1 - p)} = 0, &\\
-        {\Pr}\Big[ \text{High} \mid \lnot \textsf{R} \Big] 
-        & =\frac{{\Pr}\big[ \lnot\textsf{R} \mid \textsf{High} \big] \cdot {\Pr}\big[ \textsf{High}\big]}{{\Pr}\big[ \lnot\textsf{R}\big]}
-        =\frac{1 \cdot p}{1} = p.&
-    \end{flalign*}
-    Player \(1\) does not want to switch to revealing, so this is also an equilibrium.
+    
+
+    \vspace{0.2cm}
+    This is an equilibrium.
 
 \end{document}
