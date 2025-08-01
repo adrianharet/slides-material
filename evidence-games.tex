@@ -1,7 +1,7 @@
 %% magick convert -density 1200 test.pdf test.png
 \documentclass[
     preview, 
-    varwidth=8.5cm, 
+    varwidth=10cm, 
     border={0pt 1pt 1pt 1pt}
     ]{standalone} % border options are {left bottom right top}
 
@@ -41,6 +41,9 @@
     % \]
     % Player \(1\)'s utility is Player \(2\)'s posterior about the state being High.\(^*\)
 
+
+    % We say evidence is \emph{supportive} if it is more likely to be generated when
+    % the state is High than when it is Low, i.e., if \(q_h > q_\ell\).
 
 
     % Consider the strategy profile in which:
@@ -165,16 +168,21 @@
 
 
 
+    We say evidence is \emph{confirmatory} if both \(q_h\) and \(q_\ell\) are large.
+    Evidence is \emph{diagnostic} if \(q_h\) is much larger than \(q_\ell\).
 
-    Consider the strategy profile in which:
-    \begin{itemize}
-        \item Player \(1\) chooses a test that maximizes \(q_h\) and \(q_\ell\), 
-                and reveals evidence when generated.
-        \item Player \(2\) updates as usual.
-    \end{itemize}
+
+
+
+    % Consider the strategy profile in which:
+    % \begin{itemize}
+    %     \item Player \(1\) chooses a test that maximizes \(q_h\) and \(q_\ell\), 
+    %             and reveals evidence when generated.
+    %     \item Player \(2\) updates as usual.
+    % \end{itemize}
     
 
-    \vspace{0.2cm}
-    This is an equilibrium.
+    % \vspace{0.2cm}
+    % This is an equilibrium.
 
 \end{document}

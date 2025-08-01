@@ -1,5 +1,5 @@
 %% magick convert -density 1200 test.pdf test.png
-\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=7.5cm]{standalone} % border options are {left bottom right top}
+\documentclass[preview, border={0pt 2pt 1pt 1pt}, varwidth=9cm]{standalone} % border options are {left bottom right top}
 
 \input{input/packages.tex}
 \input{input/colors.tex}
@@ -7,9 +7,9 @@
 
 \begin{document}
     \raggedright
-    \[
-        {\Pr}\big[H \mid E \big] = \frac{\Pr[E \mid H] \cdot \Pr[H]}{\Pr[E]}.
-    \]
+    % \[
+    %     {\Pr}\Big[H \mid E \Big] = \frac{{\Pr}\big[ E \mid H\big] \cdot {\Pr}\big[H\big]}{{\Pr}\big[E\big]}.
+    % \]
 
 
 
@@ -92,35 +92,46 @@
     % \end{flalign*}
 
 
-    % Suppose the base rate of the disease is \(\Pr\left[ d \right] = 0.1\), 
-    % i.e., out of \(100\) foetuses \(10\) will be afflicted.
+
+
+
+
+    % Consider a disease that can affect foetuses.
+
+    % \vspace{0.2cm}
+    % The base rate of the disease
+    % is \({\Pr}\big[ d \big] = 0.1\), i.e., out of \(100\) foetuses \(10\) will be afflicted.
     % \newline
 
-    % The test detects the disease with probability \(\Pr\left[ + \mid d \right] = 0.9\),
+    % A diagnostic test detects the disease with probability \({\Pr}\big[ + \mid d \big] = 0.9\),
     % i.e., it catches \(9\) out of the \(10\) cases.
     % \newline
 
-    % The false positive rate is \(\Pr\left[ + \mid \lnot d \right] = 0.1\),
+    % The false positive rate is \({\Pr}\big[ + \mid \lnot d \big] = 0.1\),
     % i.e., \(9\) out of the \(90\) healthy foetuses 
     % show up incorrectly as positive results.
     % \newline
     
     % Bayes rule tell us:
     % \begin{flalign*}
-    %     \qquad \Pr[d \mid +] & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+]}& \\ 
-    %                          & = \frac{\Pr[+ \mid d] \cdot \Pr[d]}{\Pr[+ \mid d]\cdot \Pr[d] + \Pr[+ \mid \lnot d] \cdot \Pr[\lnot d]}\\ 
+    %     \qquad {\Pr}\Big[d \mid +\Big] & = \frac{{\Pr}\big[+ \mid d\big] \cdot {\Pr}\big[d\big]}{{\Pr}\big[+\big]}& \\ 
+    %                          & = \frac{{\Pr}\big[+ \mid d\big] \cdot {\Pr}\big[d\big]}{{\Pr}\big[+ \mid d\big]\cdot {\Pr}\big[d\big] + {\Pr}\big[+ \mid \lnot d\big] \cdot {\Pr}\big[\lnot d\big]}\\ 
     %                          & = \frac{0.9 \cdot 0.1}{0.9 \cdot 0.1 + 0.1 \cdot 0.9}\\ 
     %                          & = 0.5.
     % \end{flalign*}
     % Half of the positive results are healthy foetuses!
 
-    % Note that if the disease is rarer, say \(\Pr\left[ d \right] = 0.05\),
-    % then the same test parameters give us:
-    % \[
-    %     \Pr\left[ d \mid + \right] \approx 0.32.
-    % \]
-    % With a positive result you're actually twice as likely to be healthy!
+
+
+    Note that if the disease is rarer, say \({\Pr}\big[ d \big] = 0.05\),
+    then the same test parameters give us:
+    \[
+        {\Pr}\big[ d \mid + \big] \approx 0.32.
+    \]
+    With a positive result you're actually twice as likely to be healthy!
+
     
+
 
     % For the MaterniT21 case, one positive result gave us:
     % \[
@@ -149,7 +160,7 @@
 
     % A game against Nature?...
 
-    hypothesis \(h'\)
+    % hypothesis \(h'\)
 
 
     % \(
